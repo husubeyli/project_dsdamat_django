@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block homepage_css_link %}
+    <script type="text/javascript">
+        // Start Analytics -> DONT REMOVE
+        window["dataLayer"] = window["dataLayer"] || [];
+        // End Analytics -> DONT REMOVE
+
+        var GLOBALS = {
+        userLoggedIn: true,
+        csrf_token: "<input type='hidden' name='csrfmiddlewaretoken' value='RBOcm7DUfJkzqMKJkeF1pTgVjg6MYGvFisa39Q2OHVjZ4jG1LruTn5m8nb0fUvE5' />",
+        analyticsContainers: {"containerId": "GTM-WG84SKW"},
+        THUMBNAIL_ACTIVE: true,
+        THUMBNAIL_OPTIONS: {"product-list": {"width": 690, "height": 757, "crop": "top"}, "product-list_ternary": {"width": 449, "height": 673}, "product-list_quad": {"width": 330, "height": 495}, "product-detail__variant": {"width": 54, "height": 80, "crop": "center"}, "product-detail__slider_zoom": {"quality": 90}, "product-detail__slider_display": {"width": 625, "height": 921, "crop": "center"}, "product-detail__slider_thumbnail": {"width": 94, "height": 148, "crop": "center"}, "category-detail": {"width": 870, "height": 317}, "category-detail__campaign-banner": {"width": 420, "height": 210}, "category-detail__sub-category-banner": {"width": 270, "height": 335}, "basket-list": {"width": 94, "height": 143, "crop": "center"}, "order-list": {"width": 110, "height": 131, "crop": "top"}, "mini-basket-list": {"width": 94, "height": 143, "crop": "center"}, "autocomplete": {"width": 40, "height": 40}, "combin-product-item": {"width": 278, "height": 210, "crop": "center"}, "blog-home-item": {"width": 450, "height": 340, "crop": "center"}, "checkout-success-item": {"width": 58, "height": 88, "crop": "center"}},
+        
+    page: ['FlatPage']
+
+        };
+        var URLS = {
+        changeEmail: '/users/email-change/',
+        checkout: '/orders/checkout/',
+        basket: '/baskets/basket/',
+        static: 'https://damat.akinoncdn.com/static_omnishop/damat19/',
+        
+        };
+    </script>
+{% endblock %}
+{% block body %}
+    <div class="js-base-content wrapper">
+        <div data-slug="black-friday">
+            <div class="black-friday-container">
+                <div class="top-banner">
+                    <picture>
+                        <source srcset="https://damat.akinoncdn.com/cms/2020/12/17/f0a6aed1-2222-477b-b0e4-40edc1d58c52.jpg"
+                            media="(max-width: 767px)"> <img
+                            src="https://damat.akinoncdn.com/cms/2020/12/17/618a66e1-7b18-4dcf-be77-77a32d498baa.jpg">
+                    </picture>
+                </div>
+                <div class="banner-section banner-section1">
+                    <a href="/ozel-fiyatli-urunler/">
+                        <picture>
+                            <source
+                                srcset="https://damat.akinoncdn.com/cms/2020/12/17/53e23570-6e20-4edc-af6b-4f3472328a5c.jpg"
+                                media="(max-width: 767px)"> <img
+                                src="https://damat.akinoncdn.com/cms/2020/12/17/97cf473f-0515-4596-ba2a-2f378dbc81f9.jpg">
+                        </picture>
+                    </a>
+                </div>
+                <div class="banner-section banner-section2">
+                    <a href="/homewear-kampanyasi/">
+                        <picture>
+                            <source
+                                srcset="https://damat.akinoncdn.com/cms/2020/12/18/e6243bef-d98d-49ac-a2a0-f28f92aa50bc.jpg"
+                                media="(max-width: 767px)"> <img
+                                src="https://damat.akinoncdn.com/cms/2020/12/18/bb5740a3-f2af-4a56-bff3-874ecb03f0b1.jpg">
+                        </picture>
+                    </a>
+                </div>
+                <div class="banner-section banner-section3 flex-section double">
+                    <a href="/250-tl-alti-hediyeler/">
+                        <picture>
+                            <source
+                                srcset="https://damat.akinoncdn.com/cms/2020/12/17/747eab4c-bbf0-4bb4-b9e0-41ea5e39a627.jpg"
+                                media="(max-width: 767px)"> <img
+                                src="https://damat.akinoncdn.com/cms/2020/12/17/fd55d11f-168f-45b7-8b10-f4d3359b96bf.jpg">
+                        </picture>
+                    </a> <a href="/100-tl-alti-hediyeler/">
+                        <picture>
+                            <source
+                                srcset="https://damat.akinoncdn.com/cms/2020/12/17/f24be52c-d6d3-49da-8372-f0a61eafb856.jpg"
+                                media="(max-width: 767px)"> <img
+                                src="https://damat.akinoncdn.com/cms/2020/12/17/d22b0e5c-4155-43bc-8cdb-be06db15eef7.jpg">
+                        </picture>
+                    </a>
+                </div>
+                <div class="banner-section banner-section4 flex-section triple">
+                    <a href="/erkek-triko-modelleri/">
+                        <picture>
+                            <source
+                                srcset="https://damat.akinoncdn.com/cms/2020/12/17/786030ab-c8a4-4a3e-8608-87b3713f0298.jpg"
+                                media="(max-width: 767px)"> <img
+                                src="https://damat.akinoncdn.com/cms/2020/12/17/cfa1f322-a53c-41f8-b0f3-31d791b88aee.jpg">
+                        </picture>
+                    </a> <a href="/parfum-kampanyasi/">
+                        <picture>
+                            <source
+                                srcset="https://damat.akinoncdn.com/cms/2020/12/17/4add86ff-d727-4c7e-8e14-071f3d192667.jpg"
+                                media="(max-width: 767px)"> <img
+                                src="https://damat.akinoncdn.com/cms/2020/12/17/7c800513-6fe7-43ac-849e-ac9dff72b980.jpg">
+                        </picture>
+                    </a> <a href="/erkek-gomlek-modelleri/">
+                        <picture>
+                            <source
+                                srcset="https://damat.akinoncdn.com/cms/2020/12/17/3be1963e-30b3-4eb4-bb29-6d256181092f.jpg"
+                                media="(max-width: 767px)"> <img
+                                src="https://damat.akinoncdn.com/cms/2020/12/17/54fb13a7-7fe3-4ddf-b091-e0a8909eeaa7.jpg">
+                        </picture>
+                    </a>
+                </div>
+                <div class="banner-section banner-section5">
+                    <a href="/erkek-hediye-setleri-modelleri/">
+                        <picture>
+                            <source
+                                srcset="https://damat.akinoncdn.com/cms/2020/12/17/aa06ee4e-cb73-48ae-8589-ae3afa7e7610.jpg"
+                                media="(max-width: 767px)"> <img
+                                src="https://damat.akinoncdn.com/cms/2020/12/17/3dc45a16-b4f4-45d3-adbe-2832c1f04f6d.jpg">
+                        </picture>
+                    </a>
+                </div>
+                <div class="js-reco-products1"></div>
+                <div class="banner-section banner-section7">
+                    <a href="/aksesuar-kampanyasi/">
+                        <picture>
+                            <source
+                                srcset="https://damat.akinoncdn.com/cms/2020/12/17/ba62cd9a-1578-4879-bef7-d65a8b0fb3a5.jpg"
+                                media="(max-width: 767px)"> <img
+                                src="https://damat.akinoncdn.com/cms/2020/12/17/6964ceb7-56b4-4682-a0b9-8fac8c5698d8.jpg">
+                        </picture>
+                    </a>
+                </div>
+                <div class="js-reco-products2"></div>
+            </div>
+        </div>
+    </div>
+{% endblock body %}

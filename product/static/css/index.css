@@ -1,0 +1,224 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?p14p02');
+  src:  url('../fonts/icomoon.eot?p14p02#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.woff2') format('woff2'),
+    url('../fonts/icomoon.ttf') format('truetype'),
+    url('../fonts/icomoon.woff') format('woff'),
+    url('../fonts/icomoon.svg?p14p02#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-size:before {
+  content: "\e900";
+}
+.icon-heart_full:before {
+  content: "\e901";
+}
+.icon-heart:before {
+  content: "\e902";
+}
+.icon-arrow_left:before {
+  content: "\e903";
+}
+.icon-arrow_right:before {
+  content: "\e904";
+}
+.icon-whatsapp:before {
+  content: "\e905";
+}
+.icon-youtube:before {
+  content: "\e906";
+}
+.icon-instagram:before {
+  content: "\e907";
+}
+.icon-twitter:before {
+  content: "\e908";
+}
+.icon-facebook:before {
+  content: "\e909";
+}
+.icon-installment:before {
+  content: "\e90a";
+}
+.icon-secure:before {
+  content: "\e90b";
+}
+.icon-tailor:before {
+  content: "\e90c";
+}
+.icon-delivery:before {
+  content: "\e90d";
+}
+.icon-plus_circle:before {
+  content: "\e90e";
+}
+.icon-refresh:before {
+  content: "\e90f";
+}
+.icon-chevron_down:before {
+  content: "\e910";
+}
+.icon-chevron_top:before {
+  content: "\e911";
+}
+.icon-chevron_right:before {
+  content: "\e912";
+}
+.icon-chevron_left:before {
+  content: "\e913";
+}
+.icon-basket:before {
+  content: "\e914";
+}
+.icon-logo:before {
+  content: "\e915";
+  color: #042147;
+}
+.icon-cart:before {
+  content: "\e916";
+}
+.icon-profile:before {
+  content: "\e917";
+}
+.icon-search:before {
+  content: "\e918";
+}
+.icon-eski_siparislerim:before {
+  content: "\e919";
+}
+.icon-bize_ulasin:before {
+  content: "\e91a";
+}
+.icon-sifre_degistirme:before {
+  content: "\e91b";
+}
+.icon-bildirim_ayarlarim:before {
+  content: "\e91c";
+}
+.icon-adres_degistirme:before {
+  content: "\e91d";
+}
+.icon-kuponlar:before {
+  content: "\e91e";
+}
+.icon-siparis_takibi:before {
+  content: "\e91f";
+}
+.icon-iade:before {
+  content: "\e920";
+}
+.icon-cikis_yap:before {
+  content: "\e921";
+}
+.icon-email_degistirme:before {
+  content: "\e922";
+}
+.icon-check:before {
+  content: "\e923";
+}
+.icon-duzenle:before {
+  content: "\e924";
+}
+.icon-bin:before {
+  content: "\e925";
+}
+.icon-siparis_onay:before {
+  content: "\e926";
+}
+.icon-sort:before {
+  content: "\e927";
+}
+.icon-hamburger:before {
+  content: "\e928";
+}
+.icon-uniE929:before {
+  content: "\e929";
+}
+.icon-uniE92A:before {
+  content: "\e92a";
+}
+.icon-radio_off:before {
+  content: "\e92b";
+}
+.icon-check_off:before {
+  content: "\e92c";
+}
+.icon-uniE92D:before {
+  content: "\e92d";
+}
+.icon-uniE92E:before {
+  content: "\e92e";
+}
+.icon-uclu:before {
+  content: "\e92f";
+}
+.icon-ikili:before {
+  content: "\e930";
+}
+.icon-tracking:before {
+  content: "\e931";
+}
+.icon-cancel:before {
+  content: "\e932";
+}
+.icon-lu:before {
+  content: "\e933";
+}
+.icon-lu_dolu:before {
+  content: "\e934";
+}
+.icon-uclu_dolu:before {
+  content: "\e935";
+}
+.icon-plus:before {
+  content: "\e936";
+}
+.icon-minus:before {
+  content: "\e937";
+}
+.icon-steril-paket:before {
+  content: "\e938";
+}
+.icon-kolay-iade:before {
+  content: "\e939";
+}
+.icon-guvenli-alisveris:before {
+  content: "\e93a";
+}
+.icon-taksit:before {
+  content: "\e93b";
+}
+.icon-steril-paket1:before {
+  content: "\e93c";
+}
+.icon-kolay-iade1:before {
+  content: "\e93d";
+}
+.icon-kargo-01:before {
+  content: "\e93e";
+}
+.icon-chevron-left:before {
+  content: "\e93f";
+}
+.icon-chevron-right:before {
+  content: "\e940";
+}

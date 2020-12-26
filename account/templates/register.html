@@ -1,0 +1,665 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block homepage_css_link %}
+<script type="text/javascript">
+    // Start Analytics -> DONT REMOVE
+    window["dataLayer"] = window["dataLayer"] || [];
+    // End Analytics -> DONT REMOVE
+
+    var GLOBALS = {
+        userLoggedIn: false,
+        csrf_token: "<input type='hidden' name='csrfmiddlewaretoken' value='PMY4fXnqv7eeRTVxGZgieZ2gniylfzPenU8hlX7AovVOd9kGJslYPQeuv32iUAUz' />",
+        analyticsContainers: {
+            "containerId": "GTM-WG84SKW"
+        },
+        THUMBNAIL_ACTIVE: true,
+        THUMBNAIL_OPTIONS: {
+            "product-list": {
+                "width": 690,
+                "height": 757,
+                "crop": "top"
+            },
+            "product-list_ternary": {
+                "width": 449,
+                "height": 673
+            },
+            "product-list_quad": {
+                "width": 330,
+                "height": 495
+            },
+            "product-detail__variant": {
+                "width": 54,
+                "height": 80,
+                "crop": "center"
+            },
+            "product-detail__slider_zoom": {
+                "quality": 90
+            },
+            "product-detail__slider_display": {
+                "width": 625,
+                "height": 921,
+                "crop": "center"
+            },
+            "product-detail__slider_thumbnail": {
+                "width": 94,
+                "height": 148,
+                "crop": "center"
+            },
+            "category-detail": {
+                "width": 870,
+                "height": 317
+            },
+            "category-detail__campaign-banner": {
+                "width": 420,
+                "height": 210
+            },
+            "category-detail__sub-category-banner": {
+                "width": 270,
+                "height": 335
+            },
+            "basket-list": {
+                "width": 94,
+                "height": 143,
+                "crop": "center"
+            },
+            "order-list": {
+                "width": 110,
+                "height": 131,
+                "crop": "top"
+            },
+            "mini-basket-list": {
+                "width": 94,
+                "height": 143,
+                "crop": "center"
+            },
+            "autocomplete": {
+                "width": 40,
+                "height": 40
+            },
+            "combin-product-item": {
+                "width": 278,
+                "height": 210,
+                "crop": "center"
+            },
+            "blog-home-item": {
+                "width": 450,
+                "height": 340,
+                "crop": "center"
+            },
+            "checkout-success-item": {
+                "width": 58,
+                "height": 88,
+                "crop": "center"
+            }
+        },
+
+        page: ['register'],
+
+    };
+    var URLS = {
+        changeEmail: '/users/email-change/',
+        checkout: '/orders/checkout/',
+        basket: '/baskets/basket/',
+        static: 'https://damat.akinoncdn.com/static_omnishop/damat19/',
+
+    };
+</script>
+{% endblock %}
+{% block body %}
+<div class="js-base-content wrapper">
+
+    <div class="container auth-page py-3 p-sm-4" id="RegisterPage">
+        <div class="auth-page__title w-100">
+            <h1>Yeni Üyelik</h1>
+            <span class="muted-text">Yeni bir üyelik oluşturmak için lütfen aşağıdaki formu doldurunuz.</span>
+        </div>
+
+        <form class="auth-form w-100" method="POST" novalidate="novalidate">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+
+            <label class="error" id="non_field_errors-error" style="display: none;"></label>
+            <div class="form-group">
+                {{ form.email }}
+                {{ form.email.errors }}
+
+            </div>
+            <div class="form-row mb-3">
+                <div class="col">
+                    {{ form.first_name }}
+                    {{ form.first_name.errors }}
+                </div>
+                <div class="col">
+                    {{ form.last_name }}
+                    {{ form.last_name.errors }}
+                </div>
+            </div>
+            <div class="form-group input-float form-group--password">
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+                <span class="password-display js-show-password" style="display: block;">Göster</span>
+                <span class="password-display js-hide-password" style="display: none;">Gizle</span>
+            </div>
+            <div class="form-group input-float form-group--phone">
+                {{ form.phonenumber }}
+                {{ form.phonenumber.errors }}
+                <input type="hidden" name="phone" class="js-phone-number2" data-rule-required="true"
+                    data-msg-required="Bu alan zorunludur">
+                <input type="hidden" name="" class="js-sms-code">
+            </div>
+            <div class="form-group mb-3">
+                <span class="muted-text">* Yıldızlı alanlar zorunludur</span>
+            </div>
+            <div class="form-group">
+                <label class="d-flex align-items-center">
+                    {{ form.is_agreement }}
+                    {{ form.is_agreement.errors }}
+                    <span class="muted-text">
+                        <a href="#agreementModal" class="link" data-toggle="modal">Üyelik sözleşmesini</a> kabul ediyor
+                        ve kişisel verilerimin işlenmesine <a href="#kvkkModal" class="link"
+                            data-toggle="modal">buradan</a> bilgilendirilmiş olarak onay veriyorum.
+                    </span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="d-flex align-items-center">
+                    {{ form.is_notifaction_email }}
+                    {{ form.is_notifaction_email.errors }}
+                    <span class="muted-text">E-Posta yoluyla kampanyalar ve özel indirimler ile ilgili tarafıma <a
+                            href="#communicationsModal" class="link" data-toggle="modal">elektronik ticari ileti</a>
+                        gönderilmesini kabul ediyorum.</span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="d-flex align-items-center">
+                    
+                    {{ form.is_notifaction_phone }}
+                    {{ form.is_notifaction_phone.errors }}
+                    
+                    <span class="muted-text">SMS yoluyla kampanyalar ve özel indirimler ile ilgili tarafıma <a
+                            href="#communicationsModal" class="link" data-toggle="modal">elektronik ticari ileti</a>
+                        gönderilmesini kabul ediyorum.</span>
+                </label>
+            </div>
+            <button type="submit" class="button pz-button__action">Üyelik Oluştur</button>
+        </form>
+
+        <div class="modal-container">
+            <div class="modal fade" id="smscommunicationsModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        </button>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Sms Onay</h5>
+                        </div>
+                        <div class="modal-body font-financier">
+                            <div class="js-sms-confirm-form account-contact__form account-form-box cf">
+                                <p class="modal__text">Telefonunuza gelen doğrulama kodunu buraya giriniz.</p>
+                                <div class="auth__form__input-box auth__form__input-box--register">
+                                    <input class="auth__form__input sms-code js-sms-code-trigger"
+                                        placeholder="Sms doğrulama kodu" type="number">
+                                    <div class="error auth__form__error js-error-code"></div>
+                                </div>
+                                <div class="account__form-group--offset">
+                                    <button
+                                        class="pull-left account__form-group__button button button--md js-send-verification-code"
+                                        data-modal-content="js-modal-card-info">
+                                        <span>GÖNDER</span>
+                                    </button>
+                                    <span class="error js-sms-code-error"></span>
+                                </div>
+                                <p class="modal__text"><a class="js-register-sms-resend">Sms alamadıysanız tekrar
+                                        göndermek için tıklayınız.</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center my-3">
+            <span class="muted-text">veya</span>
+        </div>
+        <a class="w-100" href="/facebook/login/">
+            <button type="button" class="button mb-3 button-outline">Facebook ile Bağlan</button>
+        </a>
+        <div class="text-center">
+            <span class="muted-text">Zaten üyeliğim var.</span>
+            <a href="{% url 'account:login' %}" class="link" rel="nofollow">
+                Giriş Yap
+            </a>
+        </div>
+    </div>
+
+    <div class="modal fade" id="agreementModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Üyelik Sözleşmesi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body font-financier">
+                    <div class="fsize-24">
+                        D’S DAMAT ÜYELİK SÖZLEŞMESİ ve SİTE KULLANIM KOŞULLARI
+                    </div>
+                    <div class="font-financier-bold">
+                        1. Taraflar
+                    </div>
+                    <p>
+                        İşbu Sözleşme, şirket merkezi Gürsel Mahallesi Özoğul Caddesi No:6 Okmeydanı Kâğıthane/İSTANBUL
+                        adresinde mukim OR-PA PAZARLAMA VE TEKSTİL SANAYİ ANONİM ŞİRKETİ ile www.dsdamat.com internet
+                        sitesi (“Site”) üyesi (“Üye”) arasında aşağıdaki şartlarda akdedilmiştir.
+                    </p>
+                    <p>
+                        www.dsdamat.com sitesinin tüm hakları OR-PA PAZARLAMA VE TEKSTİL SANAYİ A.Ş.’ ye ait olup bu
+                        sözleşmede D’S DAMAT olarak zikredilecektir. Sitenin Kullanıcılar ve Üyeler tarafından kullanımı
+                        aşağıdaki hüküm ve şartlara tabidir.
+                    </p>
+                    <div class="font-financier-bold">
+                        2. Tarafların Hak ve Yükümlülükleri
+                    </div>
+                    <div class="font-financier-bold">
+                        2.1.
+                    </div>
+                    <p>
+                        D’S DAMAT, bu sözleşmede her zaman değişiklik yapabilir ve bu değişiklikler, değiştirilmiş
+                        sözleşmenin siteye konulmasıyla derhal yürürlük kazanır. Siz bu değişikliklerden haberdar olmak
+                        amacıyla periyodik olarak sözleşmeyi gözden geçirmeyi kabul etmektesiniz ve siteye devam eden
+                        erişiminiz veya devam eden siteyi kullanımınız değiştirilmiş sözleşmeyi kesin olarak kabul
+                        ettiğiniz anlamına gelecektir.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.2.
+                    </div>
+                    <p>
+                        Site’ye üyelik, aşağıda yazılı koşulların tarafınızca kabulüne bağlıdır. Siteye erişmekle veya
+                        siteyi kullanmakla, aşağıda belirtilen şartlar ve hükümlerle bağlı olmayı kabul etmektesiniz.
+                        Eğer bu şartlar ve hükümlerle bağlı olmak istemezseniz, siteye erişmeyebilir veya siteyi
+                        kullanmayabilirsiniz ve böyle bir kullanıma başladıysanız kullanımı derhal durdurmalısınız.
+                        Site’ye üyelik formunu eksiksiz dolduran ve D’S DAMAT tarafından üyelikleri uygun bulunan gerçek
+                        ya da tüzel kişiler “Üye” olarak kabul edilir. Üyelik için 18 yaşını doldurmuş olmak zorunludur.
+                        Tüzel kişiler, ancak yasal temsilcileri kanalı ile üyelik başvurusu yapabilirler. Sözleşme’yi
+                        akdeden kişi, söz konusu tüzel kişi adına bu tür bir işlem gerçekleştirmek için yetkili
+                        olduğunu, aksi halde (yetkisiz işlem yapması durumunda), bundan sonra yaptığı/yapacağı sonuç
+                        doğurucu tüm işlemlerden ötürü şahsen sorumlu olduğunu kabul, beyan ve taahhüt etmiş olmaktadır.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.3.
+                    </div>
+                    <p>
+                        D’S DAMAT, Site ve Site uzantısı kapsamında sunulan hizmetleri, ürünleri, fikir ve sanat
+                        eserlerini, Sitede sunulan herhangi bir bilgi ve veriyi, önceden herhangi bir ihtar veya ihbar
+                        yapmaya gerek olmaksızın değiştirme, Site yayınına ara verme, Site yayını tamamen durdurma ve
+                        Siteyi en geniş kapsamda yeniden düzenleme haklarını saklı tutmaktadır.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.4.
+                    </div>
+                    <p>
+                        Site’ye giriş yapan, Site’yi ziyaret eden, herhangi bir şekilde kullanan, Siteye erişen ve/veya
+                        herhangi başkaca bir şekilde bağlanan tüm üye ve ziyaretçiler “Kullanıcı”, bu sözleşmede
+                        düzenlenmiş olan kullanım koşullarına uyacaklarını peşinen beyan, kabul ve taahhüt ederler. İşbu
+                        Yukarıda anılan “Kullanıcı” ifadesi, üye girişi yapmak suretiyle veya herhangi bir şekilde
+                        Siteye giriş yapan, Siteyi kullanan, inceleyen veya herhangi bir iletişim cihazı (cep telefonu,
+                        bilgisayar gibi) aracılığıyla Site’ye bağlanmış olan veya Site üzerinden elektronik veri
+                        alış-verişinde bulunmuş veya bulunmakta olan herhangi bir kişiyi ifade etmektedir. Kullanıcı,
+                        Site’de sunulan hizmetlerden yararlanırken, Borçlar Kanunu, Türk Ceza Kanunu, Türk Ticaret
+                        Kanunu, Fikir ve Sanat Eserleri Kanunu, Marka ve Patent Haklarının Korunması, Kişisel Verilerin
+                        Korunması Kanunu ile bunlarla ilgili Kanun, Kanun Hükmünde Kararnameler ve diğer ilgili mevzuat
+                        hükümleri ile D’S DAMAT’ın hizmetlerine ilişkin olarak yayımlayacağı her türlü duyuru ve
+                        bildirime uymayı kabul eder. Bu bildirimlere ve kanunlara aykırı kullanım sebebiyle doğabilecek
+                        hukuki, cezai ve mali her türlü sorumluluk Kullanıcı’ya aittir.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.5.
+                    </div>
+                    <p>
+                        Üye, diğer üyelerin ve ziyaretçilerin Site’yi kullanmasını önleyici veya zorlaştırıcı eylemlerde
+                        bulunamaz; sunucuları ya da veri tabanlarını otomatik programlarla yükleyip kilitleyemez,
+                        verileri yanıltıcı girişimlerde bulunamaz; aksi takdirde üyeliğinin sonlandırılacağını ve bu
+                        durumdan doğabilecek her türlü hukuki ve cezai sorumluluğu üstleneceğini kabul eder. Site’de,
+                        ziyaretçilere bilgi ve kolaylık sağlamak amacı ile yer alan linkler (farklı internet sitelerine
+                        yönlendiren bağlantılar) ile ilgili riskler Üye’ye aittir.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.6.
+                    </div>
+                    <p>
+                        D’S DAMAT ’ın, Site üzerinden vereceği hizmet; D’S DAMAT online shop sitesinde satışa sunulan
+                        ürünlerin; üye tarafından bedeli ödendikten sonra, D’S DAMAT ’ın stok durumunun uygun olması
+                        halinde taahhüt edilen sürede malın müşteriye kargo firması tarafından ayıpsız ve hasarsız
+                        olarak teslimidir.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.7.
+                    </div>
+                    <p>
+                        D’S DAMAT, Site’nin kullanımı süresince işbu Sözleşme’de belirtilen şartlara, D’S DAMAT Üyelik
+                        Sözleşmesi’ne ve Site’de yer alan Kişisel Verilerin İşlenmesi ve Koruma Politikası’na uygun
+                        hareket edecektir. Bununla birlikte D’S DAMAT, kanuni olarak saklaması gereken Üye bilgilerini
+                        saklamakla yükümlüdür.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.8.
+                    </div>
+                    <p>
+                        D’S DAMAT, işbu Sözleşme ve Kişisel Verilerin Korunması Kanunu da dâhil geçerli yasal
+                        düzenlemelere bağlı kalmak kaydıyla, üyeliğe bağlı olan bütün bilgileri, Sözleşme süresince veya
+                        Sözleşme’nin hitamından sonra dahi, bu bilgileri anonimleştirmek şartıyla kendi pazarlama
+                        faaliyetleri ile ilgili olarak kullanma hakkına sahiptir.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.9.
+                    </div>
+                    <p>
+                        D’S DAMAT, Sitede mevcut bilgilerin doğruluk ve güncelliğini sürekli olarak kontrol etmektedir.
+                        Ancak bu bilgilerin her zaman güncel olmayabileceği Üyeler ve Kullanıcılar tarafından
+                        gözetilmelidir. Üye, Site’de kayıt yaptırırken veya alışveriş yaparken verdiği kişisel ve diğer
+                        bilgilerin doğru ve güncel olduğunu ve bu bilgilerin doğru ya da güncel olmaması halinde D’S
+                        DAMAT’ın bu sebeple uğrayacağı tüm zararları eksiksiz ve derhal tazmin edeceğini beyan ve
+                        taahhüt eder.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.10.
+                    </div>
+                    <p>
+                        D’S DAMAT, dilediği takdirde, hiçbir gerekçe göstermeksizin üyeliği iptal etme hakkına sahiptir.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.11.
+                    </div>
+                    <p>
+                        Site’ye ait her türlü fikri mülkiyet hakkı (sitede bulunan ürünler, bilgiler, metinler,
+                        resimler, markalar, ikonlar, görsel veya işitsel vs imgeler, video klipler, tasarımlar,
+                        kataloglar, dosyalar, listeler, datalar, kodlar, slogan ve diğer işaretler, sayfa düzeni vb.)
+                        münhasıran D’S DAMAT ’ın mülkiyetindedir. Sitede yer alan her türlü bilgi, görüntü ve
+                        materyaller; Site'nin tamamı ya da bir bölümü revize edilerek, ekleme yapılarak ya da bir kısmı
+                        değiştirilerek farklı bir biçimde kullanılamaz. Sitede sunulan fikri mülkiyetin kısmen ya da
+                        tamamen kopyalanması, değiştirilmesi, yayınlanması, online ya da diğer bir medya kullanılmak
+                        suretiyle gönderimi, dağıtımı, satılması açık ve kesin bir biçimde 5846 Sayılı Fikir ve Satan
+                        Eserleri Kanunu'na aykırı olacak ve hukuki ve cezai yaptırıma maruz kalacaktır.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.12.
+                    </div>
+                    <p>
+                        Üye, Site aracılığıyla alınan ürün karşılığında ürün bedeli ödemesi için kredi kartı
+                        kullandığında, kredi kartı numarasının, kredi kartının son kullanma tarihi, CVV2 kodunun ve
+                        benzer bilgilerin işlemin gerçekleştirilmesi amacıyla ilgili finansal kurumlar ile paylaşılması
+                        gerektiğini anlamıştır. Üye, kredi kartını güvenli bir şekilde kullanmakla yükümlüdür. D’S DAMAT
+                        Üye’nin kredi kartını güvenli bir şekilde kullanmaması hasebiyle sözleşmeye aykırılık, haksız
+                        fiil, ya da başkaca sebeplere binaen, doğabilecek doğrudan ya da dolaylı hiçbir zarardan sorumlu
+                        değildir.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.13.
+                    </div>
+                    <p>
+                        D’S DAMAT, dilediği tarihte, işbu sözleşmeyi bildirimsiz olarak feshedebilir, kısmen ya da
+                        tamamen devredebilir. Kullanıcı veya Üyenin sözleşmeyi devri, hükümsüzdür.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.14.
+                    </div>
+                    <p>
+                        D’S DAMAT mücbir sebeple ya da tümü ile kendi takdir ve değerlendirmesine bağlı olarak Site’yi
+                        yayından kaldırma, içeriğini değiştirme hakkına sahiptir.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.15.
+                    </div>
+                    <p>
+                        Kullanıcılar ve Üyeler, Site’yi kullanırken genel ahlaka ve adaba, yürürlükteki tüm ulusal ve
+                        uluslararası kanunlara ve nizamlara, iletişim ve internet güvenliğine uygun olarak hareket etmek
+                        ile yükümlüdür. Kullanıcıların Siteye ekleyecekleri her türlü ifade, yorum, yazı, resim, görsel
+                        ve sair her türlü bilgi ve belge genel ahlaka ve adaba ve ilgili ulusal ve uluslararası mevzuata
+                        uygun içerik ve şekilde olmalıdır.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.16.
+                    </div>
+                    <p>
+                        Sitenin yazılım ve donanım sistemlerinin zarar görmesine yol açabilecek, işleyişini olumsuz
+                        yönde etkileyebilecek veya yavaşlamasına yol açabilecek her türlü fiil ve işlem yasaktır. Anılan
+                        yasak kapsamına otomatik programlar veya yazılımlar kullanılarak birden fazla sorgu yapılması
+                        veya üyelik kaydı açılması, veya otomatik yöntemler aracılığıyla Siteye çok sayıda talep veya
+                        bilgi gönderilmesi de dahildir.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.17.
+                    </div>
+                    <p>
+                        Üyeler, kendilerine verilen şifrelerin münhasıran kendilerine verilmiş olduğunu, bu şifreleri
+                        hiçbir surette başkaları ile paylaşmayacaklarını, aksi takdirde doğabilecek her türlü zarar ve
+                        ziyandan kendilerinin sorumlu olacağını kabul, beyan ve taahhüt etmektedir. Üyelik başvurusu
+                        yapılırken üye tarafından verilen bilgilerin doğruluğu ve eksiksizliğinin tespiti D’S DAMAT’ın
+                        sorumluluğunda değildir. Yanlış üyelik bilgisi verilmesi sebebiyle doğacak zararlardan dolayı
+                        D’S DAMAT ’ın hiçbir hukuki sorumluluğu yoktur.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.18.
+                    </div>
+                    <p>
+                        D’S DAMAT, Site Kullanım Koşulları’na ve yukarıda anılan kuralları aykırı şekilde hareket eden
+                        Kullanıcıların Siteye erişiminin engellenmesi ve üyeliklerinin iptal edilmesi de dahil olmak
+                        üzere her türlü güvenlik tedbirini almak ve gerekirse ihlal edenler aleyhinde yasal işlem
+                        başlatmak hakkını saklı tutmaktadır.
+                    </p>
+                    <div class="font-financier-bold">
+                        2.19.
+                    </div>
+                    <p>
+                        Site’nin kullanılması, Sitede sunulan veya sağlanan veri ve bilgilerin kullanımı, bu veri ve
+                        bilgiler esasında yapılan davranışlar veya Siteye erişim sebebiyle maruz kalınabilecek herhangi
+                        türden bilgisayar virüsleri, trojan ve benzeri kötü amaçlı yazılımlar (malware) da dahil ve
+                        fakat bunlarla sınırlı olmamak üzere, Kullanıcıların, Üyelerin veya diğer üçüncü kişilerin
+                        herhangi bir sebepten ötürü uğrayabilecekleri her türlü ve tüm doğrudan ve dolaylı zarar, ziyan,
+                        hasar ve/veya kayıplar ile ilgili D’S DAMAT’ın hiçbir hukuki veya cezai sorumluluğu
+                        bulunmamaktadır. Kullanıcılar, yukarıda anılan zararlar sebebiyle D’S DAMAT ’tan her ne isim
+                        altında olursa olsun herhangi bir talep veya iddiada bulunmayacaklarını peşinen kabul, beyan ve
+                        taahhüt etmektedir.
+                    </p>
+                    <div class="font-financier-bold">
+                        3. Genel Hükümler
+                    </div>
+                    <div class="font-financier-bold">
+                        3.1.
+                    </div>
+                    <p>
+                        İşbu “D’S DAMAT Üyelik Sözleşmesi ve Kullanım Koşulları”ndan kaynaklanacak ihtilaflar Türk
+                        Hukuku'na tabidir ve İstanbul Merkez Mahkemeleri ve İcra Daireleri yetkilidir.
+                    </p>
+                    <div class="font-financier-bold">
+                        3.2.
+                    </div>
+                    <p>
+                        Üye’nin D’S DAMAT’a bildirdiği veya bildireceği en güncel e-posta adresi, işbu Sözleşme ile
+                        ilgili olarak yapılacak her türlü bildirim için yasal tebligat adresi olarak kabul edilir.
+                    </p>
+                    <div class="font-financier-bold">
+                        3.3.
+                    </div>
+                    <p>
+                        Taraflar, mevcut e-posta adreslerindeki değişiklikleri 3 (üç) gün içinde diğer tarafa
+                        bildirmedikleri takdirde, eski e-posta adreslerine yapılacak bildirimlerin geçerli olacağını ve
+                        kendilerine yapılmış sayılacağını kabul ederler.
+                    </p>
+                    <div class="font-financier-bold">
+                        3.4.
+                    </div>
+                    <p>
+                        Üye, işbu Sözleşme’de yer alan maddelerin tümünü okuduğunu, anladığını, kabul ettiğini ve
+                        verdiği bilgilerin doğruluğunu onayladığını ilgili kutucuğu işaretlemekle beyan, kabul ve
+                        taahhüt eder.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="kvkkModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">KİŞİSEL VERİLERİN KORUNMASI KANUNU ÇERÇEVESİNDE BİLGİLENDİRME
+                        METNİ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body font-financier">
+                    <div class="font-financier-bold">
+                        OR-PA PAZARLAMA VE TEKSTİL SANAYİ A.Ş.
+                    </div>
+                    <p>
+                        (“OR-PA” veya “D’S DAMAT” olarak anılacaktır) olarak 6698 sayılı Kişisel Verilerin Korunması
+                        Kanunu kapsamında veri sorumlusu olarak, web sitemiz üzerinden müşterilerimizin ve
+                        ziyaretçilerimizin kişisel verilerini işleyebiliyoruz. İşbu aydınlatma metni ile Kanun
+                        hükümleri gereğince karşılıklı hak ve yükümlülüklerimiz konusunda sizleri
+                        bilgilendiriyoruz.
+                    </p>
+                    <div class="font-financier-bold">
+                        Kişisel Verileriniz, Elde Edilme Yöntemleri ve İşlenme Amaçları
+                    </div>
+                    <p>
+                        Tarafınıza ait kişisel bilgiler; Web sitemizi ziyaretiniz, D’S Damat Card üyeliğiniz, telefon
+                        veya e-posta yazışmalarındaki paylaşımlarınız, Müşteri Hizmetleri ile telefonda yaptığınız
+                        görüşmeler/paylaşımlar, doldurduğunuz iletişim formları vasıtasıyla, D’S DAMAT’tan mal
+                        veya hizmet satın almanız veya bir başka surette D’S DAMAT ile ticari veya hukuki ilişkiye
+                        girmeniz durumunda elektronik ortamda otomatik olarak doğrudan sizlerden alınmaktadır. Bu
+                        verilerinizden; kimlik bilgileri (ad, soyad, doğum tarihi, cinsiyet) başta olmak üzere;
+                        iletişim verileriniz (e-mail adresi, adres ve telefon bilgileri, IP adresi), D’S DAMAT faaliyet
+                        alanı kapsamında satın aldığınız ürüne ilişkin veriler, Müşteri hizmetleri ile yaptığınız
+                        görüşmelerde kaydedilen işitsel verileriniz, D’S DAMAT tarafından, Kanunun 5. Maddesi 2.
+                        Fıkrasında belirtilen hukuka uygunluk sebepleri çerçevesinde, ürün satışına dair
+                        sözleşmenin kurulması, ifası ve yasal yükümlülüklerin yerine getirilmesi, talep ve
+                        şikayetlerin yönetimi gerekçelerinin yanı sıra kişilik haklarınıza zarar vermemek kaydı ile
+                        meşru menfaatimiz kapsamında işlenecektir.
+                    </p>
+                    <p>
+                        Yanı sıra D’S DAMAT tarafından sunulan ürün ve hizmetlerimizden sorunsuz olarak
+                        yararlanabilmeniz, ürün ve hizmet çeşitliliğimizin geliştirilebilmesi için web sitemizde
+                        yaptığınız gezintiler ve alışverişler kapsamında çerezler vasıtasıyla; D’S DAMAT tarafından
+                        sunulan her türlü ürün ve hizmete ilişkin kullanım alışkanlığı, tercih, zevk ve
+                        beğenilerinizi ifade eden kişisel verileriniz de işlenebilecektir.
+                    </p>
+                    <p>
+                        Başlıca veri işleme amaçlarımız; <br> Mal / Hizmet Satış Süreçlerinin, Satış Sonrası
+                        Destek Hizmetlerinin, Üretim Ve Operasyon Süreçlerinin Yürütülmesi, Finans Ve Muhasebe
+                        İşlerinin Yürütülmesi, Firma / Ürün / Hizmetlere Bağlılık Süreçlerinin Yürütülmesi,
+                        Müşteri İlişkileri Yönetimi Süreçlerinin Yürütülmesi, Müşteri Memnuniyetine Yönelik
+                        Aktivitelerin Yürütülmesi, Pazarlama Analiz Çalışmalarının Yürütülmesi, Reklam /
+                        Kampanya / Promosyon Süreçlerinin Yürütülmesi, Yetkili Kişi, Kurum Ve Kuruluşlara Bilgi
+                        Verilmesi, Talep / Şikayetlerin Takibi, Faaliyetlerin Mevzuata Uygun Yürütülmesi, İletişim
+                        ve Bilgi güvenliği Faaliyetlerinin Yürütülmesi
+                    </p>
+                    <div class="font-financier-bold">
+                        Kişisel Verilerin İşlenmesinde Hukuki Sebepler
+                    </div>
+                    <p>
+                        Yukarıda ifade edilen ve Kanunun 5/2 maddesinde yer alan hukuka uygunluk sebeplerinden birine
+                        girmeyen kişisel verileriniz için yasal zorunluluk gereği açık rızanızı ve sizlere ticari
+                        elektronik ileti (SMS, e-posta) gönderebilmek için onay talep edeceğiz. Web sitemizdeki
+                        üyelik sözleşmesini kabul ettikten sonra, uygun bulduysanız işbu aydınlatma metni uyarınca
+                        açık rıza için ilgili kutucukları işaretlemek ve kaydol tuşuna basmak suretiyle; izin
+                        süreçlerinizi tamamlayabilirsiniz.
+                    </p>
+                    <p>
+                        Ad, Soyad ve İletişim (Telefon, cep telefonu, E mail adresi) bilgileriniz, Ticari elektronik
+                        iletişim izniniz kapsamında, sizlere ürün ve hizmetlerimizle ilgili reklam, kampanya ve
+                        diğer ticari iletiler gönderilmesi amacıyla işlenecektir. Ticari elektronik iletişim
+                        izninizi web sitemizdeki ilgili alanda yer alan kutucuğu işaretleyerek kaydol tuşuna basmak
+                        suretiyle verebileceksiniz.
+                    </p>
+                    <div class="font-financier-bold">
+                        Verilerin Paylaşımı
+                    </div>
+                    <p>
+                        Yukarıda belirtilen Kişisel verileriniz, mevzuatta belirlenen güvenlik ve gizlilik esasları
+                        uyarınca yeterli ve etkili önlemler alınmak kaydıyla ve yine yukarıda sayılan amaçlarla yasal
+                        zorunluluk gereği bu verileri talep etmeye yetkili olan kamu kurum veya kuruluşları,
+                        faaliyetlerimiz gereği anlaşmalı olduğumuz kurumlar, tedarikçilerimiz, iş ortaklarımız ve
+                        hizmet aldığımız ve iş birliği içerisinde olduğumuz 3. kişiler ve şirketimizin
+                        bünyesinde bulunduğu ve aynı veritabanını kullandığımız Orka Holding A.Ş. ve grup
+                        şirketimiz Orka Tekstil San. Tur. Tic A.Ş. ile 6698 sayılı Kanun’un 8. ve 9. Maddelerinde
+                        belirtilen kişisel veri işleme şartları çerçevesinde ve bunlarla sınırlı olarak
+                        paylaşabilecektir.
+                    </p>
+                    <div class="font-financier-bold">
+                        Kanun Kapsamındaki Haklarınız
+                    </div>
+                    <p>
+                        İlgili kişiler olarak, haklarınıza ilişkin taleplerinizi <a
+                            href="https://www.dsdamat.com/">www.dsdamat.com</a> internet adresinden kamuoyu ile
+                        paylaşılmış kişisel veri başvuru formunu doldurmak veya başvuru formunda yazılı zorunlu
+                        bilgilerinizi içerir başka bir belge ile yazılı olarak veya kayıtlı elektronik posta (KEP)
+                        adresi, güvenli elektronik imza, mobil imza ya da ilgili kişi tarafından D’S DAMAT’a daha
+                        önce bildirilen ve D’S DAMAT’ın sisteminde kayıtlı bulunan elektronik posta adresini kullanmak
+                        suretiyle kimliğiniz teyit edilebilir biçimde KVKKBasvuru@dsdamat.com.tr adresinden veya yine
+                        yazılı olarak aşağıda belirtilen posta adresinden D’S DAMAT’a iletmeniz durumunda D’S DAMAT,
+                        talebin niteliğine göre talebi en kısa sürede ve en geç otuz gün içinde ücretsiz olarak
+                        sonuçlandıracaktır. Ancak, işlemin ayrıca bir maliyeti gerektirmesi hâlinde, D’S DAMAT
+                        tarafından Kişisel Verileri Koruma Kurulunca belirlenen tarifedeki ücret alınacaktır. Bu
+                        kapsamda ilgili kişiler;
+                    </p>
+                    <p>
+                        Kişisel veri işlenip işlenmediğini öğrenme, Kişisel verileri işlenmişse buna ilişkin
+                        bilgi talep etme, Kişisel verilerin işlenme amacını ve bunların amacına uygun kullanılıp
+                        kullanılmadığını öğrenme, Yurt içinde veya yurt dışında kişisel verilerin aktarıldığı
+                        üçüncü kişileri bilme, Kişisel verilerin eksik veya yanlış işlenmiş olması hâlinde
+                        bunların düzeltilmesini isteme ve bu kapsamda yapılan işlemin kişisel verilerin aktarıldığı
+                        üçüncü kişilere bildirilmesini isteme, 6698 sayılı Kanun ve ilgili diğer kanun
+                        hükümlerine uygun olarak işlenmiş olmasına rağmen, işlenmesini gerektiren sebeplerin
+                        ortadan kalkması hâlinde kişisel verilerin silinmesini veya yok edilmesini isteme ve bu
+                        kapsamda yapılan işlemin kişisel verilerin aktarıldığı üçüncü kişilere bildirilmesini
+                        isteme, İşlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle
+                        kişinin kendisi aleyhine bir sonucun ortaya çıkmasına itiraz etme, Kişisel verilerin kanuna
+                        aykırı olarak işlenmesi sebebiyle zarara uğraması hâlinde zararın giderilmesini talep etme
+                        haklarına sahiptir.
+                    </p>
+                    <p>
+                        Kişisel verilerinizle ilgili kapsamlı bilgi için <a
+                            href="https://www.dsdamat.com/">www.dsdamat.com</a> web sitesinde yer alan D’S DAMAT
+                        KİŞİSEL VERİLERİN KORUNMASI VE İŞLENMESİ POLİTİKASI’nı inceleyebilirsiniz.
+                    </p>
+                    <div class="font-financier-bold">
+                        OR-PA PAZARLAMA VE TEKSTİL SANAYİ A.Ş. (VERİ SORUMLUSU)<br>
+                        ADRES: Gürsel Mah. Özoğul Cad. No:6 Kağıthane - İstanbul<br>
+                        TELEFON: 0 212 671 87 70 - 71<br>
+                        MERSİS: 0644032088500011
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="communicationsModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Elektronik Ticaret Kanunu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body font-financier">
+                    <p>
+                        İşbu muvafakatname, 6563 Elektronik Ticaretin Düzenlenmesi Hakkında Kanun kapsamında gerek her
+                        türlü satın alma işlemleri ve uygulamaları ile akdi-kanuni hususlarda bilgilendirmem, gerek
+                        çeşitli ürün-hizmetlerin ve genel-özel imkanların duyurulması, tanıtım ve reklamının yapılması
+                        için Or-Pa Pazarlama ve Tekstil Sanayi A.Ş. (Şirket) tarafından tarafıma ilgili kanunlara uygun
+                        olarak ticari elektronik iletiler gönderileceği, istediğim her zaman iletişim tercihlerimi
+                        değiştirebileceğim ve hiçbir gerekçe göstermeksizin 444 63 23 numaraya yapacağım bildirim ile
+                        yahut 6772 Numarasına “RET” yazarak göndereceğim SMS ile red hakkımı kullanarak iletişimi
+                        durdurabileceğim (kanunlar gereği mümkün veya gerekli iletişimlerin devam etmesi durumu saklı
+                        kalmak kaydı ile) ve diğer tüm ilgili hususlarda buradaki açıklamalar ile bilgilendirilmiş
+                        olarak; vermiş olduğum iletişim bilgilerim aracılığı ile her türlü kampanya, hizmet tanıtım,
+                        reklam, promosyon, pazarlama, mağaza kartı ve üyelik işlemleri, duyuru ve her türlü
+                        bilgilendirmelerden haberdar olmak, kutlama ve temennileri iletmek üzere Şirket tarafından
+                        tarafıma ticari elektronik ileti gönderilmesine onay veriyorum.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

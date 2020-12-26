@@ -1,0 +1,230 @@
+{% load static i18n %}
+{% load custom_tags %}
+<div class="footer">
+    <footer>
+        <div class="d-flex justify-content-lg-between flex-column flex-lg-row">
+            <div class="footer__logo align-top d-flex">
+                <i class="icon-logo"></i>
+            </div>
+            <nav class="flex-fill w-100">
+                <ul
+                    class="footer__menu d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between text-lg-left text-center">
+                    <li>
+                        <div class="footer__menu__title js-footer-title">
+                            {% trans 'KURUMSAL' %}
+                            <i class="icon-chevron_down d-lg-none"></i>
+                            <i class="icon-chevron_top d-lg-none"></i>
+                        </div>
+                        <ul class="footer__menu_subtitle">
+                            <li>
+                                <a href="hakkimizda/index.html" rel="nofollow">
+                                    {% trans 'Hakkımızda' %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="address/stores/index.html">
+                                    {% trans 'Mağazalarımız' %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="bilgi-toplumu-hizmetleri/index.html" rel="nofollow">
+                                    {% trans  'Bilgi Toplumu Hizmetleri' %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="yeni-sezon-katalog.html">
+                                    {% trans 'Katalog' %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="kaliplarimiz/index.html">
+                                    {% trans 'Kalıplarımız' %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="kurumsal-satis/index.html" rel="nofollow">
+                                    {% trans 'Kurumsal Satış' %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="sitemap.html">
+                                    {% trans 'Site Haritası' %}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="footer__menu__title js-footer-title">
+                            {% trans 'KOLEKSİYON' %}
+                            <i class="icon-chevron_down d-lg-none"></i>
+                            <i class="icon-chevron_top d-lg-none"></i>
+                        </div>
+                        <ul class="footer__menu_subtitle">
+                            <li>
+                                <a href="ds-classic/index.html">
+                                    D&#39;S Classic
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ds-casual/index.html">
+                                    D&#39;S Casual
+                                </a>
+                            </li>
+                            <li>
+                                <a href="twn/index.html">
+                                    TWN
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ds-ceremony/index.html">
+                                    D&#39;S Ceremony
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="footer__menu__title js-footer-title">
+                            {% trans 'MÜŞTERİ HİZMETLERİ' %}
+                            <i class="icon-chevron_down d-lg-none"></i>
+                            <i class="icon-chevron_top d-lg-none"></i>
+                        </div>
+                        <ul class="footer__menu_subtitle">
+                            <li>
+                                <a href="musteri-hizmetleri/index.html" rel="nofollow">
+                                    {% trans 'Müşteri Hizmetleri' %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="gizlilik-ve-guvenlik/index.html" rel="nofollow">
+                                    {% trans 'Gizlilik ve Güvenlik' %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="kisisel-verilerin-islenmesi-ve-koruma-politikasi/index.html"
+                                    rel="nofollow">
+                                    {% trans 'Kişisel Verilerin İşlenmesi ve Koruma Politikası' %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="kvkk-basvuru-formu/index.html" rel="nofollow">
+                                    KVKK Başvuru Formu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="teslimat-ve-kargo/index.html" rel="nofollow">
+                                    {% trans 'Teslimat ve Kargo' %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="iptal-iade-bilgilendirme/index.html" rel="nofollow">
+                                    İptal / İade
+                                </a>
+                            </li>
+                            <li>
+                                <a href="sorular/index.html">
+                                    SSS
+                                </a>
+                            </li>
+                            <li>
+                                <a href="iletisim/index.html" rel="nofollow">
+                                    {% trans 'İletişim' %}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="pr-lg-3 subscribe__box">
+                <div>
+                    <div class="text-left">
+                        <div class="footer__menu__title">
+                            SOSYAL MEDYA
+                        </div>
+                        <div class="social_box">
+                            <a href="https://www.facebook.com/DSDamat" target="facebookWindow">
+                                <i class="icon-facebook"></i>
+                            </a>
+                            <a href="https://twitter.com/ds_damat/" target="twitterWindow">
+                                <i class="icon-twitter"></i>
+                            </a>
+                            <a href="https://www.instagram.com/dsdamatonline/" target="instagramWindow">
+                                <i class="icon-instagram"></i>
+                            </a>
+                            <a href="https://www.youtube.com/user/DamatTweenIstanbul" target="instagramWindow">
+                                <i class="icon-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="subscribe__text">
+                        {% trans 'D’S Damat’a özel haberlerden,' %}
+                        {% trans 'indirimlerden haberdar olmak için e-bültenimize üye olun.' %}
+                    </div>
+                    <form class="d-flex justify-content-lg-center js-subscription-form">
+                        <div class="d-inline w-100">
+                            <div class="d-flex">
+                                <input class="" type="email" name="email" required
+                                    placeholder="E-posta Adresinizi Girin">
+                                <button>
+                                    {% trans 'GÖNDER' %}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="success_modal js-subs_modal d-none">
+                    <div class="modal-wrapper">
+                        <div class="border-bottom modal-head pl-3">
+                            <h3>E-Bülten</h3>
+                        </div>
+                        <p class="text-center mt-4">
+                            {% trans 'E-posta adresiniz sisteme kaydolmustur.' %}
+                        </p>
+                        <div class="text-center mt-4">
+                            <a class="btn btn-dark text-center color-white">Ok</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-lg-end">
+            
+            <img src="{% static 'images/tqlty.png' %}" alt="">
+        </div>
+        <div class="d-flex justify-content-between flex-column-reverse flex-lg-row">
+            <div class="footer__copyright">
+                © 2020 D’S Damat, {% trans 'bütün hakları saklıdır' %}.
+                
+            </div>
+
+            <div class="footer__lang">
+                <span>LANGUAGES</span>
+                <form action="/i18n/setlang/" method="post" style="display: none" id="change_language_form">
+                    {% csrf_token %}
+                    <input type="hidden" value="" name="language" id="language" />
+                </form>
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <a href="#" lang_code="{{ language.code }}" class="change_language">{{language.code | upper }}</a>
+                {% endfor %}
+                <!-- <a class="active" href="index.html">TR</a>
+                <a href="https://www.dsdamatshop.com/">EN</a>
+                <a href="https://www.dsdamat.ru/">RU</a>
+                <a href="https://www.dsdamatshop.com/ar">AR</a>
+                <a href="https://dsdamatitalia.com/">IT</a>
+                <a href="https://www.damatshop.az/">AZ</a> -->
+                <script>
+                    $('.change_language').click(function(e){
+                        e.preventDefault();
+                        $('#language').val($(this).attr('lang_code'));
+                        $('#change_language_form').submit();
+                    });
+                </script>
+            </div>
+        </div>
+    </footer>
+</div>

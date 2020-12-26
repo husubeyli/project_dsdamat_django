@@ -1,0 +1,13 @@
+version: '3.1'
+
+services: 
+    postgres:
+        image: postgres:9.6.6
+        volumes:
+            - ./pgdb:/var/lib/postgresql/
+        ports:
+            - "5435:5432"
+        environment:
+            POSTGRES_DB: 'damats_db'
+            POSTGRES_USER: 'admin_damat'
+            POSTGRES_PASSWORD: 'elvin123'

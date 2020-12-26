@@ -1,0 +1,652 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block homepage_css_link %}
+    <script type="text/javascript">
+        // Start Analytics -> DONT REMOVE
+        window["dataLayer"] = window["dataLayer"] || [];
+        // End Analytics -> DONT REMOVE
+
+        var GLOBALS = {
+        userLoggedIn: false,
+        csrf_token: "<input type='hidden' name='csrfmiddlewaretoken' value='gJLvOHkKU7EEfg3KrccwuLvQHfLVbE6jORPusfo2d6Q0ReJkjnSjGBiOhyvZ3r5Z' />",
+        analyticsContainers: {"containerId": "GTM-WG84SKW"},
+        THUMBNAIL_ACTIVE: true,
+        THUMBNAIL_OPTIONS: {"product-list": {"width": 690, "height": 757, "crop": "top"}, "product-list_ternary": {"width": 449, "height": 673}, "product-list_quad": {"width": 330, "height": 495}, "product-detail__variant": {"width": 54, "height": 80, "crop": "center"}, "product-detail__slider_zoom": {"quality": 90}, "product-detail__slider_display": {"width": 625, "height": 921, "crop": "center"}, "product-detail__slider_thumbnail": {"width": 94, "height": 148, "crop": "center"}, "category-detail": {"width": 870, "height": 317}, "category-detail__campaign-banner": {"width": 420, "height": 210}, "category-detail__sub-category-banner": {"width": 270, "height": 335}, "basket-list": {"width": 94, "height": 143, "crop": "center"}, "order-list": {"width": 110, "height": 131, "crop": "top"}, "mini-basket-list": {"width": 94, "height": 143, "crop": "center"}, "autocomplete": {"width": 40, "height": 40}, "combin-product-item": {"width": 278, "height": 210, "crop": "center"}, "blog-home-item": {"width": 450, "height": 340, "crop": "center"}, "checkout-success-item": {"width": 58, "height": 88, "crop": "center"}},
+        
+    page: ['product'],
+    productPk: 89572,
+    productType: 0,
+
+        };
+        var URLS = {
+        changeEmail: '/users/email-change/',
+        checkout: '/orders/checkout/',
+        basket: '/baskets/basket/',
+        static: 'https://damat.akinoncdn.com/static_omnishop/damat18/',
+        
+        };
+    </script>
+{% endblock %}
+{% block body %}
+<div class="js-base-content wrapper">
+    <div id="ProductPage" class="product__page">
+        <div class="container">
+            <div class="row">
+                <div class="pz-breadcrumb">
+                    <div class="pz-breadcrumb__item d-inline-block">
+                        <a class="pz-breadcrumb__link" href="/" data-divider="&gt;">D'S Damat</a>
+                        {% if parent_category %}
+                        <a class="pz-breadcrumb__link" href="{% url 'product:products_filter' parent_category.slug %}"
+                            data-divider="&gt;">{{ parent_category.title | title }}</a>
+                        {% endif %}
+
+                        <a class="pz-breadcrumb__link" href="{% url 'product:products_filter' sub_category.slug %}"
+                            data-divider="&gt;">{{ sub_category.title  | title }}</a>
+                        <b class="pz-breadcrumb__link">{{ product.title  | title }}</b>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="product__wrapper">
+                    <div class="position-relative">
+                        <div class="product-slider__wrapper">
+                            <div id="jsThumbnail" class="product-thumbnail__wrapper d-none d-sm-block">
+                                {% for product_image in product.product_images.all %}
+                                    <div class="js-thumbnail-item product-thumbnail__item  {% if forloop.first %} active {% endif %}">
+                                        <img class="product-thumbnail__image lazyload"
+                                            src="{{product_image.image.url}}"
+                                            data-src="{{product_image.image.url}}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <ul id="jsProductImages" class="product-images__wrapper">
+                                {% for product_image in product.product_images.all %}
+                                <li class="js-product-image"
+                                    data-src="{{ product_image.image.url }}"
+                                    data-thumb="{{ product_image.image.url }}">
+                                    <img class="product-slider__image js-carousel-product lazyload"
+                                        alt="Twn Slim Fit Siyah Smokin Yelekli Takım Elbise"
+                                        src="{{ product_image.image.url}}" data-src="{{product_image.image.url}}"
+                                        data-zoom-image="{{product_image.image.url}}">
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <img class="product-item__badge"
+                            src="https://damat.akinoncdn.com/cms/2020/12/02/770724e8-bb24-4ab4-a90f-673a16607ad3.png"
+                            alt="2020K">
+                    </div>
+                    <script type="application/ld+json">
+                        {
+                            "@context": "http://schema.org/",
+                            "@type": "Product",
+                            "name": "Twn Slim Fit Siyah Smokin Yelekli Takım Elbise",
+                            "image": [
+                            
+                                "https://damat.akinoncdn.com/products/2020/07/27/21554/f8d0df6b-fa2a-40c9-8a53-5df145c3f773.jpg",
+
+                                "https://damat.akinoncdn.com/products/2020/07/27/21551/d5f522d5-fd19-486f-9fe0-eb4c840225f0.jpg",
+
+                                "https://damat.akinoncdn.com/products/2020/07/27/21551/ee021abf-f559-4e70-a5ab-61d732f96973.jpg",
+
+                                "https://damat.akinoncdn.com/products/2020/07/27/21553/3c5cb192-defd-4c95-81dd-3a36fee0e09c.jpg",
+
+                                "https://damat.akinoncdn.com/products/2020/07/27/21551/263aeefc-77c9-437d-a9e4-a83be4fe3cac.jpg",
+
+                                "https://damat.akinoncdn.com/products/2020/09/30/195489/d76e7c63-133e-4f45-b47d-c5212c7dbe91.jpg",
+
+                                "https://damat.akinoncdn.com/products/2020/09/30/195482/63f26809-a771-4d76-92ba-a6ff7ac15419.jpg"
+
+                            ],
+                            "description": "Twn Slim Fit Siyah Smokin Yelekli Takım Elbise - 8682060712219 | en uygun fiyat, farklı ödeme seçenekleri ve D’S Damat kalitesiyle sahip olmak için tıklayın!",
+                            "sku": "8682060712219",
+                            "brand": {
+                                "@type": "Thing",
+                                "name": "D'S Damat"
+                            },
+                            "offers": {
+                                "@type": "Offer",
+                                "url": "https://www.dsdamat.com/twn-slim-fit-siyah-smokin-yelekli-takim-elbise-8682060712219/",
+                                "priceCurrency": "try",
+                                "price": "2499",
+                                "itemCondition": "http://schema.org/NewCondition",
+                                "availability": " http://schema.org/InStock ",
+                                "seller": {
+                                    "@type": "Organization",
+                                    "name": "D'S Damat"
+                                }
+                            }
+                        }
+                    </script>
+                    <div class="product__content js-product-content">
+                        <div id="jsDetailContainer" class="product__content__fix">
+                            <div class="d-flex">
+                                <h1 class="product__title">
+                                    {{ product.title }}
+                                </h1>
+                            </div>
+                            <div class="d-flex mb-4">
+                            {% if product.disc_value %}
+
+                                <div class="product__price ">
+                                    {{product.get_discount_price}}<span
+                                        class="product__price--currency">TL</span>
+                                </div>
+                            {% endif %}
+
+                                <div class="product__price {% if product.disc_value %} product__retail__price {% endif %}">
+                                    {{ product.price }}<span class="product__price--currency">TL</span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="js-variants-container product__variants__wrapper"
+                                    data-variant-key="integration_beden2">
+                                    <!-- <div class="product__variant--title d-flex justify-content-between">
+                                        <div>
+                                            Seçtiğiniz Drop: <span class="font-weight-bold"></span>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="d-flex flex-wrap mb-2">
+                                        <div class="d-flex flex-wrap w-100">
+                                            <a class="d-flex flex-column align-items-center text-reset product__variant js-variant selected"
+                                                href="/twn-slim-fit-siyah-smokin-yelekli-takim-elbise-8682060712219/"
+                                                data-variant-value="6" data-attribute-name="Drop">
+                                                <span class="text-center product__variant--size">6</span>
+                                            </a>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                {% if product.color %}
+                                <div class="js-variants-container product__variants__wrapper"
+                                    data-variant-key="integration_renk">
+                                    <div class="product__variant--title d-flex justify-content-between">
+                                        <div>
+                                            Seçtiğiniz Renk: <span
+                                                class="font-weight-bold">{{product.color}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-wrap mb-2">
+                                        
+                                        {% if related_products %}
+                                            {% for rel_product in related_products %}
+                                                
+                                                <a class="d-flex flex-column align-items-center text-reset product__variant {% if not rel_product.stock %} disabled {% endif %} {% if rel_product.product.id == product.id %} selected {% endif %}"
+                                                {% if rel_product.stock %} href=" {% url 'product:product_detail' rel_product.product.slug %}"{% endif %}
+                                                    data-variant-value="001">
+                                                    <img class="product__variant--image" alt="{{ rel_product.product.color }}"
+                                                        src="{{ rel_product.product.product_images.all.0.image.url }}" />
+                                                </a>
+                                            {% endfor %}
+                                        {% else %}
+                                            {% for rel_product in product.rel_product.all %}
+                                                
+                                                <a class="d-flex flex-column align-items-center text-reset product__variant {% if rel_product.id == product.id %} selected {% endif %}"
+                                                    href="{% url 'product:product_detail' rel_product.slug %}"
+                                                    data-variant-value="001">
+                                                    <img class="product__variant--image" alt="{{ rel_product.color }}"
+                                                        src="{{ rel_product.product_images.all.0.image.url }}" />
+                                                </a>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% if product.sizes.all %}
+                                <div class="js-variants-container product__variants__wrapper"
+                                    data-variant-key="integration_beden1">
+                                    <div class="product__variant--title d-flex justify-content-between">
+                                        <div>
+                                            <span class="js-variant-error-label product__variant--error">{% if not size %}Beden
+                                                seçimi
+                                                yapmalısınız{% else %} Seçtiğiniz Beden: {{ size }}{% endif %}</span>
+                                        </div>
+                                        <a class="text-muted" data-toggle="modal" href="#sizeModal">Beden
+                                            Tablosu <i class="icon-size"></i></a>
+                                    </div>
+                                    <div class="d-flex flex-wrap mb-2">
+                                        <div class="d-flex flex-wrap w-100">
+
+                                            {% for size in product.sizes.all %}
+                                            
+                                                <a class="d-flex flex-column align-items-center text-reset product__variant {% if size.stock == 0 %} disabled {% endif %} "
+                                                    {% if size.stock %} href="?size={{ size.all_size.size }}" {% endif %} data-variant-value="42"
+                                                    data-attribute-name="Beden">
+                                                    <span class="text-center product__variant--size">{{ size.all_size.size }}</span>
+                                                </a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="product__add-cart-button-wrapper">
+                                <div class="d-md-none d-flex align-items-center">
+                                    <div class="product__price ">
+                                        2499<span class="product__price--currency">TL</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-block pz-button__add-to-cart js-add-to-cart"
+                                    data-product="" data-quantity="1">
+                                    Sepete Ekle
+                                </button>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                            </div>
+                            <div class="d-flex">
+                                <div class="shipping_info_w">
+                                    <span class="shipping_info_w-text">Tahmini teslimat tarihi:</span> <span
+                                        class="shipping_info_w-date">15 Aralık - 18 Aralık</span>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <a href="/users/login/?next=/twn-slim-fit-siyah-smokin-yelekli-takim-elbise-8682060712219/"
+                                    class="flex-1 product__ghost-button product__favourite" rel="nofollow">
+                                    <i class="heart-outline"></i> Listeye Ekle
+                                </a>
+                            </div>
+                            <div class="d-flex justify-content-center product__shared-icons">
+                                <i class="product__shared-icon icon-facebook" data-sharer="facebook"
+                                    data-hashtag="DsDamat"
+                                    data-url="https://www.dsdamat.com/twn-slim-fit-siyah-smokin-yelekli-takim-elbise-8682060712219/"></i>
+                                <i class="product__shared-icon icon-twitter" data-sharer="twitter"
+                                    data-title="Twn Slim Fit Siyah Smokin Yelekli Takım Elbise"
+                                    data-hashtags="DsDamat"
+                                    data-url="https://www.dsdamat.com/twn-slim-fit-siyah-smokin-yelekli-takim-elbise-8682060712219/"></i>
+                                <i class="product__shared-icon icon-whatsapp" data-sharer="whatsapp"
+                                    data-title="Twn Slim Fit Siyah Smokin Yelekli Takım Elbise"
+                                    data-url="https://www.dsdamat.com/twn-slim-fit-siyah-smokin-yelekli-takim-elbise-8682060712219/"></i>
+                            </div>
+                            <div>
+                                <div class="accordion-item active">
+                                    <div class="accordion-item__title d-block js-accordion-title">
+                                        Detaylar <i class="accordion-item__icon js-accordion-item-icon"></i>
+                                    </div>
+                                    <div class="accordion-item__content js-accordion-content">
+                                        <div class="accordion-item__content--box">
+                                            <p>{{ product.product_code }}</p>
+                                            {% if product.product_details.all %}
+                                                {% for detail in product.product_details.all %}
+                                                <p>{{ detail.content}}</p>
+                                                {% endfor %}
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item ">
+                                    <div class="accordion-item__title d-block js-accordion-title">
+                                        Teslimat <i class="accordion-item__icon js-accordion-item-icon"></i>
+                                    </div>
+                                    <div class="accordion-item__content js-accordion-content">
+                                        <div class="accordion-item__content--box">
+                                            <p>Siparişleriniz ortalama 8 iş günü içinde kargoya teslim edilir.
+                                                Siparişinizin
+                                                durumunu “Siparişlerim” bölümünden takip edebilirsiniz.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item ">
+                                    <div class="accordion-item__title d-block js-accordion-title">
+                                        İptal &amp; İade <i
+                                            class="accordion-item__icon js-accordion-item-icon"></i>
+                                    </div>
+                                    <div class="accordion-item__content js-accordion-content">
+                                        <div class="accordion-item__content--box">
+                                            İnternet sitemizden satın aldığınız kullanılmamış veya tadilat
+                                            yapılmamış
+                                            ürününüzü, teslim tarihinden itibaren 30 (otuz) gün içinde faturanız
+                                            ile iade
+                                            edebilirsiniz. Detaylı bilgi için tıklayınız.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="product__widget">
+            <div class="container">
+                <h3 class="text-center mb-3">Görünümünüzü Tamamlayın</h3>
+                <div class="js-reco-slider">
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/siyah-8682060783011/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/10/21/198086/d1a73da2-392f-4170-b5b8-f5c76e2a7313_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Siyah</p>
+                            <span class="product__widget__item__price d-block">119 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/siyah-8682060781871/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/10/21/198071/1c570e87-91c1-4e1f-b150-977f2b3cb4f4_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Siyah</p>
+                            <span class="product__widget__item__price d-block">149 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/siyah-8682060782069/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/10/21/198086/d1a73da2-392f-4170-b5b8-f5c76e2a7313_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Siyah</p>
+                            <span class="product__widget__item__price d-block">149 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/twn-beyaz-sneaker-ayakkabi-8682445177121/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/11/07/3956/bcc3c33d-b308-4a15-a6df-5d03c22f3928_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Twn Beyaz Sneaker Ayakkabı</p>
+                            <div
+                                class="product-item__price--retail product__widget__item__price product-item-slider-retail-price">
+                                499 TL</div>
+                            <span class="product__widget__item__price d-block">159 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/twn-beyaz-sneaker-ayakkabi-8682445177053/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/11/07/3949/12b9caed-6669-45ae-be74-197e033486b2_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Twn Beyaz Sneaker Ayakkabı</p>
+                            <div
+                                class="product-item__price--retail product__widget__item__price product-item-slider-retail-price">
+                                499 TL</div>
+                            <span class="product__widget__item__price d-block">159 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/twn-gri-ayakkabi-8682445117592/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/11/07/267770/dbca380a-9293-45cb-b877-62afb0078c87_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Twn Gri Ayakkabı</p>
+                            <div
+                                class="product-item__price--retail product__widget__item__price product-item-slider-retail-price">
+                                349 TL</div>
+                            <span class="product__widget__item__price d-block">149 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/twn-beyaz-ayakkabi-8682445117493/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/11/07/267759/4b5d429d-4139-4ef8-9c48-085f9b8e4ccf_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Twn Beyaz Ayakkabı</p>
+                            <div
+                                class="product-item__price--retail product__widget__item__price product-item-slider-retail-price">
+                                349 TL</div>
+                            <span class="product__widget__item__price d-block">159 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/twn-lacivert-ayakkabi-8682445117462/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/11/07/267756/137fb3ba-617f-4a48-92d6-641de8f970e4_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Twn Lacivert Ayakkabı</p>
+                            <div
+                                class="product-item__price--retail product__widget__item__price product-item-slider-retail-price">
+                                349 TL</div>
+                            <span class="product__widget__item__price d-block">149 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/twn-lacivert-ayakkabi-8682445117363/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/11/07/267746/67275f3a-0dc3-41c5-a93f-89d2e076b1a9_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Twn Lacivert Ayakkabı</p>
+                            <div
+                                class="product-item__price--retail product__widget__item__price product-item-slider-retail-price">
+                                349 TL</div>
+                            <span class="product__widget__item__price d-block">159 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/twn-beyaz-ayakkabi-8682445117240/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/11/07/267741/93eca1f0-2f5d-4b17-9168-136532fead25_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Twn Beyaz Ayakkabı</p>
+                            <div
+                                class="product-item__price--retail product__widget__item__price product-item-slider-retail-price">
+                                349 TL</div>
+                            <span class="product__widget__item__price d-block">159 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/twn-siyah-ayakkabi-8682445117271/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/11/11/267738/7b02f10d-cc52-4c5f-8e06-48ab1f60ddb0_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Twn Siyah Ayakkabı</p>
+                            <div
+                                class="product-item__price--retail product__widget__item__price product-item-slider-retail-price">
+                                349 TL</div>
+                            <span class="product__widget__item__price d-block">159 TL</span>
+                        </a>
+                    </div>
+                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                        <a href="/twn-siyah-ayakkabi-8682445117431/">
+                            <img class="product__widget__item__img"
+                                src="https://damat.akinoncdn.com/products/2020/11/07/267752/54d3f799-e355-43d4-92ef-303de95e5b28_size690x757_cropTop.jpg"
+                                alt="product widget image">
+                            <p class="product__widget__item__name">Twn Siyah Ayakkabı</p>
+                            <div
+                                class="product-item__price--retail product__widget__item__price product-item-slider-retail-price">
+                                349 TL</div>
+                            <span class="product__widget__item__price d-block">149 TL</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="sizeModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Gömlek Beden Tablosu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <div class="border border-bottom-0 text-center py-1">NAPOLI KALIP ÖLÇÜ TABLOSU</div>
+                            <div class="d-flex flex-column">
+                                <div class="border border-bottom-0 text-center d-sm-none py-1">SLIM FIT</div>
+                                <div class="d-flex">
+                                    <div
+                                        class="d-none d-sm-flex align-items-center justify-content-center text-center border border-right-0 flex-shrink-0 px-2">
+                                        SLIM FIT</div>
+                                    <table class="table table-bordered fsize-12 text-center mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-left">BEDENLER</td>
+                                                <td>XS</td>
+                                                <td>S</td>
+                                                <td>M</td>
+                                                <td>L</td>
+                                                <td>XL</td>
+                                                <td>XXL</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">(1) ARKA BOY</td>
+                                                <td>77</td>
+                                                <td>78</td>
+                                                <td>79</td>
+                                                <td>80</td>
+                                                <td>81</td>
+                                                <td>82</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">(2) KOL BOYU</td>
+                                                <td>64</td>
+                                                <td>65</td>
+                                                <td>66</td>
+                                                <td>67</td>
+                                                <td>68</td>
+                                                <td>69</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">(3) GÖĞÜS 1/2</td>
+                                                <td>52</td>
+                                                <td>54</td>
+                                                <td>56</td>
+                                                <td>58</td>
+                                                <td>60</td>
+                                                <td>62</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">(4) BEL 1/2</td>
+                                                <td>47</td>
+                                                <td>49</td>
+                                                <td>51</td>
+                                                <td>53</td>
+                                                <td>55</td>
+                                                <td>57</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-left">(5) ETEK 1/2</td>
+                                                <td>49</td>
+                                                <td>51</td>
+                                                <td>53</td>
+                                                <td>55</td>
+                                                <td>57</td>
+                                                <td>59</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column-reverse flex-sm-row">
+                            <div class="fsize-12">
+                                <p class="font-plain-bold">Beden Ölçümü Nasıl Alırım?</p>
+                                <p>
+                                    1.Arka Boy <br>
+                                    Bir arkadaşınıza, boynunuzun altındaki kemikten doğal bel genişliğinize
+                                    kadar ölçtürün.
+                                </p>
+                                <p>
+                                    2.Kol Boyu <br>
+                                    Omuz dikişinden manşetin bittiği yere kadar ölçülmelidir.
+                                </p>
+                                <p>
+                                    3.Göğüs <br>
+                                    Mezurayı kollarınızın altından, göğsünüzün en geniş yerinden, üstten
+                                    sırtınızın
+                                    etrafına yerleştirin.
+                                </p>
+                                <p>
+                                    4.Bel <br>
+                                    Ellerinizi belinize koyun, elinizin bulunduğu nokta bel noktanızdır. Doğal
+                                    bel
+                                    çizginizi çevreleyecek şekilde mezurayı sıkmadan rahat bırakarak belinize
+                                    sarın.
+                                </p>
+                                <p>
+                                    5.Basen <br>
+                                    Vücudunuzun alt kısmının en geniş yerini bulun ve ölçün. Mezurayı yere
+                                    paralel tutun.
+                                </p>
+                                <p class="text-muted">
+                                    - Ölçüler cm olarak verilmiştir.
+                                </p>
+                                <p class="text-muted">
+                                    - Beden tablosunda yer alan ölçüler +2 cm değişkenlik gösterebilir.
+                                </p>
+                            </div>
+                            <div class="align-self-center" style="width: 300px; height: 300px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="analytics-data" style="display: none !important; visibility: hidden !important;">
+            {
+            "type": "productViewed",
+            "payload" : {
+            "products": [{
+            "id": "5ESY54701526M00146",
+            "sku": "8682060712219",
+            "name": "Twn Slim Fit Siyah Smokin Yelekli Takım Elbise",
+            "price": "2499",
+            "brand": "TWN",
+            "variant": "Siyah",
+            "category": "TAKIM ELBISE",
+            "dimension10" : "2020K",
+            "dimension11" : "%68 Polyester %30 Viskon %2 Elastan",
+            "dimension12": "BUYUK PARCALAR | TAKIM ELBISE",
+            "dimension13": "Slim Fit",
+            "dimension14": "5ESY54701526M . 001",
+            "dimension15": "8682060712219",
+            "dimension16": " 2499 ",
+            "dimension17": "indirimsiz" ,
+            "dimension18": "standart",
+            "dimension19": "2020K",
+            "dimension20": "46",
+            "dimension30": "86536"
+            }]
+            }
+            }
+        </div>
+    </div>
+    <div class="modal fade" id="ProductStockNoticeModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Stok Alarmı</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p>
+                        Ürün stoğa girdiğinde <br>
+                        mail adresinize haber vereceğiz.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                    "@type": "ListItem",
+                    "position": 1,
+                    "item": {
+                        "@id": "https://www.dsdamat.com/twn-slim-fit-siyah-smokin-yelekli-takim-elbise-8682060712219/",
+                        "name": "D'S Damat"
+                    }
+                },
+
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "item": {
+                        "@id": "https://www.dsdamat.com/erkek-giyim-modelleri/",
+                        "name": "Gi̇yi̇m"
+                    }
+                },
+
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "item": {
+                        "@id": "https://www.dsdamat.com/erkek-smokin-modelleri/",
+                        "name": "Smokin"
+                    }
+                }
+
+            ]
+        }
+    </script>
+</div>
+{% endblock %}

@@ -1,0 +1,447 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% load custom_tags %}
+{% block homepage_css_link %}
+<script type="text/javascript">
+    // Start Analytics -> DONT REMOVE
+    window["dataLayer"] = window["dataLayer"] || [];
+    // End Analytics -> DONT REMOVE
+    var GLOBALS = {
+        userLoggedIn: false,
+        csrf_token: "<input type='hidden' name='csrfmiddlewaretoken' value='J54QMINSu0xEroayXiSSqlN6021JfNX8RhaViAhchWtYIVOBtE00BKS5LvatpP4b' />",
+        analyticsContainers: {
+            "containerId": "GTM-WG84SKW"
+        },
+        THUMBNAIL_ACTIVE: true,
+        THUMBNAIL_OPTIONS: {
+            "product-list": {
+                "width": 690,
+                "height": 757,
+                "crop": "top"
+            },
+            "product-list_ternary": {
+                "width": 449,
+                "height": 673
+            },
+            "product-list_quad": {
+                "width": 330,
+                "height": 495
+            },
+            "product-detail__variant": {
+                "width": 54,
+                "height": 80,
+                "crop": "center"
+            },
+            "product-detail__slider_zoom": {
+                "quality": 90
+            },
+            "product-detail__slider_display": {
+                "width": 625,
+                "height": 921,
+                "crop": "center"
+            },
+            "product-detail__slider_thumbnail": {
+                "width": 94,
+                "height": 148,
+                "crop": "center"
+            },
+            "category-detail": {
+                "width": 870,
+                "height": 317
+            },
+            "category-detail__campaign-banner": {
+                "width": 420,
+                "height": 210
+            },
+            "category-detail__sub-category-banner": {
+                "width": 270,
+                "height": 335
+            },
+            "basket-list": {
+                "width": 94,
+                "height": 143,
+                "crop": "center"
+            },
+            "order-list": {
+                "width": 110,
+                "height": 131,
+                "crop": "top"
+            },
+            "mini-basket-list": {
+                "width": 94,
+                "height": 143,
+                "crop": "center"
+            },
+            "autocomplete": {
+                "width": 40,
+                "height": 40
+            },
+            "combin-product-item": {
+                "width": 278,
+                "height": 210,
+                "crop": "center"
+            },
+            "blog-home-item": {
+                "width": 450,
+                "height": 340,
+                "crop": "center"
+            },
+            "checkout-success-item": {
+                "width": 58,
+                "height": 88,
+                "crop": "center"
+            }
+        },
+        page: [],
+    };
+    var URLS = {
+        changeEmail: '/users/email-change/',
+        checkout: '/orders/checkout/',
+        basket: '/baskets/basket/',
+        static: 'https://damat.akinoncdn.com/static_omnishop/damat13/',
+    };
+</script>
+{% endblock %}
+​
+{% block body %}
+<!-- <picture class="w-100">
+    <source media="(max-width: 767px)"
+        srcset="https://damat.akinoncdn.com/cms/2020/12/07/9ab0243e-1783-4d8b-8c3a-c3e8d109c2d9.jpg">
+    <img class="w-100" src="https://damat.akinoncdn.com/cms/2020/12/07/d939c99c-53bf-4572-a108-0be0d78dd56d.jpg">
+</picture> -->
+<div id="stories" style="width:1440px; max-width:1393px; margin: auto">
+    <div id="vl-storylb-container-32">
+        <div class="flex-container d-flex justify-content-between">
+            <div>
+                <a href="https://www.dsdamat.com/gunun-firsat-urunleri/?utm_source=euromessage&amp;utm_medium=story&amp;utm_campaign=gunun-firsatlari&amp;OM.zn=acttype-32&amp;OM.zpc=act-32"
+                    class="storylb-a"><img
+                        src="https://img.euromsg.net/3E59BFAE38E94681BB8D17240B815E2B/files/story18122020/1%20(2).jpg"
+                        alt="Bugüne Özel" class="storylb-img" style="width: 70px; display: block; margin: auto">
+                </a>
+                <div class="storylb-label" style="font-size: 11px">Bugüne Özel</div>
+            </div>
+            <div><a href="https://www.dsdamat.com/ozel-fiyatli-urunler/?utm_source=euromessage&amp;utm_medium=story&amp;utm_campaign=ozel-fiyatli-urunler&amp;OM.zn=acttype-32&amp;OM.zpc=act-32"
+                    class="storylb-a"><img
+                        src="https://img.euromsg.net/3E59BFAE38E94681BB8D17240B815E2B/files/story18122020/2%20(1).jpg"
+                        alt="Sezonun En İyileri" class="storylb-img"
+                        style="width: 70px; display: block; margin: auto"></a>
+                <div class="storylb-label" style="font-size: 11px">Sezonun En İyileri</div>
+            </div>
+            {% for category in up_categories %}
+            
+            <div>
+                <a href="{% url 'product:products_filter' category.slug %}"
+                    class="storylb-a"><img
+                        src="https://img.euromsg.net/3E59BFAE38E94681BB8D17240B815E2B/files/story18122020/triko%20(5).jpg"
+                        alt="Triko 59.90TL" class="storylb-img" style="width: 70px; display: block; margin: auto">
+                    </a>
+                <div class="storylb-label" style="font-size: 11px">{{category.title}}</div>
+            </div>
+            {% endfor %}
+
+            <!-- <div><a href="https://www.dsdamat.com/erkek-gomlek-modelleri/?utm_source=euromessage&amp;utm_medium=story&amp;utm_campaign=gomlek-kampanyasi&amp;OM.zn=acttype-32&amp;OM.zpc=act-32"
+                    class="storylb-a"><img
+                        src="https://img.euromsg.net/3E59BFAE38E94681BB8D17240B815E2B/files/story18122020/g%C3%B6mlek%20(5).jpg"
+                        alt="Gömlek 49.90TL" class="storylb-img" style="width: 70px; display: block; margin: auto"></a>
+                <div class="storylb-label" style="font-size: 11px">Gömlek 49.90TL</div>
+            </div>
+
+            <div><a href="https://www.dsdamat.com/tshirt-kampanyasi/?utm_source=euromessage&amp;utm_medium=story&amp;utm_campaign=tshirt-kampanyasi&amp;OM.zn=acttype-32&amp;OM.zpc=act-32"
+                    class="storylb-a"><img
+                        src="https://img.euromsg.net/3E59BFAE38E94681BB8D17240B815E2B/files/story18122020/tshirt.jpg"
+                        alt="2 T-Shirt 69.90TL" class="storylb-img"
+                        style="width: 70px; display: block; margin: auto"></a>
+                <div class="storylb-label" style="font-size: 11px">2 T-Shirt 69.90TL</div>
+            </div>
+
+            <div><a href="https://www.dsdamat.com/takim-elbise-kampanyasi/?utm_source=euromessage&amp;utm_medium=story&amp;utm_campaign=takim-elbise-kampanyasi&amp;OM.zn=acttype-32&amp;OM.zpc=act-32"
+                    class="storylb-a"><img
+                        src="https://img.euromsg.net/3E59BFAE38E94681BB8D17240B815E2B/files/story18122020/tak%C4%B1m%20elbise.jpg"
+                        alt="Takım Elbise 299TL" class="storylb-img"
+                        style="width: 70px; display: block; margin: auto"></a>
+                <div class="storylb-label" style="font-size: 11px">Takım Elbise 299TL</div>
+            </div>
+
+            <div><a href="https://www.dsdamat.com/erkek-mont-kaban-modelleri/?utm_source=euromessage&amp;utm_medium=story&amp;utm_campaign=mont-kaban-kampanyasi&amp;OM.zn=acttype-32&amp;OM.zpc=act-32"
+                    class="storylb-a"><img
+                        src="https://img.euromsg.net/3E59BFAE38E94681BB8D17240B815E2B/files/story18122020/mont-kaban%20(1).jpg"
+                        alt="Mont-Kaban 279TL" class="storylb-img"
+                        style="width: 70px; display: block; margin: auto"></a>
+                <div class="storylb-label" style="font-size: 11px">Mont-Kaban 279TL</div>
+            </div>
+            
+            <div><a href="https://www.dsdamat.com/erkek-ayakkabi-modelleri/?utm_source=euromessage&amp;utm_medium=story&amp;utm_campaign=ayakkabi-kampanyasi&amp;OM.zn=acttype-32&amp;OM.zpc=act-32"
+                    class="storylb-a"><img
+                        src="https://img.euromsg.net/3E59BFAE38E94681BB8D17240B815E2B/files/story18122020/ayakkab%C4%B1%20(5).jpg"
+                        alt="Ayakkabı-Bot 139TL" class="storylb-img"
+                        style="width: 70px; display: block; margin: auto"></a>
+                <div class="storylb-label" style="font-size: 11px">Ayakkabı-Bot 139TL</div>
+            </div>
+            <div><a href="https://www.dsdamat.com/homewear-kampanyasi/?utm_source=euromessage&amp;utm_medium=story&amp;utm_campaign=ev-rahatligi-kampanyasi&amp;OM.zn=acttype-32&amp;OM.zpc=act-32"
+                    class="storylb-a"><img
+                        src="https://img.euromsg.net/3E59BFAE38E94681BB8D17240B815E2B/files/story18122020/sweatshirt%20(1).jpg"
+                        alt="Sweatshirt 69.90TL" class="storylb-img"
+                        style="width: 70px; display: block; margin: auto"></a>
+                <div class="storylb-label" style="font-size: 11px">Sweatshirt 69.90TL</div>
+            </div>
+            <div><a href="https://www.dsdamat.com/erkek-hediye-setleri-modelleri/?utm_source=euromessage&amp;utm_medium=story&amp;utm_campaign=hediye-setleri-kampanyasi&amp;OM.zn=acttype-32&amp;OM.zpc=act-32"
+                    class="storylb-a"><img
+                        src="https://img.euromsg.net/3E59BFAE38E94681BB8D17240B815E2B/files/story18122020/hediye%20setleri.jpg"
+                        alt="Hediye Setleri 79.90TL" class="storylb-img"
+                        style="width: 70px; display: block; margin: auto"></a>
+                <div class="storylb-label" style="font-size: 11px">Hediye Setleri 79.90TL</div>
+            </div> -->
+        </div>
+    </div>
+</div>
+<div class="js-base-content wrapper">
+    <div data-slug="home-band-countdown">
+    </div>
+    <div data-slug="home-slider">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="js-unload-slider" style="margin: 0 -15px;">
+                        <a href="ozel-fiyatli-urunler/index.html">
+                            <img style="width: 100%;" class="img-fluid d-none d-sm-block"
+                                src="https://damat.akinoncdn.com/cms/2020/12/07/af244b74-8107-44a5-9a4f-1875a7595b2f.jpg"
+                                alt="">
+                            <img style="width: 100%;" class="img-fluid d-sm-none"
+                                src="https://damat.akinoncdn.com/cms/2020/12/07/0d92fccb-2982-4125-bec6-90b4c0a0786e.jpg"
+                                alt="">
+                            <div class="slider__item-content">
+                                <h2 style="color: ">
+                                </h2>
+                                <h3 style="color: ">
+                                </h3>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="row slider">
+                        <div class="loader"></div>
+                        <div class="js-home-slider opacity-0">
+                            {% for compaign in slider_contents %}
+
+                            <a href="{% if not compaign.url %}{% url 'product:products_filter' compaign.category.slug %} {% endif %}" class="slider__item js-slider-item"
+                                data-position="1" data-analytics="">
+                                <img class="img-fluid d-none d-sm-block"
+                                    src="{{ compaign.image.url }}"
+                                    alt="">
+                                <img class="img-fluid d-sm-none"
+                                    src="{{ compaign.sm_image.url }}"
+                                    alt="">
+                                <!-- <div class="slider__item-content">
+                                    <h2 style="color: ">
+                                    </h2>
+                                    <h3 style="color: ">
+                                    </h3>
+                                </div> -->
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="analytics-data" style="display: none !important; visibility: hidden !important;">
+            {
+            "type": "promotionViewed",
+            "payload" : {
+            "promotions":[
+            {
+            "id": "Hero Banner - /ozel-fiyatli-urunler/",
+            "name": "",
+            "creative": "",
+            "position": "1"
+            }
+            ,
+            {
+            "id": "Hero Banner - /yeni-sezon-kampanyasi/",
+            "name": "",
+            "creative": "",
+            "position": "2"
+            }
+            ,
+            {
+            "id": "Hero Banner - /erkek-mont-kaban-modelleri/",
+            "name": "",
+            "creative": "",
+            "position": "3"
+            }
+            ,
+            {
+            "id": "Hero Banner - /erkek-ayakkabi-modelleri/",
+            "name": "",
+            "creative": "",
+            "position": "4"
+            }
+            ,
+            {
+            "id": "Hero Banner - /erkek-hediye-setleri-modelleri/",
+            "name": "",
+            "creative": "",
+            "position": "5"
+            }
+            ,
+            {
+            "id": "Hero Banner - /iptal-iade-bilgilendirme/",
+            "name": "",
+            "creative": "",
+            "position": "6"
+            }
+            ]
+            }
+            }
+        </div>
+    </div>
+    <div data-slug="triple-banner">
+        <div class="three__box">
+            <a href="{% url 'product:products_filter' second_contents.all.0.category.slug %}" class="three__box-item">
+                <img class="img-fluid d-none d-md-block"
+                    src="{{ second_contents.all.0.sm_image.url }}" alt="">
+                <img class="img-fluid d-md-none"
+                    src="{{ second_contents.all.0.image.url }}" alt="">
+            </a>
+            <a href="{{ second_contents.all.1.url }}" class="three__box-item">
+                <img class="img-fluid d-none d-md-block"
+                    src="{{ second_contents.all.1.sm_image.url }}" alt="">
+                <img class="img-fluid d-md-none"
+                    src="{{ second_contents.all.1.image.url }}" alt="">
+            </a>
+            <a href="triko-kampanya/index.html" class="three__box-item">
+                <img class="img-fluid d-none d-md-block"
+                    src="https://damat.akinoncdn.com/cms/2020/12/07/68302d51-b8b3-434d-9508-52cf907014bc.jpg" alt="">
+                <img class="img-fluid d-md-none"
+                    src="https://damat.akinoncdn.com/cms/2020/12/07/ccebd65d-ea29-4e7c-a908-9307a715ffc4.jpg" alt="">
+            </a>
+        </div>
+    </div>
+    <div data-slug="new-quadrable-banner">
+        <div class="four__box">
+            {% for compaign in third_contents %}
+            <a href="{% url 'product:products_filter' compaign.category.slug %} " class="four__box-item">
+                <img src="{{ compaign.image.url }}" alt="1">
+                <span class="four__box-desc" style="color:#00000; background-color: #fff">
+                    {{ compaign.category.title }}
+                </span>
+            </a>
+            {% endfor %}
+            <!-- <a href="erkek-triko-modelleri/index.html" class="four__box-item">
+                <img src="https://damat.akinoncdn.com/cms/2020/10/13/277ed411-476d-44ed-a11c-048bb09dfd16.gif" alt="1">
+                <span class="four__box-desc" style="color: #000000 ; background-color: #fff">
+                    Triko
+                </span>
+            </a>
+            <a href="erkek-ceket-modelleri/index.html" class="four__box-item">
+                <img src="https://damat.akinoncdn.com/cms/2020/10/13/7212f0d2-6e34-4fc4-9f8e-ee3f75b44497.gif" alt="1">
+                <span class="four__box-desc" style="color: #00000 ; background-color: #fff">
+                    Ceket
+                </span>
+            </a>
+            <a href="erkek-mont-kaban-modelleri/index.html" class="four__box-item">
+                <img src="https://damat.akinoncdn.com/cms/2020/11/02/9b05a141-2ac1-42a5-9940-e2a20d733c40.jpe" alt="1">
+                <span class="four__box-desc" style="color: #000000 ; background-color: #fff">
+                    Mont
+                </span>
+            </a> -->
+        </div>
+    </div>
+    <div data-slug="single-banner">
+        <div class="banner">
+
+            <a href="{% url 'product:products_filter' banner.all.0.category.slug %}" class="banner__item">
+                <img class="d-sm-block d-none"
+                    src="{{ banner.all.0.image.url }}" alt="">
+                <img class="d-sm-none"
+                    src="{{ banner.all.0.sm_image.url }}" alt="">
+            </a>
+        </div>
+    </div>
+    <div data-slug="double-campaign-banner">
+        <div class="two__box">
+            {% for compaign in fourth_contents %}
+            <a href="{% if not compaign.url %}{% url 'product:products_filter' compaign.category.slug %} {% endif %}" class="two__box-item">
+                <img class="img-fluid"
+                    src="{{ compaign.image.url }}" alt="{{compaign.order}}">
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div data-slug="double-information-banner">
+        <div class="brand">
+            <h2 style="color: ;">
+                D&#39;S MAG
+            </h2>
+            <div class="brand__box">
+                <a href="yeni-konfor-alani.html" class="brand__box-item">
+                    <img class="img-fluid"
+                        src="https://damat.akinoncdn.com/cms/2020/11/17/4e08fa7c-bdeb-4d54-a243-1260040c60f4.jpg"
+                        alt="">
+                    <div class="brand__box-title">
+                        <span style="color: ;">BLOG</span>
+                        <h4 style="color: ;">GARDIROBUNUZUN YENİ KONFOR ALANI</h4>
+                    </div>
+                </a>
+                <a href="takim-elbise-kombin-onerileri/index.html" class="brand__box-item">
+                    <img class="img-fluid"
+                        src="https://damat.akinoncdn.com/cms/2020/07/20/29cda9bf-b11f-45f4-995a-65b14d59d7b7.jpg"
+                        alt="">
+                    <div class="brand__box-title">
+                        <span style="color: ;">BLOG</span>
+                        <h4 style="color: ;">TAKIM ELBİSE KOMBİN ÖNERİLERİ</h4>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div data-slug="advantages">
+        <div class="advantages">
+            <div class="title">
+                Hızlı, kolay, güvenli
+                ve avantajlı alışveriş
+            </div>
+            {% get_sales_advantage as advantages %}
+            {% for advantage in advantages %}
+            <a href="#">
+                <div class="advantage">
+                    <i class="{{ advantage.icon }}"></i>
+                    <span>
+                        {{ advantage.title }}
+                    </span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "WebSite",
+            "name": "D'S Damat",
+            "url": "https://www.dsdamat.com/",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://www.dsdamat.com/list/?search_text={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org/",
+            "@type": "Organization",
+            "name": "D'S Damat",
+            "url": "https://www.dsdamat.com/",
+            "logo": "https://damat.akinoncdn.com/static_omnishop/damat13/img/icon-white.svg",
+            "sameAs": [
+                "https://www.facebook.com/DSDamat",
+                "https://twitter.com/ds_damat/",
+                "https://www.instagram.com/dsdamatonline/",
+                "https://www.youtube.com/user/dsdamattv",
+                "https://www.linkedin.com/company/orka-group---damat-tween-adv/",
+                "https://tr.wikipedia.org/wiki/Damat_Tween"
+            ]
+        }
+    </script>
+</div>
+{% endblock %}

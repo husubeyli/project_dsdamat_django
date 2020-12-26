@@ -1,0 +1,362 @@
+{% load custom_tags i18n %}
+
+<header class="header px-sm-4 px-3 wrapper">
+    <div class="header__lang-box d-none d-sm-flex justify-content-end">
+        <a href="{% url 'index:home' %}">
+            TR
+        </a>
+    </div>
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="header__wrapper d-sm-flex justify-content-between align-items-end">
+            <div class="js-menu-button menu__button d-md-none d-inline-block">
+                <i class="icon-hamburger"></i>
+            </div>
+            <div class="header__logo-box d-inline-block">
+                <a href="{% url 'index:home' %}" class="">
+                    <i class="icon-logo"></i>
+                </a>
+            </div>
+            <nav class="navigation__box flex-fill js-navigation-box d-none d-md-block">
+                <ul class="d-flex flex-wrap p-0 m-0 justify-content-center">
+                    {% get_navbar_content as menus %}
+                    {% for menu in menus %}
+                    {% if menu.is_head %}
+                    <li class="navigation__menu__item">
+                        <div class="pr-4 navigation__menu__main">
+                            <a href="{% url 'product:products_filter' menu.slug %}">
+                                {{ menu.title | upper }}
+                            </a>
+                        </div>
+                        {% if menu.parent_categories.all %}
+                        <div class="navigation__submenu p-4">
+                            <div class="d-flex">
+                                <div class="navigation__link__wrapper">
+                                    {% for sub_menu in menu.parent_categories.all reversed %}
+                                    {% if sub_menu.is_new_season %}
+                                    <a class="red navigation__submenu__link two-column"
+                                        href="{% url 'product:products_filter' sub_menu.slug %}">
+                                        {{ sub_menu.title }}
+                                    </a>
+                                    {% else %}
+                                    <a class="navigation__submenu__link two-column"
+                                        href="{% url 'product:products_filter' sub_menu.slug %}">
+                                        {{ sub_menu.title }}
+                                    </a>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                {% if menu.image %}
+                                <div class="navigation__image">
+                                    <a href="erkek-triko-modelleri/index.html">
+                                        <img width="210" src="{{ menu.image.url }}" alt="{{ menu.title | upper }}">
+                                    </a>
+                                </div>
+                                {% endif %}
+                            </div>
+                            {% if menu.is_products %}
+                            <a class="navigation__action__link" href="erkek-giyim-modelleri/index.html">
+                                Tüm Ürünler <i class="icon-chevron_right"></i><i class="icon-chevron_right"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+            <nav class="mobile__menu flex-fill js-mobile-navigation d-md-none">
+                <div class="mobile__menu__head">
+                    <i class="icon-logo"></i>
+                    <span class="close__button js-menu-close">Kapat</span>
+                </div>
+                <ul class="d-flex flex-column justify-content-center">
+                    {% get_navbar_content as menus %}
+                    {% for menu in menus %}
+
+                    {% if menu.is_head %}
+
+                    <li class="mobile__menu__item js-main-menu">
+                        <div class="mobile__menu__main">
+                            <span>
+                                {{ menu.title | upper }}
+                            </span>
+                            {% if menu.parent_categories.all %}
+                            <i class="icon-chevron_right"></i>
+                            {% endif %}
+                        </div>
+
+                        {% if menu.parent_categories.all %}
+                        <div class="mobile__submenu js-mobile-submenu">
+                            <div class="mobile__submenu__head">
+                                <span class="js-back-button">
+                                    <i class="icon-chevron_left"></i>Geri
+                                </span>
+                                <h4>{{ menu.title | upper }}</h4>
+                                <span class="close__button js-menu-close">Kapat</span>
+                            </div>
+
+                            <div class="mobile__submenu__item">
+                                {% if menu.is_products %}
+                                <div>
+                                    <a class="navigation__action__link" href="erkek-giyim-modelleri/index.html">
+                                        Tüm Ürünler
+                                    </a>
+                                </div>
+                                {% endif %}
+
+                                {% for sub_menu in menu.parent_categories.all %}
+                                {% if sub_menu.is_new_season %}
+                                <div>
+                                    <a class="red" href="yeni-sezon/index.html">
+                                        {{ sub_menu.title }}
+                                    </a>
+                                </div>
+                                {% else %}
+                                <div>
+                                    <a class="" href="yeni-sezon/index.html">
+                                        {{ sub_menu.title }}
+                                    </a>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                        {% endif %}
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+        <div class="header__account d-flex">
+            <div class="search__box d-flex align-items-center js-search-box active">
+                <div class="js-search-opener search__box__icon">
+                    <i class="icon-search"></i>
+                </div>
+                <div class="js-search-form search-form">
+                    <button>
+                        <i class="icon-search"></i>
+                    </button>
+                    <input type="text" id="AutocompleteInput" name="search_text" data-toggle="dropdown"
+                        class="flex-fill js-search-input js-list-search-input" placeholder="">
+                    <div class="dropdown-menu autocomplete__dropdown d-none" id="AutocompleteDropdown"
+                        aria-labelledby="AutocompleteInput"></div>
+                </div>
+            </div>
+            <div class="user-panel d-flex align-items-center">
+                {% if request.user.is_authenticated %}
+                    <div class="user-panel__auth pl-4 mini-profile js-mini-profile">
+                            <a href="#">
+                                <i class="icon-profile"></i>
+                            </a>
+                            <div class="js-profile-menu mini-profile__content">
+                                <div class="profile__title text-center">
+                                    <a class="profile__title--text" href="/account/">Hesabım</a>
+                                    <span class="close__button js-profile-close">Kapat</span>
+                                </div>
+
+
+                                <a class="account-menu__item-title" href="/account/">Hesabım</a>
+
+                                <div class="account-menu__item-wrapper">
+                                    <span class="account-menu__item-title d-block"></span>
+                                    <ul class="js-account-menu-list account-menu__item-list">
+
+                                        <li>
+                                            <a class="account-menu__item-link d-block" href="/users/orders/">
+                                                <i class="icon-cart account-menu__item-icon"></i>
+                                                <span class="account-menu__item-text">Siparişlerim</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="account-menu__item-link d-block" href="/users/old-orders/">
+                                                <i class="icon-eski_siparislerim account-menu__item-icon"></i>
+                                                <span class="account-menu__item-text">Eski Siparişlerim</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="account-menu__item-link d-block" href="/account/profile/">
+                                                <i class="icon-profile account-menu__item-icon"></i>
+                                                <span class="account-menu__item-text">Üyelik Bilgilerim</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="account-menu__item-link d-block" href="/account/address/">
+                                                <i class="icon-adres_degistirme account-menu__item-icon"></i>
+                                                <span class="account-menu__item-text">Adreslerim</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="account-menu__item-link d-block" href="/account/favourite-products/">
+                                                <i class="icon-heart account-menu__item-icon"></i>
+                                                <span class="account-menu__item-text">Favorilerim</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="account-menu__item-link d-block" href="/account/change-email/">
+                                                <i class="icon-email_degistirme account-menu__item-icon"></i>
+                                                <span class="account-menu__item-text">E-posta Değiştir</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="account-menu__item-link d-block" href="{% url 'account:password_change' %}">
+                                                <i class="icon-sifre_degistirme account-menu__item-icon"></i>
+                                                <span class="account-menu__item-text">Şifre Değiştir</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="account-menu__item-link d-block" href="/account/coupons/">
+                                                <i class="icon-kuponlar account-menu__item-icon"></i>
+                                                <span class="account-menu__item-text">Kuponlarım</span>
+                                            </a>
+                                        </li>
+
+                                        <li>
+                                            <a class="account-menu__item-link d-block" href="/account/contact/">
+                                                <i class="icon-bize_ulasin account-menu__item-icon"></i>
+                                                <span class="account-menu__item-text">Bize Ulaşın</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                                <form action="/users/logout/">
+                                    <input type="hidden" name="csrfmiddlewaretoken"
+                                        value="RUku5HsAJC8BrZzJzm49J5OpOpQ3v9QsiLGlSqRubO715wv10zT1HhUCSkKwrYZS">
+                                    <input type="hidden" name="next" value="/baskets/basket/">
+                                    <input type="hidden" name="referrer" value="/baskets/basket/">
+                                    <a href="{% url 'account:logout' %}" class="user-panel__auth__menu__link" style="text-decoration: none;">
+                                        <span><i class="icon-cikis_yap"></i> Çıkış Yap</span>
+                                    </a>
+                                </form>
+                            </div>
+                    </div>
+                {% else %}
+                    <div class="user-panel__auth pl-4">
+                        <a href="{% url 'account:login' %}" rel="nofollow">
+                            <i class="icon-profile"></i>
+                        </a>
+                    </div>
+                {% endif %}
+                
+                <div class="mini-basket js-mini-basket pl-4" style="">
+                    <a href="baskets/basket/index.html" class="d-block d-sm-none">
+                        <div class="icon-area">
+                            <i class="icon-cart"></i>
+                            <span class="js-mini-basket-total-quantity">0</span>
+                        </div>
+                    </a>
+                    <div class="icon-area d-none d-sm-block">
+                        <i class="icon-cart"></i>
+                        <span class="js-mini-basket-total-quantity">0</span>
+                    </div>
+                    <div
+                        class="mini-basket__full-screen-container mini-basket__desktop js-mini-basket-full-screen-content ">
+                        <div class="mini-basket__content js-mini-basket-container d-flex">
+                            <div class="mini-basket__header d-flex justify-content-between align-items-center">
+                                <div class="flex-grow-1">
+                                    <h4 class="text-center">Sepet</h4>
+                                </div>
+                                <div class="mini-basket__close-button p-3 js-mini-basket-close-button">
+                                    <span>Kapat</span>
+                                </div>
+                            </div>
+                            <div class="d-none text-center mt-5 js-empty-box">
+                                Alışveriş Sepetiniz Boş
+                            </div>
+                            <div class="container mini-basket__list js-mini-basket-list-container">
+                                <div class="mini-basket-item row js-mini-basket-item py-3" hidden>
+                                    <div class="col-11 d-flex">
+                                        <div>
+                                            <a class="d-block js-mini-basket-item-image-link" href="#">
+                                                <img class="mini-basket-item__image w-100 js-mini-basket-item-image"
+                                                    src="#">
+                                            </a>
+                                        </div>
+                                        <div class="mini-basket-item__product-name col-8 d-flex flex-column">
+                                            <a href="#" class="js-mini-basket-item-product-name">
+                                            </a>
+                                            <p class="mini-basket-item__product-attr">
+                                                <span class="js-mini-basket-item-product-pattern"> </span>,
+                                                <span class="js-mini-basket-item-product-size"> </span> Beden
+                                            </p>
+                                            <span
+                                                class="basket-item__product-description js-basket-item-product-description">
+                                            </span>
+                                            <div class="mini-basket-item__quantity d-flex flex-row align-items-center">
+                                                <button class="js-mini-basket-item-quantity-decrease-button"><i
+                                                        class="icon-minus"></i></button>
+                                                <div class="px-2">
+                                                    <span class="js-mini-basket-item-quantity"></span>
+                                                    Adet
+                                                </div>
+                                                <button class="js-mini-basket-item-quantity-increment-button"><i
+                                                        class="icon-plus"></i></button>
+                                            </div>
+                                            <div class="d-flex flex-row">
+                                                <div class="mini-basket-item__price pr-2">
+                                                    <span class="js-mini-basket-item-price"></span>
+                                                    <span
+                                                        class="mini-basket-item__price-currency js-mini-basket-item-price-currency"></span>
+                                                </div>
+                                                <div class="mini-basket-item__retail-price d-none">
+                                                    <span class="js-mini-basket-item-retail-price"></span>
+                                                    <span
+                                                        class="mini-basket-item__price-currency js-mini-basket-item-retail-price-currency"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center js-basket-item-error error w-100"></div>
+                                </div>
+                            </div>
+                            <div class="shipping_info_w">
+                                <span class="shipping_info_w-text">Tahmini teslimat tarihi:</span> <span
+                                    class="shipping_info_w-date">10 Aralık - 14 Aralık</span>
+                            </div>
+                            <div class="mini-basket__continue-checkout__container">
+                                <div class="d-flex flex-column">
+                                    <div
+                                        class="js-mini-basket-total-amount-wrapper mini-basket__total-amount d-flex justify-content-between py-1">
+                                        <div>Toplam</div>
+                                        <div>
+                                            <span class="--currency">₺</span>
+                                            <span class="js-mini-basket-total-amount"></span>
+                                        </div>
+                                    </div>
+                                    <a href="#" class="js-mini-basket-continue-button mini-basket__continue-checkout">
+                                    </a>
+                                    <div class="text-center mt-2 mini-basket__text js-mini-basket-close-button">
+                                        Alışverişe Devam Et</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mini-basket-mobile js-mini-basket-mobile mini-basket__full-screen-container">
+                    <div class="mini-basket-mobile__back-drop js-mini-basket-mobile-continue"></div>
+                    <div class="mini-basket-mobile__container">
+                        <span class="mini-basket-mobile__title">Sepet</span>
+                        <p>Ürün sepete eklendi.</p>
+                        <div class="mini-basket-mobile__buttons">
+                            <a class="js-mini-basket-mobile-continue mini-basket__text" href="#">Alışverişe
+                                Devam Et</a>
+                            <a class="mini-basket__continue-checkout" href="baskets/basket/index.html"
+                                rel="nofollow">Sepete Git</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

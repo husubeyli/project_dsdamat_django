@@ -1,0 +1,33 @@
+$pz-color-primary: #050505;
+$pz-color-primary-light: #151515;
+$pz-color-primary-dark: #000000;
+
+$pz-color-secondary: #f96488;
+
+$pz-price-color: $pz-color-secondary;
+
+$pz-color-text-primary-dark: rgba(0, 0, 0, 0.87) !default;
+$pz-color-text-secondary-dark: rgba(0, 0, 0, 0.44) !default;
+$pz-color-text-disabled-dark: rgba(0, 0, 0, 0.28) !default;
+
+$pz-border-radius: 5px;
+$pz-border-color: #e0e0e0;
+
+$pz-breadcrumb-padding: 16px 0px;
+$pz-breadcrumb-link-color: $pz-color-primary-dark;
+
+$pz-container-max-widths: (
+  sm: 570px,
+  md: 760px,
+  lg: 990px,
+  xl: 1200px,
+);
+
+$pz-checkbox-family: 'icomoon';
+$pz-box-icon: "\e92d";
+$pz-check-icon: "\e92a";
+$pz-radio-icon: "\e92a";
+
+@import '../components/variables';
+@import '../partials/variables';
+@import '../product/variables';

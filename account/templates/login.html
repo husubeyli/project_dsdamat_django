@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+    <div class="js-base-content wrapper">
+
+        <div class="container auth-page py-3 p-sm-4" id="LoginPage">
+            <div class="auth-page__title w-100">
+                <h1>Üye Girişi</h1>
+            </div>
+
+            <form action="" class="auth-form w-100" method="POST" novalidate="novalidate">
+                {% csrf_token %}
+                {{form.non_field_errors}}
+                
+                <!-- <label class="error non_field_errors-error" id="non_field_errors-error" style="display: none;">
+                </label> -->
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field }}
+                        {{ field.help_text }}
+                        <ul>
+                            {% for error in field.errors %}
+                                <li> {{ error }} </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+                    <a href="{% url 'account:forget_ password' %}" class="link">
+                        Şifremi unuttum
+                    </a>
+                </div>
+                <button type="submit" class="button pz-button__action">Giriş yap</button>
+            </form>
+
+            <div class="text-center my-3">
+                <span class="muted-text">veya</span>
+            </div>
+            <a class="w-100" href="{% url 'social:begin' 'facebook' %}">
+                <button type="button" class="button mb-3 button-outline">Facebook ile Bağlan</button>
+            </a>
+            <a class="w-100" href="{% url 'social:begin' 'google-oauth2' %}">
+                <button type="button" class="button mb-3 button-outline">Google ile Bağlan</button>
+            </a>
+            <div class="text-center">
+                <span class="muted-text">Üye değil misin?</span>
+                <a href="{% url 'account:register' %}" class="link" rel="nofollow">
+                    Yeni Üyelik Oluştur
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock body %}

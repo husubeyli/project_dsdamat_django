@@ -1,0 +1,2045 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block homepage_css_link %}
+    <script type="text/javascript">
+        // Start Analytics -> DONT REMOVE
+        window["dataLayer"] = window["dataLayer"] || [];
+        // End Analytics -> DONT REMOVE
+
+        var GLOBALS = {
+            userLoggedIn: false,
+            csrf_token: "<input type='hidden' name='csrfmiddlewaretoken' value='820yw93ud6tJa8UeKoL0vUul4NOb6FvYGaaLC9NE6uajwojnNRQG6LGzcyi8LGAj' />",
+            analyticsContainers: {
+                "containerId": "GTM-WG84SKW"
+            },
+            THUMBNAIL_ACTIVE: true,
+            THUMBNAIL_OPTIONS: {
+                "product-list": {
+                    "width": 690,
+                    "height": 757,
+                    "crop": "top"
+                },
+                "product-list_ternary": {
+                    "width": 449,
+                    "height": 673
+                },
+                "product-list_quad": {
+                    "width": 330,
+                    "height": 495
+                },
+                "product-detail__variant": {
+                    "width": 54,
+                    "height": 80,
+                    "crop": "center"
+                },
+                "product-detail__slider_zoom": {
+                    "quality": 90
+                },
+                "product-detail__slider_display": {
+                    "width": 625,
+                    "height": 921,
+                    "crop": "center"
+                },
+                "product-detail__slider_thumbnail": {
+                    "width": 94,
+                    "height": 148,
+                    "crop": "center"
+                },
+                "category-detail": {
+                    "width": 870,
+                    "height": 317
+                },
+                "category-detail__campaign-banner": {
+                    "width": 420,
+                    "height": 210
+                },
+                "category-detail__sub-category-banner": {
+                    "width": 270,
+                    "height": 335
+                },
+                "basket-list": {
+                    "width": 94,
+                    "height": 143,
+                    "crop": "center"
+                },
+                "order-list": {
+                    "width": 110,
+                    "height": 131,
+                    "crop": "top"
+                },
+                "mini-basket-list": {
+                    "width": 94,
+                    "height": 143,
+                    "crop": "center"
+                },
+                "autocomplete": {
+                    "width": 40,
+                    "height": 40
+                },
+                "combin-product-item": {
+                    "width": 278,
+                    "height": 210,
+                    "crop": "center"
+                },
+                "blog-home-item": {
+                    "width": 450,
+                    "height": 340,
+                    "crop": "center"
+                },
+                "checkout-success-item": {
+                    "width": 58,
+                    "height": 88,
+                    "crop": "center"
+                }
+            },
+
+            page: ['search'],
+
+        };
+        var URLS = {
+            changeEmail: '/users/email-change/',
+            checkout: '/orders/checkout/',
+            basket: '/baskets/basket/',
+            static: 'https://damat.akinoncdn.com/static_omnishop/damat19/',
+
+        };
+    </script>
+{% endblock %}
+
+{% block body %}
+
+<div class="js-base-content wrapper">
+    <div id="ListPage">
+        <div class="js-selected-category d-none">2</div>
+        <div class="container-fluid">
+            <div class="pz-breadcrumb">
+                <div class="pz-breadcrumb__item d-inline-block">
+                    <a class="pz-breadcrumb__link" href="/" data-divider=">">D'S Damat</a>
+                    {% if category.parent_category %}
+                        <a class="pz-breadcrumb__link" href="{% url 'product:products_filter' category.parent_category.slug %}" data-divider=">">{{ category.parent_category.title | title }}</a>
+                    {% endif %}
+                    <a class="pz-breadcrumb__link" href="{% url 'product:products_filter' category.slug %}" data-divider=">">{{ category.title | title }}</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="container-fluid d-sm-flex product__list">
+            <div class="row ">
+
+
+                <div class="list__banner__wrapper d-none d-lg-block  col-12">
+
+
+                    <div class="list__banner__content">
+
+                        <h1 class="fsize-36 font-financier list__banner__title" style="">{{ category.title }}</h1>
+
+                        <div class="py-3 list__categories">
+                            {% for related_category  in category.choices_category.all %}
+                            <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block {% if related_category.title == category.title %} selected {% endif %}"
+                                href="{% url 'product:products_filter' related_category.slug %}" data-name="category_ids" data-value="2"
+                                data-checked="true" style="
+
+                ">
+                                {{ related_category.title | title }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="list__banner__wrapper mb-3 d-lg-none d-none">
+
+
+                    <div class="list__banner__content d-none">
+
+                        <h1 class="fsize-36 font-financier list__banner__title" style=" 
+            
+            
+            ">{{ category.title }}/h1>
+
+                        <div class="py-3 list__categories"> 
+                            {% for related_category  in category.choices_category.all %}
+                            <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block {% if related_category.title == category.title %} selected {% endif %}"
+                                href="{% url 'product:products_filter' related_category.slug %}" data-name="category_ids" data-value="2"
+                                data-checked="true" style="
+
+                ">
+                                {{ related_category.title|title }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-none d-sm-block">
+                    <div class="d-flex">
+                        <form id="ListFiltersForm" class="border-bottom flex-1">
+                            <div class="nav list__filters list__filters" data-type="selectboxes">
+                                <li class="nav-item dropdown" data-facet-key="integration_alt_kategori">
+                                    <button class="btn nav-link color-secondary fsize-14 list__filters--arrow border-0"
+                                        data-display="static" data-toggle="dropdown" role="button"
+                                        type="button">Kategori</button>
+                                    <div class="dropdown-menu list__filters-menu list__filters-menu--bigger">
+                                        <div class="list__filters-choice-wrapper">
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_kategori"
+                                                    value="66" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">CHİNO PANTOLON</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_kategori"
+                                                    value="73" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">DENİM PANTOLON</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_kategori"
+                                                    value="84" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">GÖMLEK</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_kategori"
+                                                    value="92" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">KAZAK</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_kategori"
+                                                    value="99" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">KUMAŞ CEKET</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_kategori"
+                                                    value="100" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">KUMAŞ PANTOLON</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_kategori"
+                                                    value="122" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">TAKIM ELBİSE</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_kategori"
+                                                    value="125" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">T-SHİRT</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_kategori"
+                                                    value="Gömlek"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Gömlek</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_kategori"
+                                                    value="Kazak" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Kazak</span>
+                                            </label>
+
+                                        </div>
+                                        <button class="btn border rounded-0">Uygula</button>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown" data-facet-key="integration_beden1">
+                                    <button class="btn nav-link color-secondary fsize-14 list__filters--arrow border-0"
+                                        data-display="static" data-toggle="dropdown" role="button"
+                                        type="button">Beden</button>
+                                    <div class="dropdown-menu list__filters-menu list__filters-menu--bigger">
+                                        <div class="list__filters-choice-wrapper">
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden1" value="XS"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">XS</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden1" value="S"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">S</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden1" value="M"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">M</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden1" value="L"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">L</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden1" value="XL"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">XL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden1" value="XXL"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">XXL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden1" value="46"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">46</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden1" value="48"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">48</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden1" value="50"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">50</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden1" value="52"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">52</span>
+                                            </label>
+
+                                        </div>
+                                        <button class="btn border rounded-0">Uygula</button>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown" data-facet-key="filterable_kalip_alt">
+                                    <button class="btn nav-link color-secondary fsize-14 list__filters--arrow border-0"
+                                        data-display="static" data-toggle="dropdown" role="button" type="button">Alt
+                                        Kalıp</button>
+                                    <div class="dropdown-menu list__filters-menu">
+                                        <div class="list__filters-choice-wrapper">
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_kalip_alt"
+                                                    value="Slim Fit"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Slim Fit</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_kalip_alt"
+                                                    value="Regular Fit"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Regular Fit</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_kalip_alt"
+                                                    value="Süper Slim Fit"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Süper Slim Fit</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_kalip_alt"
+                                                    value="Comfort"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Comfort</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_kalip_alt"
+                                                    value="Comfort Fit"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Comfort Fit</span>
+                                            </label>
+
+                                        </div>
+                                        <button class="btn border rounded-0">Uygula</button>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown" data-facet-key="filterable_kalip_ust">
+                                    <button class="btn nav-link color-secondary fsize-14 list__filters--arrow border-0"
+                                        data-display="static" data-toggle="dropdown" role="button" type="button">Üst
+                                        Kalıp</button>
+                                    <div class="dropdown-menu list__filters-menu">
+                                        <div class="list__filters-choice-wrapper">
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_kalip_ust"
+                                                    value="Slim Fit"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Slim Fit</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_kalip_ust"
+                                                    value="Regular Fit"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Regular Fit</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_kalip_ust"
+                                                    value="Süper Slim Fit"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Süper Slim Fit</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_kalip_ust"
+                                                    value="Comfort"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Comfort</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_kalip_ust"
+                                                    value="Comfort Fit"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Comfort Fit</span>
+                                            </label>
+
+                                        </div>
+                                        <button class="btn border rounded-0">Uygula</button>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown" data-facet-key="integration_beden2">
+                                    <button class="btn nav-link color-secondary fsize-14 list__filters--arrow border-0"
+                                        data-display="static" data-toggle="dropdown" role="button"
+                                        type="button">Drop</button>
+                                    <div class="dropdown-menu list__filters-menu">
+                                        <div class="list__filters-choice-wrapper">
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden2" value="4"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">4</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden2" value="6"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">6</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_beden2" value="8"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">8</span>
+                                            </label>
+
+                                        </div>
+                                        <button class="btn border rounded-0">Uygula</button>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown" data-facet-key="integration_desen">
+                                    <button class="btn nav-link color-secondary fsize-14 list__filters--arrow border-0"
+                                        data-display="static" data-toggle="dropdown" role="button"
+                                        type="button">Desen</button>
+                                    <div class="dropdown-menu list__filters-menu list__filters-menu--bigger">
+                                        <div class="list__filters-choice-wrapper">
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_desen" value="0117"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Fitilli</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_desen" value="0156"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Düz Örgü</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_desen" value="0016"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Baskılı</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_desen" value="0028"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Çizgili</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_desen" value="0031"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Desenli</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_desen" value="0035"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Armürlü</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_desen" value="0040"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Düz</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_desen" value="0044"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Ekoseli</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_desen" value="0143"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Oxford</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_desen" value="YOK"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Yok</span>
+                                            </label>
+
+                                        </div>
+                                        <button class="btn border rounded-0">Uygula</button>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown" data-facet-key="price">
+                                    <button class="btn nav-link color-secondary fsize-14 list__filters--arrow border-0"
+                                        data-display="static" data-toggle="dropdown" role="button" type="button">Fiyat
+                                        Aralığı</button>
+                                    <div class="dropdown-menu list__filters-menu list__filters-menu--bigger">
+                                        <div class="list__filters-choice-wrapper">
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="price" value="0-50"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">0 TL - 50 TL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="price" value="50-100"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">50 TL - 100 TL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="price" value="100-200"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">100 TL - 200 TL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="price" value="200-300"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">200 TL - 300 TL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="price" value="300-500"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">300 TL - 500 TL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="price" value="500-800"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">500 TL - 800 TL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="price" value="800"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">800 TL ÜZERİ ÜRÜNLER</span>
+                                            </label>
+
+                                        </div>
+                                        <button class="btn border rounded-0">Uygula</button>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown" data-facet-key="filterable_renk">
+                                    <button class="btn nav-link color-secondary fsize-14 list__filters--arrow border-0"
+                                        data-display="static" data-toggle="dropdown" role="button"
+                                        type="button">Renk</button>
+                                    <div class="dropdown-menu list__filters-menu list__filters-menu--bigger">
+                                        <div class="list__filters-choice-wrapper">
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_renk"
+                                                    value="Lacivert"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Lacivert</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_renk" value="Beyaz"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Beyaz</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_renk" value="Mavi"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Mavi</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_renk" value="Siyah"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Siyah</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_renk" value="Gri"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Gri</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_renk" value="Yeşil"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Yeşil</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_renk" value="Bej"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Bej</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_renk" value="Kırmızı"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Kırmızı</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_renk" value="Pembe"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Pembe</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_filterable_renk" value="Bordo"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Bordo</span>
+                                            </label>
+
+                                        </div>
+                                        <button class="btn border rounded-0">Uygula</button>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown" data-facet-key="integration_alt_marka">
+                                    <button class="btn nav-link color-secondary fsize-14 list__filters--arrow border-0"
+                                        data-display="static" data-toggle="dropdown" role="button"
+                                        type="button">Marka</button>
+                                    <div class="dropdown-menu list__filters-menu list__filters-menu--bigger">
+                                        <div class="list__filters-choice-wrapper">
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_marka" value="6"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">DAILY/CASUAL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_marka" value="8"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">FORMAL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_marka"
+                                                    value="137" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">CEREMONY</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_marka"
+                                                    value="138" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">DAILY/CASUAL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_marka"
+                                                    value="139" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">ESSENTIALS</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_marka"
+                                                    value="140" class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">FORMAL</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_marka"
+                                                    value="Daily/Casual"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Daily/Casual</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_marka"
+                                                    value="Formal"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Formal</span>
+                                            </label>
+
+                                            <label class="color-secondary fsize-13 d-flex align-items-center">
+                                                <input type="checkbox" name="attributes_integration_alt_marka"
+                                                    value="Essentials"
+                                                    class="list__filters-checkbox js-filter-choice mr-1 ">
+                                                <span class="choice-label">Essentials</span>
+                                            </label>
+
+                                        </div>
+                                        <button class="btn border rounded-0">Uygula</button>
+                                    </div>
+                                </li>
+
+                            </div>
+                        </form>
+                        <div class="nav list__filters list__sorter--wrapper border-bottom" data-type="sorters">
+                            <div class="fsize-14 nav-link px-0 color-secondary">2794 Ürün</div>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="list__filters--arrow color-primary fsize-14 nav-link" role="button"
+                                    data-toggle="dropdown" data-display="static">
+
+                                    En İlgililere Göre Sıralandı
+
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right border-0 p-0 pt-2 rounded-0">
+
+                                    <label class="dropdown-item color-secondary py-1 px-2 fsize-13">
+                                        <input class="d-none js-sorter" type="radio" name="sorterInput" value="default"
+                                            checked="checked">
+                                        En İlgililere Göre Sıralandı
+                                    </label>
+
+                                    <label class="dropdown-item color-secondary py-1 px-2 fsize-13">
+                                        <input class="d-none js-sorter" type="radio" name="sorterInput" value="price">
+                                        Artan(Fiyat)
+                                    </label>
+
+                                    <label class="dropdown-item color-secondary py-1 px-2 fsize-13">
+                                        <input class="d-none js-sorter" type="radio" name="sorterInput" value="-price">
+                                        Azalan(Fiyat)
+                                    </label>
+
+                                    <label class="dropdown-item color-secondary py-1 px-2 fsize-13">
+                                        <input class="d-none js-sorter" type="radio" name="sorterInput"
+                                            value="newcomers">
+                                        En Yeniler
+                                    </label>
+
+                                </div>
+                            </div>
+                            <div class="list__grid__icons-wrapper">
+                                <a class="list__grid__icon js-grid-item icon-uclu active" data-grid="3" href="?grid=3">
+                                </a>
+                                <a class="list__grid__icon js-grid-item icon-lu " data-grid="4" href="?grid=4">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-block d-sm-none list__facets-mobile p-0">
+                    <div class="d-flex container">
+
+                        <div class="list__border p-2 d-flex align-items-center flex-1 js-filter-input-text">
+
+
+                            <div class="flex-1">Giyim</div>
+
+
+                        </div>
+
+                        <div id="ListFacetsButton"
+                            class="list__border p-2 ml-2 d-flex align-items-center justify-content-center list__filters-btn">
+                            <i class="arrow-down"></i>
+                        </div>
+                    </div>
+                    <div class="py-3 px-2 list__categories ">
+
+
+                        <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block selected"
+                            href="/erkek-giyim-modelleri/" data-name="category_ids" data-value="2"
+                            data-checked="true">Giyim</a>
+
+                        <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block "
+                            href="/erkek-gomlek-modelleri/" data-name="category_ids" data-value="67"
+                            data-checked="">Gömlek</a>
+
+                        <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block "
+                            href="/erkek-triko-modelleri/" data-name="category_ids" data-value="68"
+                            data-checked="">Triko</a>
+
+                        <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block "
+                            href="/erkek-t-shirt-modelleri/" data-name="category_ids" data-value="69"
+                            data-checked="">T-Shirt</a>
+
+                        <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block "
+                            href="/erkek-ceket-modelleri/" data-name="category_ids" data-value="70"
+                            data-checked="">Ceket</a>
+
+                        <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block "
+                            href="/erkek-pantolon-modelleri/" data-name="category_ids" data-value="72"
+                            data-checked="">Pantolon</a>
+
+                        <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block "
+                            href="/erkek-takim-elbise-modelleri/" data-name="category_ids" data-value="5"
+                            data-checked="">Takım Elbise</a>
+
+                        <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block "
+                            href="/erkek-ayakkabi-modelleri/" data-name="category_ids" data-value="76"
+                            data-checked="">Ayakkabı</a>
+
+                        <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block "
+                            href="/erkek-aksesuar-modelleri/" data-name="category_ids" data-value="16"
+                            data-checked="">Aksesuar</a>
+
+
+                    </div>
+
+                    <div class="mb-3 mt-3 d-flex justify-content-between container">
+                        <span class="color-secondary fsize-14">2794 Ürün</span>
+                        <span id="ListSorterMobileButton" class="fsize-14">
+
+                            En İlgililere Göre Sıralandı <i class="arrow-down"></i>
+
+                        </span>
+                    </div>
+                </div>
+
+                <div id="ListSorterMobileContainer" class="full-screen" style="display: none;">
+                    <div class="full-screen__header p-3 border-bottom">
+                        <span class="full-screen__title font-financier-medium">Sırala</span>
+                        <div id="ListSorterMobileCloser" class="full-screen__close color-muted">
+                            Kapat
+                        </div>
+                    </div>
+                    <div class="p-3 d-flex flex-column">
+                        <span class="fsize-14">Sırala</span>
+
+                        <label class="my-2">
+                            <input class="js-sorter mr-1" name="sorterInput" value="default" type="radio"
+                                checked="checked">
+                            <span class="sorter-mobile-label">En İlgililere Göre Sıralandı</span>
+                        </label>
+
+                        <label class="my-2">
+                            <input class="js-sorter mr-1" name="sorterInput" value="price" type="radio">
+                            <span class="sorter-mobile-label">Artan(Fiyat)</span>
+                        </label>
+
+                        <label class="my-2">
+                            <input class="js-sorter mr-1" name="sorterInput" value="-price" type="radio">
+                            <span class="sorter-mobile-label">Azalan(Fiyat)</span>
+                        </label>
+
+                        <label class="my-2">
+                            <input class="js-sorter mr-1" name="sorterInput" value="newcomers" type="radio">
+                            <span class="sorter-mobile-label">En Yeniler</span>
+                        </label>
+
+                    </div>
+                </div>
+
+                <div id="ListFacetsMobileContainer" class="full-screen" style="display: none;">
+                    <div class="full-screen__header p-3 border-bottom">
+                        <span class="full-screen__title font-financier-medium">Filtreler</span>
+                        <div id="ListFacetsMobileCloser" class="full-screen__close color-muted">
+                            Kapat
+                        </div>
+                    </div>
+                    <form class="p-3 list__facets--mobile" id="ListFacetsForm">
+
+                        <div class="d-flex flex-column mb-4 mobile-facet-wrapper"
+                            data-facet-key="integration_alt_kategori">
+                            <span class="fsize-14 mb-3">Kategori</span>
+                            <div data-key="integration_alt_kategori">
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_kategori" value="66"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">CHİNO PANTOLON</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_kategori" value="73"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">DENİM PANTOLON</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_kategori" value="84"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">GÖMLEK</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_kategori" value="92"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">KAZAK</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_kategori" value="99"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">KUMAŞ CEKET</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_kategori" value="100"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">KUMAŞ PANTOLON</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_kategori" value="122"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">TAKIM ELBİSE</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_kategori" value="125"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">T-SHİRT</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_kategori" value="Gömlek"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Gömlek</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_kategori" value="Kazak"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Kazak</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mb-4 mobile-facet-wrapper" data-facet-key="integration_beden1">
+                            <span class="fsize-14 mb-3">Beden</span>
+                            <div data-key="integration_beden1">
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden1" value="XS" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">XS</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden1" value="S" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">S</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden1" value="M" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">M</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden1" value="L" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">L</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden1" value="XL" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">XL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden1" value="XXL"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">XXL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden1" value="46" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">46</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden1" value="48" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">48</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden1" value="50" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">50</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden1" value="52" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">52</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mb-4 mobile-facet-wrapper" data-facet-key="filterable_kalip_alt">
+                            <span class="fsize-14 mb-3">Alt Kalıp</span>
+                            <div data-key="filterable_kalip_alt">
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_kalip_alt" value="Slim Fit"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Slim Fit</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_kalip_alt" value="Regular Fit"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Regular Fit</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_kalip_alt" value="Süper Slim Fit"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Süper Slim Fit</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_kalip_alt" value="Comfort"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Comfort</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_kalip_alt" value="Comfort Fit"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Comfort Fit</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mb-4 mobile-facet-wrapper" data-facet-key="filterable_kalip_ust">
+                            <span class="fsize-14 mb-3">Üst Kalıp</span>
+                            <div data-key="filterable_kalip_ust">
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_kalip_ust" value="Slim Fit"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Slim Fit</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_kalip_ust" value="Regular Fit"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Regular Fit</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_kalip_ust" value="Süper Slim Fit"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Süper Slim Fit</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_kalip_ust" value="Comfort"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Comfort</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_kalip_ust" value="Comfort Fit"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Comfort Fit</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mb-4 mobile-facet-wrapper" data-facet-key="integration_beden2">
+                            <span class="fsize-14 mb-3">Drop</span>
+                            <div data-key="integration_beden2">
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden2" value="4" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">4</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden2" value="6" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">6</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_beden2" value="8" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">8</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mb-4 mobile-facet-wrapper" data-facet-key="integration_desen">
+                            <span class="fsize-14 mb-3">Desen</span>
+                            <div data-key="integration_desen">
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_desen" value="0117"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Fitilli</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_desen" value="0156"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Düz Örgü</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_desen" value="0016"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Baskılı</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_desen" value="0028"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Çizgili</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_desen" value="0031"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Desenli</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_desen" value="0035"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Armürlü</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_desen" value="0040"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Düz</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_desen" value="0044"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Ekoseli</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_desen" value="0143"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Oxford</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_desen" value="YOK" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Yok</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mb-4 mobile-facet-wrapper" data-facet-key="price">
+                            <span class="fsize-14 mb-3">Fiyat Aralığı</span>
+                            <div data-key="price">
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="price" value="0-50" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">0 TL - 50 TL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="price" value="50-100" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">50 TL - 100 TL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="price" value="100-200" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">100 TL - 200 TL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="price" value="200-300" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">200 TL - 300 TL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="price" value="300-500" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">300 TL - 500 TL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="price" value="500-800" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">500 TL - 800 TL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="price" value="800" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">800 TL ÜZERİ ÜRÜNLER</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mb-4 mobile-facet-wrapper" data-facet-key="filterable_renk">
+                            <span class="fsize-14 mb-3">Renk</span>
+                            <div data-key="filterable_renk">
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_renk" value="Lacivert"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Lacivert</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_renk" value="Beyaz" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Beyaz</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_renk" value="Mavi" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Mavi</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_renk" value="Siyah" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Siyah</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_renk" value="Gri" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Gri</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_renk" value="Yeşil" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Yeşil</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_renk" value="Bej" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Bej</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_renk" value="Kırmızı"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Kırmızı</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_renk" value="Pembe" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Pembe</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_filterable_renk" value="Bordo" class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Bordo</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-column mb-4 mobile-facet-wrapper"
+                            data-facet-key="integration_alt_marka">
+                            <span class="fsize-14 mb-3">Marka</span>
+                            <div data-key="integration_alt_marka">
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_marka" value="6"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">DAILY/CASUAL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_marka" value="8"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">FORMAL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_marka" value="137"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">CEREMONY</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_marka" value="138"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">DAILY/CASUAL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_marka" value="139"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">ESSENTIALS</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_marka" value="140"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">FORMAL</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_marka" value="Daily/Casual"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Daily/Casual</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_marka" value="Formal"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Formal</span>
+                                </label>
+
+                                <label class="color-secondary fsize-12 d-flex align-items-center">
+                                    <input type="checkbox" name="attributes_integration_alt_marka" value="Essentials"
+                                        class="mr-1">
+                                    <span class="pl-3 mobile-choice-label">Essentials</span>
+                                </label>
+
+                            </div>
+                        </div>
+
+                    </form>
+                    <div id="ListFacetsApplyButton" class="p-2 color-white bg-dark text-center">
+                        Filtreleri Uygula
+                    </div>
+                </div>
+
+
+                <div id="ListProductWrapper"
+                    class="col-12 d-flex flex-wrap align-content-start align-items-start pt-3 pl-0 pr-0">
+                    {% for product in product_list %}
+                    <div class="col-6 col-sm-3  product-item mb-4">
+
+                        <div class="js-product-wrapper" data-sku="8682060800725" data-pk="77818"
+                            data-url="{{ product.slug }}">
+                            <a href="{% url 'product:product_detail' product.slug %}" class="d-flex flex-column h-100">
+                                <div class="position-relative product-image-wrapper">
+                                    <img class="w-100 product-item__img"
+                                        src="{{ product.product_images.all.0.image.url }}"
+                                        alt="{{ product.title }} | D'S Damat">
+                                    {% if product.disc_type == 'faiz' %}
+                                    <span
+                                        class="product-item__discount-badge d-flex align-items-center">{% if product.disc_value %}
+                                        % {{product.disc_value}} {% endif %}
+                                    </span>
+                                    {% endif %}
+
+
+                                    <div data-url="/users/login/?next=/erkek-giyim-modelleri/"
+                                        class="js-product-item-favourite-guest product-item-favourite-elem"></div>
+
+                                </div>
+                                <div
+                                    class="product-item__content d-flex flex-column justify-content-between text-sm-center">
+                                    <div class="product-item__name color-primary"
+                                        href="{% url 'product:product_detail' product.slug %}">{{product.title}}</div>
+                                    <div>
+                                        <div class="product-item-price-wrapper">
+
+                                            <div class="d-flex justify-content-sm-center align-items-center">
+
+                                                <div
+                                                    class="{% if product.disc_value %} product-item__price--retail {% else %} product-item__price--normal color-primary {% endif %} font-plain-medium">
+                                                    {{ product.price }}</div>
+                                                {% if product.disc_value %}
+                                                <div
+                                                    class="product-item__price--normal color-primary font-plain-medium">
+                                                    {{ product.get_discount_price }}</div>
+                                                {% endif %}
+                                            </div>
+
+                                        </div>
+                                        <div class="product-item__basket-offers">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <div class="col-12">
+                        <div class="pagination flex-wrap justify-content-center justify-content-lg-end">
+                            <a href="#" class="pagination__item pagination__arrow  js-pagination-item d-none">
+                                <i class="icon-chevron_left"></i>
+                            </a>
+                            <a href="/erkek-giyim-modelleri/" class="pagination__item js-pagination-item active ">
+                                1
+                            </a>
+
+                            <a href="?page=2" class="pagination__item js-pagination-item  ">
+                                2
+                            </a>
+                            <a href="?page=3" class="pagination__item js-pagination-item  ">
+                                3
+                            </a>
+                            <a href="?page=4" class="pagination__item js-pagination-item  ">
+                                4
+                            </a>
+
+                            <a href="?page=5" class="pagination__item js-pagination-item  ">
+                                5
+                            </a>
+
+                            <a href="?page=6" class="pagination__item js-pagination-item  ">
+                                6
+                            </a>
+
+                            <a href="?page=7" class="pagination__item js-pagination-item  ">
+                                7
+                            </a>
+
+                            <a href="?page=8" class="pagination__item js-pagination-item  ">
+                                8
+                            </a>
+                            <a href="#" class="pagination__item js-pagination-item  passive">
+                                ...
+                            </a>
+                            <a href="?page=117" class="pagination__item js-pagination-item  ">
+                                117
+                            </a> <a href="?page=2" class="pagination__item pagination__arrow js-pagination-item ">
+                                <i class="icon-chevron_right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="analytics-data" style="display: none !important; visibility: hidden !important;">
+        {
+        "type": "productListViewed",
+        "payload": [
+
+        {
+
+        "id": "4HC14ORT51001501S",
+
+        "name": "Ds Damat Regular Fit Sarı T\u002Dshirt",
+        "price": 69.90,
+        "brand": "DS DAMAT",
+        "variant": "Sarı",
+        "category": "T-SHIRT",
+        "position": 1,
+        "dimension10" : "2020Y",
+        "dimension11" : "%95 Pamuk %5 Elastan",
+        "dimension12": "USTLER | T-SHIRT",
+        "dimension13": "Regular Fit",
+        "dimension14": "4HC14ORT51001 . 501",
+        "dimension15": "8682060800725",
+        "dimension16": " 199 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "S",
+        "dimension30": "77818",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "3HF060632007M1013XL",
+
+        "name": "Ds Damat Regular Fit Lacivert Kazak",
+        "price": 199,
+        "brand": "DS DAMAT",
+        "variant": "Lacivert",
+        "category": "TRIKO",
+        "position": 2,
+        "dimension10" : "",
+        "dimension11" : "%90 Akrilik %10 Yün",
+        "dimension12": "USTLER | TRIKO",
+        "dimension13": "Regular Fit",
+        "dimension14": "3HF060632007M . 101",
+        "dimension15": "8681779610595",
+        "dimension16": " 379 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "",
+        "dimension20": "3XL",
+        "dimension30": "50226",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4HF02ORT04314101M",
+
+        "name": "Ds Damat Slim Fit Lacivert Pötikare Gömlek",
+        "price": 69.90,
+        "brand": "DS DAMAT",
+        "variant": "Lacivert",
+        "category": "GOMLEK",
+        "position": 3,
+        "dimension10" : "2020Y",
+        "dimension11" : "%55 Pamuk %45 Polyester",
+        "dimension12": "USTLER | GOMLEK",
+        "dimension13": "Slim Fit",
+        "dimension14": "4HF02ORT04314 . 101",
+        "dimension15": "8682060785015",
+        "dimension16": " 189 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "M",
+        "dimension30": "75414",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "2HF05TL16577D10150",
+
+        "name": "Ds Damat Slim Fit Slim Fit Lacivert Desenli Takım Elbise",
+        "price": 339,
+        "brand": "DS DAMAT",
+        "variant": "Lacivert",
+        "category": "TAKIM ELBISE",
+        "position": 4,
+        "dimension10" : "",
+        "dimension11" : "%25 KETEN %55 POLYESTER %20 VİSKON",
+        "dimension12": "BUYUK PARCALAR | TAKIM ELBISE",
+        "dimension13": "Slim Fit",
+        "dimension14": "2HF05TL16577D . 101",
+        "dimension15": "8681778939833",
+        "dimension16": " 1249 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "",
+        "dimension20": "50",
+        "dimension30": "1631",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4HF02ORT05185601M",
+
+        "name": "Ds Damat Slim Fit Kırmızı Çizgili Gömlek",
+        "price": 69.90,
+        "brand": "DS DAMAT",
+        "variant": "Kırmızı",
+        "category": "GOMLEK",
+        "position": 5,
+        "dimension10" : "2020Y",
+        "dimension11" : "%54 PAMUK %46 POLYESTER",
+        "dimension12": "USTLER | GOMLEK",
+        "dimension13": "Slim Fit",
+        "dimension14": "4HF02ORT05185 . 601",
+        "dimension15": "8682060787774",
+        "dimension16": " 189 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "M",
+        "dimension30": "75586",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4EC148551753M501L",
+
+        "name": "Twn Slim Fit Sarı Düz T\u002Dshirt",
+        "price": 79.90,
+        "brand": "TWN",
+        "variant": "Sarı",
+        "category": "T-SHIRT",
+        "position": 6,
+        "dimension10" : "2020Y",
+        "dimension11" : "%100 Pamuk",
+        "dimension12": "USTLER | T-SHIRT",
+        "dimension13": "Slim Fit",
+        "dimension14": "4EC148551753M . 501",
+        "dimension15": "8682060049315",
+        "dimension16": " 159 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "L",
+        "dimension30": "18862",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4HF05ORT0157710154",
+
+        "name": "Ds Damat Slim Fit Lacivert Düz Takım Elbise",
+        "price": 299,
+        "brand": "DS DAMAT",
+        "variant": "Lacivert",
+        "category": "TAKIM ELBISE",
+        "position": 7,
+        "dimension10" : "2020Y",
+        "dimension11" : "%68 Polyester %30 Viskon %2 Elastan",
+        "dimension12": "BUYUK PARCALAR | TAKIM ELBISE",
+        "dimension13": "Slim Fit",
+        "dimension14": "4HF05ORT01577 . 101",
+        "dimension15": "8682060660794",
+        "dimension16": " 1299 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "54",
+        "dimension30": "39517",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "2HC064576193D101XL",
+
+        "name": "Ds Damat Regular Fit Lacivert Kazak",
+        "price": 129,
+        "brand": "DS DAMAT",
+        "variant": "Lacivert",
+        "category": "TRIKO",
+        "position": 8,
+        "dimension10" : "",
+        "dimension11" : "%100 Pamuk",
+        "dimension12": "USTLER | TRIKO",
+        "dimension13": "Regular Fit",
+        "dimension14": "2HC064576193D . 101",
+        "dimension15": "8681779304425",
+        "dimension16": " 219 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "",
+        "dimension20": "XL",
+        "dimension30": "49901",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4HC14ORT51001001XL",
+
+        "name": "Ds Damat Regular Fit Siyah T\u002Dshirt",
+        "price": 69.90,
+        "brand": "DS DAMAT",
+        "variant": "Siyah",
+        "category": "T-SHIRT",
+        "position": 9,
+        "dimension10" : "2020Y",
+        "dimension11" : "%95 Pamuk %5 Elastan",
+        "dimension12": "USTLER | T-SHIRT",
+        "dimension13": "Regular Fit",
+        "dimension14": "4HC14ORT51001 . 001",
+        "dimension15": "8682060800589",
+        "dimension16": " 199 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "XL",
+        "dimension30": "77798",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "2EC133003005D10140",
+
+        "name": "Twn Slim Fit Lacivert Düz Şort",
+        "price": 159.50,
+        "brand": "TWN",
+        "variant": "Lacivert",
+        "category": "SORT",
+        "position": 10,
+        "dimension10" : "",
+        "dimension11" : "%97 Pamuk %3 Elastan",
+        "dimension12": "ALTLAR | SORT",
+        "dimension13": "YOK",
+        "dimension14": "2EC133003005D . 101",
+        "dimension15": "8681779553779",
+        "dimension16": " 319 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "",
+        "dimension20": "40",
+        "dimension30": "26387",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4EC148551753Y301S",
+
+        "name": "Twn Slim Fit Gri Düz T\u002Dshirt",
+        "price": 79.90,
+        "brand": "TWN",
+        "variant": "Gri",
+        "category": "T-SHIRT",
+        "position": 11,
+        "dimension10" : "2020Y",
+        "dimension11" : "%100 Pamuk",
+        "dimension12": "USTLER | T-SHIRT",
+        "dimension13": "Slim Fit",
+        "dimension14": "4EC148551753Y . 301",
+        "dimension15": "8681779813484",
+        "dimension16": " 159 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "S",
+        "dimension30": "16928",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4EC148551755M101S",
+
+        "name": "Twn Slim Fit Lacivert Düz T\u002Dshirt",
+        "price": 79.90,
+        "brand": "TWN",
+        "variant": "Lacivert",
+        "category": "T-SHIRT",
+        "position": 12,
+        "dimension10" : "2020Y",
+        "dimension11" : "%100 Pamuk",
+        "dimension12": "USTLER | T-SHIRT",
+        "dimension13": "Slim Fit",
+        "dimension14": "4EC148551755M . 101",
+        "dimension15": "8682060050915",
+        "dimension16": " 159 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "S",
+        "dimension30": "18953",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4HC079707020Y901L",
+
+        "name": "Ds Damat Regular Fit Bej Mont",
+        "price": 644.50,
+        "brand": "DS DAMAT",
+        "variant": "Bej",
+        "category": "MONT/KABAN",
+        "position": 13,
+        "dimension10" : "2020Y",
+        "dimension11" : "%100 Polyester",
+        "dimension12": "BUYUK PARCALAR | MONT/KABAN",
+        "dimension13": "Regular Fit",
+        "dimension14": "4HC079707020Y . 901",
+        "dimension15": "8681779905516",
+        "dimension16": " 1289 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "L",
+        "dimension30": "18198",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4EF02T608288D701L",
+
+        "name": "Twn Slim Fit Mavi Baskılı Gömlek",
+        "price": 99.90,
+        "brand": "TWN",
+        "variant": "Mavi",
+        "category": "GOMLEK",
+        "position": 14,
+        "dimension10" : "2020Y",
+        "dimension11" : "%58 PAMUK %42 POLYESTER",
+        "dimension12": "USTLER | GOMLEK",
+        "dimension13": "Slim Fit",
+        "dimension14": "4EF02T608288D . 701",
+        "dimension15": "8682060352354",
+        "dimension16": " 359 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "L",
+        "dimension30": "12235",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4HC14P631075D401M",
+
+        "name": "Ds Damat Regular Fit Yeşil Baskılı T\u002Dshirt",
+        "price": 89.90,
+        "brand": "DS DAMAT",
+        "variant": "Yeşil",
+        "category": "T-SHIRT",
+        "position": 15,
+        "dimension10" : "2020Y",
+        "dimension11" : "%100 Pamuk",
+        "dimension12": "USTLER | T-SHIRT",
+        "dimension13": "Regular Fit",
+        "dimension14": "4HC14P631075D . 401",
+        "dimension15": "8682060373809",
+        "dimension16": " 359 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "M",
+        "dimension30": "21104",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "3HCC33001050D10148",
+
+        "name": "Ds Damat Slim Fit Lacivert Düz Chino Pantolon",
+        "price": 139,
+        "brand": "DS DAMAT",
+        "variant": "Lacivert",
+        "category": "PANTOLON",
+        "position": 16,
+        "dimension10" : "",
+        "dimension11" : "%98 Pamuk %2 Elastan",
+        "dimension12": "ALTLAR | PANTOLON",
+        "dimension13": "YOK",
+        "dimension14": "3HCC33001050D . 101",
+        "dimension15": "8681779472346",
+        "dimension16": " 359 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "",
+        "dimension20": "48",
+        "dimension30": "35134",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4EC142671754D3013XL",
+
+        "name": "Twn Slim Fit Gri Baskılı T\u002Dshirt",
+        "price": 109.50,
+        "brand": "TWN",
+        "variant": "Gri",
+        "category": "T-SHIRT",
+        "position": 17,
+        "dimension10" : "2020Y",
+        "dimension11" : "%100 Pamuk",
+        "dimension12": "USTLER | T-SHIRT",
+        "dimension13": "Slim Fit",
+        "dimension14": "4EC142671754D . 301",
+        "dimension15": "8682060347985",
+        "dimension16": " 219 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "3XL",
+        "dimension30": "11970",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "3ECC3S211345D10144",
+
+        "name": "Twn Slim Fit Lacivert Düz Chino Pantolon",
+        "price": 169,
+        "brand": "TWN",
+        "variant": "Lacivert",
+        "category": "PANTOLON",
+        "position": 18,
+        "dimension10" : "",
+        "dimension11" : "%98 PAMUK %2 ELASTAN",
+        "dimension12": "ALTLAR | PANTOLON",
+        "dimension13": "YOK",
+        "dimension14": "3ECC3S211345D . 101",
+        "dimension15": "8682060013880",
+        "dimension16": " 499 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "",
+        "dimension20": "44",
+        "dimension30": "33806",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4HC141996755M001S",
+
+        "name": "Ds Damat Slim Fit Siyah T\u002Dshirt",
+        "price": 44.90,
+        "brand": "DS DAMAT",
+        "variant": "Siyah",
+        "category": "T-SHIRT",
+        "position": 19,
+        "dimension10" : "2020Y",
+        "dimension11" : "%100 Pamuk",
+        "dimension12": "USTLER | T-SHIRT",
+        "dimension13": "Slim Fit",
+        "dimension14": "4HC141996755M . 001",
+        "dimension15": "8682060252043",
+        "dimension16": " 189 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "S",
+        "dimension30": "57601",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "3HF060636973D9013XL",
+
+        "name": "Ds Damat Regular Fit Bej Baskılı Kazak",
+        "price": 89.90,
+        "brand": "DS DAMAT",
+        "variant": "Bej",
+        "category": "TRIKO",
+        "position": 20,
+        "dimension10" : "",
+        "dimension11" : "%50 YÜN %50 AKRİLİK",
+        "dimension12": "USTLER | TRIKO",
+        "dimension13": "Regular Fit",
+        "dimension14": "3HF060636973D . 901",
+        "dimension15": "8681779524090",
+        "dimension16": " 379 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "",
+        "dimension20": "3XL",
+        "dimension30": "50318",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "2HC143581033M101M",
+
+        "name": "Ds Damat Regular Fit Lacivert T\u002Dshirt",
+        "price": 49.90,
+        "brand": "DS DAMAT",
+        "variant": "Lacivert",
+        "category": "T-SHIRT",
+        "position": 21,
+        "dimension10" : "",
+        "dimension11" : "%100 Pamuk",
+        "dimension12": "USTLER | T-SHIRT",
+        "dimension13": "Regular Fit",
+        "dimension14": "2HC143581033M . 101",
+        "dimension15": "8681779765387",
+        "dimension16": " 219 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "",
+        "dimension20": "M",
+        "dimension30": "29513",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "3HF060632004M1013XL",
+
+        "name": "Ds Damat Regular Fit Lacivert Kazak",
+        "price": 179,
+        "brand": "DS DAMAT",
+        "variant": "Lacivert",
+        "category": "TRIKO",
+        "position": 22,
+        "dimension10" : "",
+        "dimension11" : "%90 Akrilik %10 Yün",
+        "dimension12": "USTLER | TRIKO",
+        "dimension13": "Regular Fit",
+        "dimension14": "3HF060632004M . 101",
+        "dimension15": "8681779607076",
+        "dimension16": " 319 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "",
+        "dimension20": "3XL",
+        "dimension30": "50162",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "2EF02GL22301Y801M",
+
+        "name": "Twn Slim Fit Beyaz Armürlü Gömlek",
+        "price": 119,
+        "brand": "TWN",
+        "variant": "Beyaz",
+        "category": "GOMLEK",
+        "position": 23,
+        "dimension10" : "",
+        "dimension11" : "%60 Pamuk %40 Polyester",
+        "dimension12": "USTLER | GOMLEK",
+        "dimension13": "Slim Fit",
+        "dimension14": "2EF02GL22301Y . 801",
+        "dimension15": "8681778889060",
+        "dimension16": " 249 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "",
+        "dimension20": "M",
+        "dimension30": "27351",
+        "list": "erkek-giyim-modelleri"
+        },
+
+        {
+
+        "id": "4HC44ORTBS02001L",
+
+        "name": "Ds Damat Siyah Boxer Set",
+        "price": 54.90,
+        "brand": "DS DAMAT",
+        "variant": "Siyah",
+        "category": "BOXER/SLIP",
+        "position": 24,
+        "dimension10" : "2020Y",
+        "dimension11" : "%92 Pamuk %8 Elastan",
+        "dimension12": "AKSESUARLAR | BOXER/SLIP",
+        "dimension13": "",
+        "dimension14": "4HC44ORTBS02 . 001",
+        "dimension15": "8682060814951",
+        "dimension16": " 129 ",
+        "dimension17": "indirimli" ,
+        "dimension18": "standart",
+        "dimension19": "2020Y",
+        "dimension20": "L",
+        "dimension30": "78048",
+        "list": "erkek-giyim-modelleri"
+        }
+
+        ]
+        }
+    </div>
+</div>
+
+{% endblock %}

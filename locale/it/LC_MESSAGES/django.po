@@ -1,0 +1,321 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-26 03:31+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: account/forms.py:101
+msgid "Password"
+msgstr ""
+
+#: account/managers.py:14
+msgid "The Email must be set"
+msgstr ""
+
+#: account/managers.py:33
+msgid "Superuser must have is_staff=True."
+msgstr ""
+
+#: account/managers.py:36
+msgid "Superuser must have is_superuser=True."
+msgstr ""
+
+#: account/models.py:14
+msgid "username"
+msgstr ""
+
+#: account/models.py:19
+msgid "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."
+msgstr ""
+
+#: account/models.py:22
+msgid "A user with that username already exists."
+msgstr ""
+
+#: account/models.py:27 contact/models.py:18
+msgid "Email"
+msgstr ""
+
+#: account/models.py:28
+msgid "Name"
+msgstr ""
+
+#: account/models.py:29
+msgid "Surname"
+msgstr ""
+
+#: account/models.py:30 product/models.py:12
+msgid "Image"
+msgstr ""
+
+#: account/models.py:31
+msgid "Phone"
+msgstr ""
+
+#: account/models.py:32
+msgid "Agreement"
+msgstr ""
+
+#: account/models.py:33
+msgid "Notifaction for email"
+msgstr ""
+
+#: account/models.py:34
+msgid "Notifaction for phone"
+msgstr ""
+
+#: account/models.py:35
+msgid "rewardpoints"
+msgstr ""
+
+#: account/templates/email/password_reset_email.html:2
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: account/templates/email/password_reset_email.html:4
+msgid "Please go to the following page and choose a new password:"
+msgstr ""
+
+#: account/templates/email/password_reset_email.html:8
+msgid "Your username, in case you’ve forgotten:"
+msgstr ""
+
+#: account/templates/email/password_reset_email.html:10
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: account/templates/email/password_reset_email.html:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: contact/models.py:17
+msgid "Name and Surname"
+msgstr ""
+
+#: contact/models.py:19
+msgid "Phone number"
+msgstr ""
+
+#: contact/models.py:20
+msgid "Choices Category"
+msgstr ""
+
+#: contact/models.py:21
+msgid "Message"
+msgstr ""
+
+#: damat_project/settings.py:87
+msgid "Azerbaijan"
+msgstr ""
+
+#: damat_project/settings.py:88
+msgid "Turkish"
+msgstr ""
+
+#: damat_project/settings.py:89
+msgid "Arabic"
+msgstr ""
+
+#: damat_project/settings.py:90
+msgid "Russian"
+msgstr ""
+
+#: damat_project/settings.py:91
+msgid "Italian"
+msgstr ""
+
+#: damat_project/settings.py:92
+msgid "English"
+msgstr ""
+
+#: index/models.py:7 menu/models.py:12 product/models.py:37
+#: product/models.py:96
+msgid "Title"
+msgstr ""
+
+#: index/models.py:8
+msgid "Icons Class"
+msgstr ""
+
+#: index/models.py:11 index/models.py:95 menu/models.py:20 product/models.py:15
+#: product/models.py:41 product/models.py:110
+msgid "Published"
+msgstr ""
+
+#: index/models.py:64
+msgid "position"
+msgstr ""
+
+#: index/models.py:65
+msgid "image lg"
+msgstr ""
+
+#: index/models.py:66
+msgid "Image sm"
+msgstr ""
+
+#: index/models.py:67
+msgid "URL link"
+msgstr ""
+
+#: index/models.py:68
+msgid "Order"
+msgstr ""
+
+#: menu/models.py:13
+msgid "Categroy image"
+msgstr ""
+
+#: menu/models.py:16 product/models.py:109
+msgid "Slug"
+msgstr ""
+
+#: menu/models.py:17
+msgid "is porducts"
+msgstr ""
+
+#: menu/models.py:18
+msgid "Is main"
+msgstr ""
+
+#: menu/models.py:19
+msgid "New Season"
+msgstr ""
+
+#: menu/models.py:21
+msgid "Show Up"
+msgstr ""
+
+#: product/models.py:38
+msgid "Content"
+msgstr ""
+
+#: product/models.py:56
+msgid "Size"
+msgstr ""
+
+#: product/models.py:70
+msgid "Stock"
+msgstr ""
+
+#: product/models.py:97
+msgid "Price"
+msgstr ""
+
+#: product/models.py:98
+msgid "Sales Count"
+msgstr ""
+
+#: product/models.py:99
+msgid "Pattern"
+msgstr ""
+
+#: product/models.py:100
+msgid "Color"
+msgstr ""
+
+#: product/models.py:101
+msgid "Prodcut code"
+msgstr ""
+
+#: product/models.py:102
+msgid "has_size"
+msgstr ""
+
+#: product/models.py:105
+msgid "Discount type"
+msgstr ""
+
+#: product/models.py:106
+msgid "Discount value"
+msgstr ""
+
+#: product/templates/includes/footer.html:14
+msgid "KURUMSAL"
+msgstr ""
+
+#: product/templates/includes/footer.html:21
+msgid "Hakkımızda"
+msgstr ""
+
+#: product/templates/includes/footer.html:26
+msgid "Mağazalarımız"
+msgstr ""
+
+#: product/templates/includes/footer.html:31
+msgid "Bilgi Toplumu Hizmetleri"
+msgstr ""
+
+#: product/templates/includes/footer.html:36
+msgid "Katalog"
+msgstr ""
+
+#: product/templates/includes/footer.html:41
+msgid "Kalıplarımız"
+msgstr ""
+
+#: product/templates/includes/footer.html:46
+msgid "Kurumsal Satış"
+msgstr ""
+
+#: product/templates/includes/footer.html:51
+msgid "Site Haritası"
+msgstr ""
+
+#: product/templates/includes/footer.html:58
+msgid "KOLEKSİYON"
+msgstr ""
+
+#: product/templates/includes/footer.html:87
+msgid "MÜŞTERİ HİZMETLERİ"
+msgstr ""
+
+#: product/templates/includes/footer.html:94
+msgid "Müşteri Hizmetleri"
+msgstr ""
+
+#: product/templates/includes/footer.html:99
+msgid "Gizlilik ve Güvenlik"
+msgstr ""
+
+#: product/templates/includes/footer.html:105
+msgid "Kişisel Verilerin İşlenmesi ve Koruma Politikası"
+msgstr ""
+
+#: product/templates/includes/footer.html:115
+msgid "Teslimat ve Kargo"
+msgstr ""
+
+#: product/templates/includes/footer.html:130
+msgid "İletişim"
+msgstr ""
+
+#: product/templates/includes/footer.html:170
+msgid "GÖNDER"
+msgstr ""
+
+#: product/templates/includes/footer.html:182
+msgid "E-posta adresiniz sisteme kaydolmustur."
+msgstr ""
+
+#: product/templates/includes/footer.html:197
+msgid "bütün hakları saklıdır"
+msgstr ""

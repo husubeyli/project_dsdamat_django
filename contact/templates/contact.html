@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block homepage_css_link %}
+<script type="text/javascript">
+    // Start Analytics -> DONT REMOVE
+    window["dataLayer"] = window["dataLayer"] || [];
+    // End Analytics -> DONT REMOVE
+
+    var GLOBALS = {
+        userLoggedIn: false,
+        csrf_token: "<input type='hidden' name='csrfmiddlewaretoken' value='F9FAZ4oPq02fiF2mnO6KkZT43XhCQlSKdhPN548ZjoJPEVrvqhbqVQ5ibILzvmX5' />",
+        analyticsContainers: {
+            "containerId": "GTM-WG84SKW"
+        },
+        THUMBNAIL_ACTIVE: true,
+        THUMBNAIL_OPTIONS: {
+            "product-list": {
+                "width": 690,
+                "height": 757,
+                "crop": "top"
+            },
+            "product-list_ternary": {
+                "width": 449,
+                "height": 673
+            },
+            "product-list_quad": {
+                "width": 330,
+                "height": 495
+            },
+            "product-detail__variant": {
+                "width": 54,
+                "height": 80,
+                "crop": "center"
+            },
+            "product-detail__slider_zoom": {
+                "quality": 90
+            },
+            "product-detail__slider_display": {
+                "width": 625,
+                "height": 921,
+                "crop": "center"
+            },
+            "product-detail__slider_thumbnail": {
+                "width": 94,
+                "height": 148,
+                "crop": "center"
+            },
+            "category-detail": {
+                "width": 870,
+                "height": 317
+            },
+            "category-detail__campaign-banner": {
+                "width": 420,
+                "height": 210
+            },
+            "category-detail__sub-category-banner": {
+                "width": 270,
+                "height": 335
+            },
+            "basket-list": {
+                "width": 94,
+                "height": 143,
+                "crop": "center"
+            },
+            "order-list": {
+                "width": 110,
+                "height": 131,
+                "crop": "top"
+            },
+            "mini-basket-list": {
+                "width": 94,
+                "height": 143,
+                "crop": "center"
+            },
+            "autocomplete": {
+                "width": 40,
+                "height": 40
+            },
+            "combin-product-item": {
+                "width": 278,
+                "height": 210,
+                "crop": "center"
+            },
+            "blog-home-item": {
+                "width": 450,
+                "height": 340,
+                "crop": "center"
+            },
+            "checkout-success-item": {
+                "width": 58,
+                "height": 88,
+                "crop": "center"
+            }
+        },
+
+        page: ['accountContact'],
+
+    };
+    var URLS = {
+        changeEmail: '/users/email-change/',
+        checkout: '/orders/checkout/',
+        basket: '/baskets/basket/',
+        static: 'https://damat.akinoncdn.com/static_omnishop/damat19/',
+
+    };
+</script>
+{% endblock %}
+
+{% block body %}
+
+<div class="js-base-content wrapper">
+
+    <div class="container flatpage">
+        <div class="row">
+            <div class="col-lg-3 flatpage__sidebar">
+
+
+                <h3 class="flatpage__title">
+                    MÜŞTERİ HİZMETLERİ
+                </h3>
+                <ul class="flatpage__menu js-sidebar-menu">
+
+                    <li class="flatpage__menu-link">
+                        <a href="/musteri-hizmetleri/">
+                            Müşteri Hizmetleri
+                        </a>
+                    </li>
+
+                    <li class="flatpage__menu-link">
+                        <a href="/gizlilik-ve-guvenlik/">
+                            Gizlilik ve Güvenlik
+                        </a>
+                    </li>
+
+                    <li class="flatpage__menu-link">
+                        <a href="/kisisel-verilerin-islenmesi-ve-koruma-politikasi/">
+                            Kişisel Verilerin İşlenmesi ve Koruma Politikası
+                        </a>
+                    </li>
+
+                    <li class="flatpage__menu-link">
+                        <a href="/kvkk-basvuru-formu/">
+                            KVKK Başvuru Formu
+                        </a>
+                    </li>
+
+                    <li class="flatpage__menu-link">
+                        <a href="/teslimat-ve-kargo/">
+                            Teslimat ve Kargo
+                        </a>
+                    </li>
+
+                    <li class="flatpage__menu-link">
+                        <a href="/iptal-iade-bilgilendirme/">
+                            İptal / İade
+                        </a>
+                    </li>
+
+                    <li class="flatpage__menu-link">
+                        <a href="/sorular/">
+                            SSS
+                        </a>
+                    </li>
+
+                    <li class="flatpage__menu-link">
+                        <a href="/iletisim/">
+                            İletişim
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+            <div class="col-lg-9">
+                <div class="flatpage__content">
+                    <h1>
+                        Bize Ulaşın
+                        <p class="flatpage__description">
+                            Lütfen sorunuzla ilgili bazı ayrıntıları bize bildirin
+                        </p>
+                    </h1>
+                    <div class="flatpage__text ">
+
+                        <form class="js-spec-contact" method="POST">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+
+                            <div class="input-wrapper">
+
+                                {{  form.full_name }}
+
+                            </div>
+
+
+                            <div class="input-wrapper">
+                                {{  form.email }}
+                            </div>
+
+
+                            <div class="input-wrapper">
+
+                                {{  form.phonenumber}}
+                                <small>+(country code + phone)</small>
+
+                            </div>
+
+
+                            <div class="input-wrapper select2-wrapper data-select2-id="4"">
+
+                                {{ form.theme_title }}
+
+                                <!-- <span class="select2 select2-container select2-container--default" dir="ltr"
+                                    data-select2-id="2" style="width: 785px;"><span class="selection"><span
+                                            class="select2-selection select2-selection--single" role="combobox"
+                                            aria-haspopup="true" aria-expanded="false" tabindex="0"
+                                            aria-disabled="false" aria-labelledby="select2-subject-7y-container"><span
+                                                class="select2-selection__rendered" id="select2-subject-7y-container"
+                                                role="textbox" aria-readonly="true"><span
+                                                    class="select2-selection__placeholder">Konu Başlığı
+                                                    *</span></span><span class="select2-selection__arrow"
+                                                role="presentation"><b
+                                                    role="presentation"></b></span></span></span><span
+                                        class="dropdown-wrapper" aria-hidden="true"></span></span> -->
+                            </div>
+
+
+                            <div class="input-wrapper">
+
+                                {{ form.message }}
+
+                            </div>
+
+
+                            <div class="button-wrapper">
+
+                                <button class="button pz-button__action" type="submit"> Gönder </button>
+
+                            </div>
+
+                            <div class="contact-form-information"><label>* Zorunlu alanlar</label></div>
+                        </form>
+                        <div class="success_modal js-success_modal d-none">
+                            <div class="modal-wrapper">
+                                <div class="modal-close">
+                                    <i class="icon-cancel"></i>
+                                </div>
+                                <div>
+                                    <h3>TALEBİNİZ ALINMIŞTIR</h3>
+                                </div>
+                                <p>
+                                    Müşteri Hizmetleri Temsilcimiz sizinle en kısa zamanda
+                                    talebinizle ilgili iletişime geçicektir.
+                                </p>
+                                <a class="color-primary text-underline" href="/">ANASAYFAYA DEVAM ET</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

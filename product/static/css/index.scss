@@ -1,0 +1,54 @@
+$pz-checkbox-family: "FontAwesome" !default;
+$pz-box-icon: '\f0c8' !default;
+$pz-check-icon: '\f00c' !default;
+$pz-radio-icon: '\f00c' !default;
+
+input[type=checkbox],
+input[type=radio] {
+  position: relative;
+  width: 0px;
+  margin-right: 1.1em;
+  border:none;
+}
+
+label>input[type=checkbox]:before,
+label>input[type=radio]:before {
+  position: absolute;
+  background-color: #FFFFFF;
+  font-family: $pz-checkbox-family;
+  display: inline-block;
+  top: -2px;
+  color: #c9c9c9;
+}
+
+label>input[type=checkbox]:before {
+  content: '';
+}
+
+label>input[type=radio]:before {
+  content: $pz-box-icon;
+}
+
+label>input[type=radio]:checked:after,
+label>input[type=checkbox]:checked:after {
+  position: absolute;
+  font-family: $pz-checkbox-family;
+  display: inline-block;
+  top: -2px;
+}
+
+label>input[type=checkbox]:checked:after {
+  content: $pz-check-icon;
+}
+
+label>input[type=checkbox].check:checked:after {
+  content: "\e923";
+  color: #c9c9c9;
+  font-size: 12px;
+  padding: 1px;
+}
+
+label>input[type=radio]:checked:after {
+  content: $pz-radio-icon;
+}
+
