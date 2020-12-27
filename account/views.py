@@ -111,32 +111,5 @@ class CustomPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'password_reset_completed.html'
 
 
-# def login(request):
-#     form = LoginForm()
-
-#     if request.method == 'POST':
-#         form = LoginForm(data=request.POST)
-        
-#         if form.is_valid():
-#             user = authenticate(
-#                 request,
-#                 username=form.cleaned_data['email'],
-#                 password=form.cleaned_data['password']
-#             )
-            
-#             if user:
-#                 django_login(request, user)
-#                 success(request, f'Xoş geldiniz! {user.get_full_name()}')
-#                 return redirect(reverse_lazy('index:home'))
-#             else:
-#                 print(request, 'salam')
-#                 error(request, 'Istifadəçi və ya şifrə yalnışdır')
-
-#     context = {
-#         'form': form
-#     }
-
-#     return render(request, 'login.html', context)
-
 def logout(request):
     pass
