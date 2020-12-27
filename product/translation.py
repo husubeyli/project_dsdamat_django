@@ -3,5 +3,5 @@ from product.models import Product
 
 
 @register(Product)
-class CarTranslation(TranslationOptions):
-    fields = ('title', 'color')
+class ProductTranslation(TranslationOptions):
+    fields = ()

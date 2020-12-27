@@ -1,25 +1,37 @@
 from django.contrib import admin
+from modeltranslation.admin import TranslationAdmin
 
 from .models import (
     ProductDetail,
     AllSize,
     Size,
     Product,
-    ProducImage,
+    ProductImage,
 )
+
+class ProductDetailTabularInlineAdmin(admin.TabularInline):
+    model = ProductDetail
+
+class ProductImageTabularInlineAdmin(admin.TabularInline):
+    model = ProductImage
+
+
+class SizeTabularInlineAdmin(admin.TabularInline):
+    model = Size
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ['title']
-    ordering = ('created_at',)
+class ProductAdmin(TranslationAdmin):
+    inlines = [ProductDetailTabularInlineAdmin, ProductImageTabularInlineAdmin, SizeTabularInlineAdmin, ]
+    list_display = ['title', 'color', 'product_code', 'is_published']
     list_filter = ['title']
+    ordering = ('created_at',)
 
     fieldsets = (
-        ('Relations', {
-            'description': 'This group informations for relations',
-            'fields': ('category', 'rel_product', )
-        }),
+        # ('Relations', {
+        #     'description': 'This group informations for relations',
+        #     'fields': ('category', 'rel_product', )
+        # }),
         ('Informations', {
             'description': 'This group for informations',
             'fields': ('title', 'sales_count', 'product_pattern', 'color', 'product_code', 'has_size',)
@@ -41,5 +53,5 @@ admin.site.register([
     AllSize,
     Size,
     # Product,
-    ProducImage,
+    ProductImage,
     ])

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-26 21:42+0400\n"
+"POT-Creation-Date: 2020-12-27 03:55+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr ""
 
 #: account/models.py:22
 msgid "A user with that username already exists."
-msgstr "Belə bir istifadəçi artıq movcuddurş"
+msgstr "Belə bir istifadəçi artıq movcuddur."
 
 #: account/models.py:27 contact/models.py:18
 msgid "Email"
@@ -68,7 +68,7 @@ msgstr "Telefon"
 
 #: account/models.py:32
 msgid "Agreement"
-msgstr ""
+msgstr "Razılaşma"
 
 #: account/models.py:33
 msgid "Notifaction for email"
@@ -104,7 +104,7 @@ msgstr ""
 #: account/templates/email/password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
-msgstr ""
+msgstr "%(site_name) saytının əməkdaşları"
 
 #: contact/models.py:17
 msgid "Name and Surname"
@@ -116,35 +116,35 @@ msgstr "Mobil nömrə"
 
 #: contact/models.py:20
 msgid "Choices Category"
-msgstr ""
+msgstr "Kateqoriyası Seçimi"
 
 #: contact/models.py:21
 msgid "Message"
 msgstr "Mesaj"
 
-#: damat_project/settings.py:89
+#: damat_project/settings.py:201
 #, fuzzy
 #| msgid "Azerbaijani"
 msgid "Azerbaijan"
 msgstr "Azərbaycan"
 
-#: damat_project/settings.py:90
+#: damat_project/settings.py:202
 msgid "Turkish"
 msgstr "Türkcə"
 
-#: damat_project/settings.py:91
+#: damat_project/settings.py:203
 msgid "Arabic"
 msgstr ""
 
-#: damat_project/settings.py:92
+#: damat_project/settings.py:204
 msgid "Russian"
 msgstr ""
 
-#: damat_project/settings.py:93
+#: damat_project/settings.py:205
 msgid "Italian"
 msgstr ""
 
-#: damat_project/settings.py:94
+#: damat_project/settings.py:206
 msgid "English"
 msgstr "İngiliscə"
 
@@ -158,7 +158,7 @@ msgid "Icons Class"
 msgstr ""
 
 #: index/models.py:11 index/models.py:95 menu/models.py:20 product/models.py:15
-#: product/models.py:41 product/models.py:110
+#: product/models.py:41 product/models.py:111
 msgid "Published"
 msgstr ""
 
@@ -186,7 +186,7 @@ msgstr ""
 msgid "Categroy image"
 msgstr "Kateqoriya şəkili"
 
-#: menu/models.py:16 product/models.py:109
+#: menu/models.py:16 product/models.py:110
 msgid "Slug"
 msgstr ""
 
@@ -242,11 +242,11 @@ msgstr "Produkt kodu"
 msgid "has_size"
 msgstr ""
 
-#: product/models.py:105
+#: product/models.py:106
 msgid "Discount type"
 msgstr "Endirim növü"
 
-#: product/models.py:106
+#: product/models.py:107
 #, fuzzy
 #| msgid "Discount type"
 msgid "Discount value"
@@ -312,23 +312,24 @@ msgstr "Təslimat və Kargo"
 msgid "İletişim"
 msgstr "Əlaqə"
 
-#: product/templates/includes/footer.html:159
+#: product/templates/includes/footer.html:162
 msgid "D’S Damat’a özel haberlerden,"
 msgstr "D’S Damat’a özəl xəbərlərdən,"
 
-#: product/templates/includes/footer.html:160
+#: product/templates/includes/footer.html:163
 msgid "indirimlerden haberdar olmak için e-bültenimize üye olun."
-msgstr "endirimlər barədə məlumat almaq üçün elektron bülletenimizə abunə olun."
+msgstr ""
+"endirimlər barədə məlumat almaq üçün elektron bülletenimizə abunə olun."
 
-#: product/templates/includes/footer.html:172
+#: product/templates/includes/footer.html:171
 msgid "GÖNDER"
 msgstr "GÖNDƏR"
 
-#: product/templates/includes/footer.html:184
+#: product/templates/includes/footer.html:183
 msgid "E-posta adresiniz sisteme kaydolmustur."
 msgstr "Elektron poçtunuz sistemdə qeydiyyatdan keçib."
 
-#: product/templates/includes/footer.html:199
+#: product/templates/includes/footer.html:198
 msgid "bütün hakları saklıdır"
 msgstr "bütün hüquqlar qorunur"
 

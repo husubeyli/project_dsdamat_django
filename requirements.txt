@@ -6,8 +6,12 @@ cryptography==3.3.1
 defusedxml==0.7.0rc1
 Django==3.1.4
 django-3-jet==1.0.8
+django-filter==2.4.0
+django-modeltranslation==0.16.1
 django-phonenumber-field==5.0.0
+djangorestframework==3.12.2
 idna==2.10
+Markdown==3.3.3
 oauthlib==3.1.0
 phonenumbers==8.12.14
 Pillow==8.0.1

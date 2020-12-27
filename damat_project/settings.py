@@ -35,7 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 APPS = [
-    # 'modeltranslation', 
+    'modeltranslation', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,12 +57,18 @@ CUSTOME_APPS = [
     'index',
     'menu',
     'order',
+    # 'mptt',
+    # 'modeltrans',
 ]
 
 
 THIRD_PARTY_APPS = [
     'social_django',
     'phonenumber_field',
+    'rest_framework',
+
+    # CORS
+    'corsheaders',
 ]
 
 INSTALLED_APPS = APPS + CUSTOME_APPS + THIRD_PARTY_APPS
@@ -77,25 +83,24 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # # CORS
+    # 'corsheaders.middleware.CorsMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
 ]
 
 
-LANGUAGE_CODE = 'tr'
-MODELTRANSLATION_TRANSLATION_REGISTRY = "product.translation"
-TRANSLATION_REGISTRY = "product.translation"
+#CORS
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:8080',
+# )
 
-gettext = lambda s: s
-LANGUAGES = [
-    ('az', gettext('Azerbaijan')),
-    ('tr', gettext('Turkish')),
-    ('ar', gettext('Arabic')),
-    ('ru', gettext('Russian')),
-    ('it', gettext('Italian')),
-    ('en', gettext('English')),
-]
 
-MODELTRANSLATION_FALLBACK_LANGUAGES = ('az', 'en', 'tr', 'ar', 'ru', 'it', )
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'az'
+
+ROOT_URLCONF = 'i18n.urls'
+
+
 # ROSETTA_MESSAGES_SOURCE_LANGUAGE_CODE = 'az'
 
 # ROSETTA_MESSAGES_SOURCE_LANGUAGE_CODE = 'az'
@@ -127,9 +132,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'damat_project.wsgi.application'
 
 AUTH_USER_MODEL = 'account.User'
-
-
-
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
@@ -187,8 +189,6 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -210,7 +210,17 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
+LANGUAGE_CODE = 'tr'
 
+gettext = lambda s: s
+LANGUAGES = [
+    ('az', gettext('Azerbaijan')),
+    ('tr', gettext('Turkish')),
+    ('ar', gettext('Arabic')),
+    ('ru', gettext('Russian')),
+    ('it', gettext('Italian')),
+    ('en', gettext('English')),
+]
 
 TIME_ZONE = 'UTC'
 
@@ -232,11 +242,21 @@ LOCALE_PATHS = (
 
 STATIC_URL = '/static/'
 
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'tr'
+MODELTRANSLATION_LANGUAGES = ('az', 'en', 'tr', 'ar', 'ru', 'it', )
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('az', 'en', 'tr', 'ar', 'ru', 'it', )
+MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'tr'
+MODELTRANSLATION_TRANSLATION_FILES = (
+    "product.translation",
+)
+# MODELTRANSLATION_CUSTOM_FIELDS = ( ) 
+# MODELTRANSLATION_AUTO_POPULATE = False
+# MODELTRANSLATION_DEBUG = False
+# MODELTRANSLATION_ENABLE_FALLBACKS = True
+# MODELTRANSLATION_LOADDATA_RETAIN_LOCALE = True
 
 
 
@@ -250,7 +270,7 @@ LOGOUT_URL = reverse_lazy('account:logout')
 
 
 
-
+#FOR SEND EMAIL
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True

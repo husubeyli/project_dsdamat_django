@@ -3,8 +3,8 @@ from django.utils.translation import ugettext as _
 
 
 
-class ProducImage(models.Model):
-    """Model definition for ProducImage."""
+class ProductImage(models.Model):
+    """Model definition for ProductImage."""
     #relations
     product = models.ForeignKey("product.Product", on_delete=models.CASCADE, related_name='product_images', blank=True, null=True)
 
@@ -20,11 +20,11 @@ class ProducImage(models.Model):
 
     class Meta:
 
-        verbose_name = 'ProducImage'
+        verbose_name = 'ProductImage'
         verbose_name_plural = 'ProductImages'
 
     def __str__(self):
-        """Unicode representation of ProducImage."""
+        """Unicode representation of ProductImage."""
         return f'{self.product.title} - Color {self.product.color}'
 
 
@@ -100,6 +100,7 @@ class Product(models.Model):
     color = models.CharField(_("Color"), max_length=50, blank=True, null=True)
     product_code = models.CharField(_("Prodcut code"), max_length=50)
     has_size = models.BooleanField(_("has_size"), default=True)
+
 
     #disocunts
     disc_type = models.CharField(_("Discount type"), max_length=50, blank=True, null=True)

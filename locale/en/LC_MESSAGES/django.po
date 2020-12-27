@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-26 03:31+0400\n"
+"POT-Creation-Date: 2020-12-27 03:55+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,27 +122,27 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: damat_project/settings.py:87
+#: damat_project/settings.py:201
 msgid "Azerbaijan"
 msgstr ""
 
-#: damat_project/settings.py:88
+#: damat_project/settings.py:202
 msgid "Turkish"
 msgstr ""
 
-#: damat_project/settings.py:89
+#: damat_project/settings.py:203
 msgid "Arabic"
 msgstr ""
 
-#: damat_project/settings.py:90
+#: damat_project/settings.py:204
 msgid "Russian"
 msgstr ""
 
-#: damat_project/settings.py:91
+#: damat_project/settings.py:205
 msgid "Italian"
 msgstr ""
 
-#: damat_project/settings.py:92
+#: damat_project/settings.py:206
 msgid "English"
 msgstr ""
 
@@ -156,7 +156,7 @@ msgid "Icons Class"
 msgstr ""
 
 #: index/models.py:11 index/models.py:95 menu/models.py:20 product/models.py:15
-#: product/models.py:41 product/models.py:110
+#: product/models.py:41 product/models.py:111
 msgid "Published"
 msgstr ""
 
@@ -184,7 +184,7 @@ msgstr ""
 msgid "Categroy image"
 msgstr ""
 
-#: menu/models.py:16 product/models.py:109
+#: menu/models.py:16 product/models.py:110
 msgid "Slug"
 msgstr ""
 
@@ -240,11 +240,11 @@ msgstr ""
 msgid "has_size"
 msgstr ""
 
-#: product/models.py:105
+#: product/models.py:106
 msgid "Discount type"
 msgstr ""
 
-#: product/models.py:106
+#: product/models.py:107
 msgid "Discount value"
 msgstr ""
 
@@ -308,14 +308,22 @@ msgstr ""
 msgid "İletişim"
 msgstr ""
 
-#: product/templates/includes/footer.html:170
+#: product/templates/includes/footer.html:162
+msgid "D’S Damat’a özel haberlerden,"
+msgstr ""
+
+#: product/templates/includes/footer.html:163
+msgid "indirimlerden haberdar olmak için e-bültenimize üye olun."
+msgstr ""
+
+#: product/templates/includes/footer.html:171
 msgid "GÖNDER"
 msgstr ""
 
-#: product/templates/includes/footer.html:182
+#: product/templates/includes/footer.html:183
 msgid "E-posta adresiniz sisteme kaydolmustur."
 msgstr ""
 
-#: product/templates/includes/footer.html:197
+#: product/templates/includes/footer.html:198
 msgid "bütün hakları saklıdır"
 msgstr ""

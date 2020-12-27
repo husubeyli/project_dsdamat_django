@@ -28,7 +28,6 @@ urlpatterns = [
 
 
 urlpatterns += i18n_patterns(
-    # path('', include('stories.urls', namespace='stories')),
     path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     path('admin/', admin.site.urls),
@@ -36,6 +35,7 @@ urlpatterns += i18n_patterns(
     path('product/', include('product.urls', namespace='product')),
     path('account/', include('account.urls', namespace='account')),
     path('contact/', include('contact.urls', namespace='contact')),
+    path('api/v1.0/', include('product.api.urls', namespace='product_apis')),
 )
 
 if settings.DEBUG:
