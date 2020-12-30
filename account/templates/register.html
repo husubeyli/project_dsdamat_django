@@ -114,7 +114,7 @@
             <span class="muted-text">Yeni bir üyelik oluşturmak için lütfen aşağıdaki formu doldurunuz.</span>
         </div>
 
-        <form class="auth-form w-100" method="POST" novalidate="novalidate">
+        <form class="auth-form w-100" method="POST" enctype="multipart/form-data" novalidate="novalidate">
             {% csrf_token %}
             {{ form.non_field_errors }}
 

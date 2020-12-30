@@ -209,7 +209,7 @@
                 {% get_available_languages as LANGUAGES %}
                 {% get_language_info_list for LANGUAGES as languages %}
                 {% for language in languages %}
-                    <a href="#" lang_code="{{ language.code }}" class="change_language">{{language.code | upper }}</a>
+                    <a href="#" lang_code="{{ language.code }}"  class="change_language">{{language.code | upper }}</a>
                 {% endfor %}
                 <!-- <a class="active" href="index.html">TR</a>
                 <a href="https://www.dsdamatshop.com/">EN</a>

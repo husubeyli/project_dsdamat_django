@@ -3,22 +3,22 @@ from django.urls import path
 from product.api.views import (
     # product_list,
     # product_detail,
-    allProducts,
-    getProduct,
-    createProduct,
-    updateProduct,
-    deleteProduct,
+    all_product,
+    get_product,
+    create_product,
+    update_product,
+    delete_product,
 )
 
 
 app_name = 'product_apis'
 
 urlpatterns = [
-    path("products/", allProducts, name="products"),
-    path("products/<int:pk>", getProduct, name="get_product"),
-    path("products-create", createProduct, name="create_product"),
-    path("products-update/<int:pk>", updateProduct, name="update_product"),
-    path("products-delete/<int:pk>", deleteProduct, name="delete_product"),
+    path("products/", all_product, name="products"),
+    path("products/<int:pk>", get_product, name="get_product"),
+    path("products-create", create_product, name="create_product"),
+    path("products-update/<int:pk>", update_product, name="update_product"),
+    path("products-delete/<int:pk>", delete_product, name="delete_product"),
 ]
 
     # path('products/', product_list),

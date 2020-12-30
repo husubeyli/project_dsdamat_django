@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.i18n import JavaScriptCatalog
+from rest_framework.authtoken import views
+
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')), #Django translations URLS
@@ -36,6 +38,7 @@ urlpatterns += i18n_patterns(
     path('account/', include('account.urls', namespace='account')),
     path('contact/', include('contact.urls', namespace='contact')),
     path('api/v1.0/', include('product.api.urls', namespace='product_apis')),
+    path('api-auth/v1.0/', views.obtain_auth_token),
 )
 
 if settings.DEBUG:

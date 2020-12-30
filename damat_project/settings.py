@@ -66,9 +66,10 @@ THIRD_PARTY_APPS = [
     'social_django',
     'phonenumber_field',
     'rest_framework',
+    'rest_framework.authtoken',
 
     # CORS
-    'corsheaders',
+    # 'corsheaders',
 ]
 
 INSTALLED_APPS = APPS + CUSTOME_APPS + THIRD_PARTY_APPS
@@ -77,6 +78,7 @@ INSTALLED_APPS = APPS + CUSTOME_APPS + THIRD_PARTY_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'damat_project.middleware.force_default_middleware.force_default_language_middleware',
     'django.middleware.locale.LocaleMiddleware', 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -189,6 +191,18 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 
+
+#REST API AUTHENTICATION USER FOR API
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    # 'DEFAULT_PERMISSION_CLASSES': ( 'rest_framework.permissions.AllowAny', ),
+}
+
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -214,8 +228,8 @@ LANGUAGE_CODE = 'tr'
 
 gettext = lambda s: s
 LANGUAGES = [
-    ('az', gettext('Azerbaijan')),
     ('tr', gettext('Turkish')),
+    ('az', gettext('Azerbaijan')),
     ('ar', gettext('Arabic')),
     ('ru', gettext('Russian')),
     ('it', gettext('Italian')),
@@ -246,8 +260,8 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'tr'
-MODELTRANSLATION_LANGUAGES = ('az', 'en', 'tr', 'ar', 'ru', 'it', )
-MODELTRANSLATION_FALLBACK_LANGUAGES = ('az', 'en', 'tr', 'ar', 'ru', 'it', )
+MODELTRANSLATION_LANGUAGES = ('tr', 'en', 'az', 'ar', 'ru', 'it', )
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('tr', 'en', 'tr', 'ar', 'ru', 'it', )
 MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'tr'
 MODELTRANSLATION_TRANSLATION_FILES = (
     "product.translation",

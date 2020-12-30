@@ -23,7 +23,7 @@ class SizeTabularInlineAdmin(admin.TabularInline):
 @admin.register(Product)
 class ProductAdmin(TranslationAdmin):
     inlines = [ProductDetailTabularInlineAdmin, ProductImageTabularInlineAdmin, SizeTabularInlineAdmin, ]
-    list_display = ['title', 'color', 'product_code', 'is_published']
+    list_display = ['product_code', 'title', 'color', 'is_published']
     list_filter = ['title']
     ordering = ('created_at',)
 

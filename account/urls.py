@@ -28,5 +28,6 @@ urlpatterns = [
     path("password-change-done/", CustomPasswordResetDoneView.as_view(), name="password_change_done"),
     path("password_reset_complete/", CustomPasswordResetCompleteView.as_view(), name="password_reset_complete"),
     re_path(r'password-reset-confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$', CustomPasswordResetConfirmView.as_view(), name="password_reset_confirm"),
+    path('api/v1.0/', include('account.api.urls')),
 
 ]
