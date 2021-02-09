@@ -27,5 +27,6 @@ app_name = 'product'
 urlpatterns = [
     path("filter/<str:menu>/", ProductsFilterListView.as_view(), name="products_filter"),
     path('', ProductsListView.as_view(), name="products_list"),
-    path('<slug:slug>/', ProductDetailView.as_view(), name='product_detail')
+    path('<slug:slug>/', ProductDetailView.as_view(), name='product_detail'),
 ]
+

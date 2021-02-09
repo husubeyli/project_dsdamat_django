@@ -42,7 +42,7 @@ class ProductAdmin(TranslationAdmin):
         }),
         ('Moderations', {
             'description': 'This group for moderations',
-            'fields': ('is_published',),
+            'fields': ('is_published', ),
             'classes': ('collapse',)
         }),
     )

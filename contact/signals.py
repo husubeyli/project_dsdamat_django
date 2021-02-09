@@ -7,7 +7,7 @@ from contact.models import Contact
 
 
 @receiver(pre_save, sender=Contact)
-def create_recipe(sender,  instance, **kwargs):
+def create_contact(sender,  instance, **kwargs):
     message = instance.message
     email = instance.email
     full_name = instance.full_name

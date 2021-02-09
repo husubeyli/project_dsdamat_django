@@ -70,24 +70,20 @@ class UpdateUserSerializer(serializers.ModelSerializer):
             'last_name': {'required': True},
         }
 
-    # def validate_email(self, value):
-    #     user = self.context['request'].user
-    #     if User.objects.exclude(pk=user.pk).filter(email=value).exists():
-    #         raise serializers.ValidationError({"email": "This email is already in use."})
-    #     return value
-
-    # def validate_username(self, value):
-    #     user = self.context['request'].user
-    #     if User.objects.exclude(pk=user.pk).filter(username=value).exists():
-    #         raise serializers.ValidationError({"username": "This username is already in use."})
-    #     return value
+    def validate_email(self, value):
+        lower_email = value.lower()
+        if User.objects.filter(email__iexact=lower_email).exists():
+            raise serializers.ValidationError("This email is already in use.")
+        return lower_email
 
     def update(self, instance, validated_data):
-        instance.first_name = validated_data['first_name']
-        instance.last_name = validated_data['last_name']
-        # instance.email = validated_data['email']
-        # instance.username = validated_data['username']
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
 
-        instance.save()
+        if serializer.is_valid():
+            instance.username = validated_data.get('username', instance.username)
+            instance.first_name = validated_data.get('first_name', instance.first_name)
+            instance.last_name = validated_data.get('last_name', instance.last_name)
+            instance = super().update(instance, validated_data)
 
         return instance

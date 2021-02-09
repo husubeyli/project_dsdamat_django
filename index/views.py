@@ -1,18 +1,26 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import (
     TemplateView,
+    CreateView,
+    View
 )
+
+from index.tasks import dump_database
 from menu.models import (
     Menu,
 )
 from index.models import (
-    Compaign
+    Compaign,
+    Subscriber,
 )
+from index.forms import SubscriberForm
+
+
 # Create your views here.
 
 class HomePageView(TemplateView):
     template_name = "index.html"
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -29,3 +37,19 @@ class HomePageView(TemplateView):
 class CompaignsShowView(TemplateView):
     template_name = 'compaigns.html'
 
+
+class SubscriberCreateView(CreateView):
+    # model = Subscriber
+    form_class = SubscriberForm
+    template_name = 'base.html'
+
+    def form_valid(self, form):
+        subscriber = form.save(commit=False)
+        subscriber.save()
+
+        return super().form_valid(form)
+
+
+def dump_database_view(request):
+    dump_database.delay()
+    return HttpResponse("Database dump olundu")

@@ -39,6 +39,8 @@ urlpatterns += i18n_patterns(
     path('contact/', include('contact.urls', namespace='contact')),
     path('api/v1.0/', include('product.api.urls', namespace='product_apis')),
     path('api-auth/v1.0/', views.obtain_auth_token),
+    path('api-auth/v1.0/', include('index.api.urls', namespace='index_apis')),
+
 )
 
 if settings.DEBUG:

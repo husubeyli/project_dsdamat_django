@@ -14,12 +14,8 @@ from pathlib import Path
 import os
 from django.urls import reverse_lazy
 
-
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -35,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 APPS = [
-    'modeltranslation', 
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,13 +39,11 @@ APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-APPS.insert(0, 'jet.dashboard',)
+APPS.insert(0, 'jet.dashboard', )
 
 APPS.insert(0, 'jet')
 
-
 CUSTOME_APPS = [
-    # 'rest_framework', 
     'account',
     'blog',
     'contact.apps.ContactConfig',
@@ -61,55 +55,44 @@ CUSTOME_APPS = [
     # 'modeltrans',
 ]
 
-
 THIRD_PARTY_APPS = [
+
     'social_django',
     'phonenumber_field',
     'rest_framework',
     'rest_framework.authtoken',
-
+    'django_celery_beat',
     # CORS
-    # 'corsheaders',
+    'corsheaders',
 ]
 
 INSTALLED_APPS = APPS + CUSTOME_APPS + THIRD_PARTY_APPS
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'damat_project.middleware.force_default_middleware.force_default_language_middleware',
-    'django.middleware.locale.LocaleMiddleware', 
+    'django.middleware.locale.LocaleMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    # # CORS
-    # 'corsheaders.middleware.CorsMiddleware',
-    # 'django.middleware.common.CommonMiddleware',
 ]
 
-
-#CORS
-CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ORIGIN_WHITELIST = (
-#     'http://localhost:8080',
-# )
-
+# CORS
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 ROOT_URLCONF = 'i18n.urls'
 
-
 # ROSETTA_MESSAGES_SOURCE_LANGUAGE_CODE = 'az'
 
 # ROSETTA_MESSAGES_SOURCE_LANGUAGE_CODE = 'az'
-USE_I18N = True 
+USE_I18N = True
 USE_L10N = True
-
-
 
 ROOT_URLCONF = 'damat_project.urls'
 
@@ -150,7 +133,6 @@ DATABASES = {
 }
 
 
-
 # SCOIAL AUTH CONFIGRATION
 
 AUTHENTICATION_BACKENDS = [
@@ -161,20 +143,18 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-
-SOCIAL_AUTH_FACEBOOK_KEY = '219950869707977'       # App ID
+SOCIAL_AUTH_FACEBOOK_KEY = '219950869707977'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '1f1682843bb8cedfae6beb09cd64b8b2'  # App Secret
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '871788835099-4buoe7ru6d3s0bt4qmshll7qi9fdkb43.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '6K0zpu08FvWqJsBVNL5B6BrD'
 
-
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_friends'] # add this
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'user_friends']  # add this
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'fields': 'id,name,email,picture',
+    'fields': 'id, name, email,picture',
 }
 
-SOCIAL_AUTH_URL_NAMESPACE = 'social' # namespace
+SOCIAL_AUTH_URL_NAMESPACE = 'social'  # namespace
 
 SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.social_details',
@@ -187,12 +167,10 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
 
-    'account.tools.social_auth.update_user_social_data', # custom pipeline
+    'account.tools.social_auth.update_user_social_data',  # custom pipeline
 )
 
-
-
-#REST API AUTHENTICATION USER FOR API
+# REST API AUTHENTICATION USER FOR API
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.BasicAuthentication',
@@ -201,7 +179,6 @@ REST_FRAMEWORK = {
     ],
     # 'DEFAULT_PERMISSION_CLASSES': ( 'rest_framework.permissions.AllowAny', ),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -221,7 +198,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 LANGUAGE_CODE = 'tr'
@@ -236,7 +212,7 @@ LANGUAGES = [
     ('en', gettext('English')),
 ]
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Baku'
 
 USE_I18N = True
 
@@ -244,47 +220,49 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, 'locale'),
 )
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "/static/")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# SITE_ADDRESS = 'http://localhost:8000'
+
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'tr'
-MODELTRANSLATION_LANGUAGES = ('tr', 'en', 'az', 'ar', 'ru', 'it', )
-MODELTRANSLATION_FALLBACK_LANGUAGES = ('tr', 'en', 'tr', 'ar', 'ru', 'it', )
+MODELTRANSLATION_LANGUAGES = ('tr', 'en', 'az', 'ar', 'ru', 'it',)
+MODELTRANSLATION_FALLBACK_LANGUAGES = ('tr', 'en', 'tr', 'ar', 'ru', 'it',)
 MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'tr'
 MODELTRANSLATION_TRANSLATION_FILES = (
     "product.translation",
 )
-# MODELTRANSLATION_CUSTOM_FIELDS = ( ) 
-# MODELTRANSLATION_AUTO_POPULATE = False
-# MODELTRANSLATION_DEBUG = False
-# MODELTRANSLATION_ENABLE_FALLBACKS = True
-# MODELTRANSLATION_LOADDATA_RETAIN_LOCALE = True
-
-
 
 LOGIN_URL = reverse_lazy('account:login')
 
-LOGIN_REDIRECT_URL = reverse_lazy('index:home') # login olandan sora redirect olacaq sehife
-LOGOUT_REDIRECT_URL = reverse_lazy('index:home') # logout olandan sora redirect olacaq sehife
+LOGIN_REDIRECT_URL = reverse_lazy('index:home')  # login olandan sora redirect olacaq sehife
+LOGOUT_REDIRECT_URL = reverse_lazy('index:home')  # logout olandan sora redirect olacaq sehife
 
 LOGOUT_URL = reverse_lazy('account:logout')
 
 
 
+# Celery Settings
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
 
-#FOR SEND EMAIL
+
+# Email Settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
@@ -292,11 +270,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'tech.academy.docker@gmail.com'
 EMAIL_HOST_PASSWORD = 'suqmnhaxezvemyhn'
 
-# # config/settings.py
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # new
-# DEFAULT_FROM_EMAIL = 'husubayli@gmail.com'
-# EMAIL_HOST = 'smtp.sendgrid.net' # new
-# EMAIL_HOST_USER = 'apikey' # new
-# EMAIL_HOST_PASSWORD = '<sendgrid_password>' # new
-# EMAIL_PORT = 587 # new
-# EMAIL_USE_TLS = True # new
+SITE_ADDRESS = 'http://localhost:8000'
+
+

@@ -215,6 +215,7 @@
                 <div class="js-search-container search-result-area"></div>
             </div>
         </div>
+        {{ form.email }}
         {% include 'includes/footer.html' %}
         <div class="overlay js-overlay"></div>
     </div>
@@ -222,7 +223,8 @@
     <div class="modal__bg basket-popup-bg js-basket-bg" style="display: none"></div>
     <script type="module" src="{% static 'js/app.js' %}"></script>
     <script nomodule src="{% static 'js/app-legacy.js' %}"></script>
-    <script src="{% static 'js/relatedpush_sdk.js' %}"></script>
+<!--    <script src="main.js"></script>-->
+<!--    <script src="{% static 'js/relatedpush_sdk.js' %}"></script>-->
     
     {% block index_js_other %}
 

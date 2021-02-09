@@ -1,8 +1,5 @@
-from django.shortcuts import render, get_object_or_404
-from django.utils.translation import ugettext as _
-from django.utils import translation
-from django.urls import reverse_lazy
-
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 
 from django.views.generic import (
     ListView,
@@ -10,12 +7,12 @@ from django.views.generic import (
 )
 from product.models import (
     Product,
-    AllSize,
     Size,
 )
 from menu.models import (
     Menu
 )
+from index.tasks import dump_database
 
 
 class ProductsListView(ListView):
@@ -30,23 +27,22 @@ class ProductsListView(ListView):
 class ProductsFilterListView(ListView):
     model = Product
     template_name = "products.html"
+    paginate_b = 2
 
     def get_queryset(self):
-        menu = get_object_or_404(Menu , slug=self.kwargs['menu'])
+        menu = get_object_or_404(Menu, slug=self.kwargs['menu'])
         queryset = Product.objects.filter(category=menu).filter(is_published=True)
         return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["category"] = get_object_or_404(Menu , slug=self.kwargs['menu'])
+        context["category"] = get_object_or_404(Menu, slug=self.kwargs['menu'])
         return context
-    
 
 
 class ProductDetailView(DetailView):
     model = Product
     template_name = "product.html"
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -65,12 +61,12 @@ class ProductDetailView(DetailView):
                 if size_.stock > 0:
                     related_prod_dict = {
                         'product': size_.product,
-                        'stock' : True
+                        'stock': True
                     }
                 else:
                     related_prod_dict = {
                         'product': size_.product,
-                        'stock' : False
+                        'stock': False
                     }
                 related_prods_list.append(related_prod_dict)
             context["related_products"] = related_prods_list
@@ -82,7 +78,6 @@ class ProductDetailView(DetailView):
                 context['sub_category'] = parent
 
         return context
-
 
 
 # def set_language(request):
@@ -100,3 +95,7 @@ class ProductDetailView(DetailView):
 #             else:
 #                 response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
 #     return response
+
+
+
+

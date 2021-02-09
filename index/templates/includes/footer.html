@@ -162,17 +162,48 @@
                         {% trans 'D’S Damat’a özel haberlerden,' %}
                         {% trans 'indirimlerden haberdar olmak için e-bültenimize üye olun.' %}
                     </div>
-                    <form class="d-flex justify-content-lg-center js-subscription-form">
+
+                    {% get_current_language as LANGUAGE_CODE %}
+                    <form id="newsletter_subscribe" class="d-flex justify-content-lg-center" method="POST">
+                        {% csrf_token %}
                         <div class="d-inline w-100">
                             <div class="d-flex">
-                                <input class="" type="email" name="email" required
+                                <input id='email' type="email" name="email" required
                                     placeholder="E-posta Adresinizi Girin">
-                                <button>
+                                <button type="submit">
                                     {% trans 'GÖNDER' %}
                                 </button>
                             </div>
+                            <span id="error_messages"> </span>
                         </div>
                     </form>
+                    <script>
+                        var domain = 'http://{{ request.META.HTTP_HOST }}/{{ LANGUAGE_CODE }}';
+
+                        document.querySelector('#newsletter_subscribe').addEventListener('submit', async(e) => {
+                            e.preventDefault()
+                            let form = e.target;
+                            let postData = {'email': form.email.value}
+                            let csrfToken = document.querySelector('[name="csrfmiddlewaretoken"]').getAttribute('value');
+
+                            let response = await fetch(`${domain}/api-auth/v1.0/subscribe/`, {
+                                
+                                headers: {
+                                    'content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+                                    //'X-CSRFToken': csrfToken
+                                },
+                                method: "POST",
+                                body: JSON.stringify(postData)
+                            });
+                            // console.log(response)
+                            data = await response.json()
+                            errorMessage = data.email[0]
+                            document.querySelector('#error_messages').innerHTML = errorMessage
+                            console.log(data)
+                        })
+
+
+                    </script>
                 </div>
                 <div class="success_modal js-subs_modal d-none">
                     <div class="modal-wrapper">

@@ -2,7 +2,6 @@ from django.urls import path, include, re_path
 from django.contrib.auth.views import LogoutView
 from account.views import (
     CustomLoginView,
-    logout,
     RegisterCreateView,
     UserActivate,
     CustomPasswordChangeView,

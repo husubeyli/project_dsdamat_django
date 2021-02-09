@@ -7,7 +7,7 @@ class SaleAdvantage(models.Model):
     title = models.CharField(_("Title"), max_length=50)
     icon = models.CharField(_("Icons Class"), max_length=50)
 
-    #moderations
+    #moderation's
     is_published = models.BooleanField(_("Published"), default=True)
     created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
@@ -19,33 +19,6 @@ class SaleAdvantage(models.Model):
 
     def __str__(self):
         return self.title
-
-
-# class Slide(models.Model):
-
-#     #relations
-#     category = models.ManyToManyField("menu.Menu", related_name='slides', blank=True)
-#     product = models.ManyToManyField(("product.Product"), related_name='slides', blank=True)
-
-#     #informations
-#     image = models.ImageField(_("Image"), upload_to='slide_images')
-
-#     #moderations
-#     slug = models.SlugField(_("Slug"))
-#     is_published = models.BooleanField(_("Published"), default=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now=True)
-
-
-#     class Meta:
-#         verbose_name = 'Slide'
-#         verbose_name_plural = 'Slides'
-
-#     def __str__(self):
-#         """Unicode representation of Slide."""
-#         return str(self.image)
-
-
 
 
 
@@ -68,30 +41,7 @@ class Compaign(models.Model):
     order = models.IntegerField(_("Order"), default=0)
 
 
-    # RELATED_CHOICES = [
-    #     ('prod', 'product'),
-    #     ('cat', 'category'),
-    #     ('url', 'url'),
-    #     ('none', 'none'),
-    # ]
-
-    # #relations
-    # category = models.ManyToManyField("menu.Menu", related_name='compaigns', blank=True)
-    # product = models.ManyToManyField(("product.Product"), related_name='compaigns', blank=True)
-
-    # #informations
-    # title = models.CharField(_("compaign title"), max_length=50, blank=True, null=True)
-    # pos_choice = models.CharField(_("positon choice"), max_length=50, choices=POSITION_CHOICES)
-    # rel_choice = models.CharField(_("related choice"), max_length=50, choices=RELATED_CHOICES)
-    # is_slide = models.BooleanField(_("Is Slide"), default=False)
-    # url = models.URLField(_("url"), max_length=200, blank=True, null=True)
-    # up_image = models.ImageField(_("Up image"), upload_to='compaigns_title', blank=True, null=True)
-    # small_image = models.ImageField(_("Small image"), upload_to='compaigns_title', blank=True, null=True)
-    # big_image = models.ImageField(_("Big image"), upload_to='compaigns_title', blank=True, null=True)
-    # slug = models.SlugField(_("Slug"))
-
-
-    #moderations
+    #moderation's
     is_published = models.BooleanField(_("Published"), default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -105,6 +55,16 @@ class Compaign(models.Model):
         """Unicode representation of Slide."""
         return self.position
 
+class Subscriber(models.Model):
+    email = models.CharField(_('Email'), max_length=40, unique=True)
 
+    #moderation's
+    published_date = models.DateTimeField(blank=True, null=True)
 
+    class Meta:
+        verbose_name = 'Subscriber'
+        verbose_name_plural = 'Subscribers'
 
+    def __str__(self):
+        """Unicode representation of Slide."""
+        return self.email
