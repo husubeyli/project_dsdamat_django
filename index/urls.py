@@ -4,6 +4,7 @@ from index.views import (
     CompaignsShowView,
     dump_database_view,
 )
+from product.views import filter_data
 
 
 app_name = 'index'

@@ -50,3 +50,24 @@ class User(AbstractUser):
         return self.email
 
 
+
+class Customer(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField('Name', max_length=200, null=True, blank=True)
+    email = models.CharField('Email', max_length=200, null=True, blank=True)
+    device = models.CharField('Device', max_length=200, null=True, blank=True)
+    # moderations
+    status = models.BooleanField('Status', default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    class Meta:
+        db_table = 'customer'
+        verbose_name = 'Customer'
+        verbose_name_plural = 'Customers'
+        ordering = ('created_at',)
+    def __str__(self):
+        if self.name:
+            name = self.name
+        else:
+            name = self.device
+        return str(name)

@@ -1,235 +1,210 @@
 {% load static i18n %}
 <!DOCTYPE html>
 <html lang="tr">
-
-<head>
+  <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta id="viewport" name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no, minimal-ui" />
-    <link rel="canonical" href="https://www.dsdamat.com/">
+    <meta
+      id="viewport"
+      name="viewport"
+      content="width=device-width, maximum-scale=1.0, user-scalable=no, minimal-ui"
+    />
+    <link rel="canonical" href="https://www.dsdamat.com/" />
     <title>D`S Damat | Erkek Giyimde Şıklığın Online Adresi</title>
 
-    <meta name="description"
-        content="Ds Damat Slim Fit Haki Mont - 8682060912435 | ürününe, en uygun fiyat, farklı ödeme seçenekleri ve D’S Damat kalitesiyle sahip olmak için tıklayın!" />
+    <meta
+      name="description"
+      content="Ds Damat Slim Fit Haki Mont - 8682060912435 | ürününe, en uygun fiyat, farklı ödeme seçenekleri ve D’S Damat kalitesiyle sahip olmak için tıklayın!"
+    />
     <meta name="keywords" content="Ds Damat Slim Fit Haki Mont" />
 
     <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Ds Damat Slim Fit Haki Mont">
-    <meta itemprop="description" content="">
-    <meta itemprop="image"
-        content="https://damat.akinoncdn.com/products/2020/10/20/240787/0b0ecb40-335c-48cc-85c1-87f315d0f2cd.jpg">
+    <meta itemprop="name" content="Ds Damat Slim Fit Haki Mont" />
+    <meta itemprop="description" content="" />
+    <meta
+      itemprop="image"
+      content="https://damat.akinoncdn.com/products/2020/10/20/240787/0b0ecb40-335c-48cc-85c1-87f315d0f2cd.jpg"
+    />
 
     <!-- Twitter Card data -->
-    <meta name="twitter:card" content="product">
-    <meta name="twitter:title" content="Ds Damat Slim Fit Haki Mont">
-    <meta name="twitter:description" content="">
-    <meta name="twitter:image"
-        content="https://damat.akinoncdn.com/products/2020/10/20/240787/0b0ecb40-335c-48cc-85c1-87f315d0f2cd.jpg">
-    <meta name="twitter:data1" content="price">
-    <meta name="twitter:label1" content="329">
+    <meta name="twitter:card" content="product" />
+    <meta name="twitter:title" content="Ds Damat Slim Fit Haki Mont" />
+    <meta name="twitter:description" content="" />
+    <meta
+      name="twitter:image"
+      content="https://damat.akinoncdn.com/products/2020/10/20/240787/0b0ecb40-335c-48cc-85c1-87f315d0f2cd.jpg"
+    />
+    <meta name="twitter:data1" content="price" />
+    <meta name="twitter:label1" content="329" />
 
     <!-- Open Graph data -->
     <meta property="og:title" content="Ds Damat Slim Fit Haki Mont" />
-    <meta property="og:image"
-        content="https://damat.akinoncdn.com/products/2020/10/20/240787/0b0ecb40-335c-48cc-85c1-87f315d0f2cd.jpg" />
+    <meta
+      property="og:image"
+      content="https://damat.akinoncdn.com/products/2020/10/20/240787/0b0ecb40-335c-48cc-85c1-87f315d0f2cd.jpg"
+    />
     <meta property="og:description" content="" />
     <meta property="og:price:amount" content="329" />
     <meta property="og:price:currency" content="try" />
     <meta property="article:published_time" content="" />
     <meta property="article:modified_time" content="" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'css/index.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'css/select2.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'css/lightslider.min.css' %}" rel="stylesheet" type="text/css" />
-    <link href="{% static 'css/index.scss' %}" rel="stylesheet" type="text/css" />
+    <link
+      href="{% static 'css/style.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'css/index.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'css/select2.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'css/lightslider.min.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{% static 'css/index.scss' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
     <link href="{% static 'images/favicon.png' %}" rel="shortcut icon" />
-    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script
+      type="text/javascript"
+      src="{% url 'javascript-catalog' %}"
+    ></script>
     {% block homepage_css_link %}
-        <!-- <script type="text/javascript">
-            // Start Analytics -> DONT REMOVE
-            window["dataLayer"] = window["dataLayer"] || [];
-            // End Analytics -> DONT REMOVE
-            var GLOBALS = {
-                userLoggedIn: false,
-                csrf_token: "<input type='hidden' name='csrfmiddlewaretoken' value='J54QMINSu0xEroayXiSSqlN6021JfNX8RhaViAhchWtYIVOBtE00BKS5LvatpP4b' />",
-                analyticsContainers: {
-                    "containerId": "GTM-WG84SKW"
-                },
-                THUMBNAIL_ACTIVE: true,
-                THUMBNAIL_OPTIONS: {
-                    "product-list": {
-                        "width": 690,
-                        "height": 757,
-                        "crop": "top"
-                    },
-                    "product-list_ternary": {
-                        "width": 449,
-                        "height": 673
-                    },
-                    "product-list_quad": {
-                        "width": 330,
-                        "height": 495
-                    },
-                    "product-detail__variant": {
-                        "width": 54,
-                        "height": 80,
-                        "crop": "center"
-                    },
-                    "product-detail__slider_zoom": {
-                        "quality": 90
-                    },
-                    "product-detail__slider_display": {
-                        "width": 625,
-                        "height": 921,
-                        "crop": "center"
-                    },
-                    "product-detail__slider_thumbnail": {
-                        "width": 94,
-                        "height": 148,
-                        "crop": "center"
-                    },
-                    "category-detail": {
-                        "width": 870,
-                        "height": 317
-                    },
-                    "category-detail__campaign-banner": {
-                        "width": 420,
-                        "height": 210
-                    },
-                    "category-detail__sub-category-banner": {
-                        "width": 270,
-                        "height": 335
-                    },
-                    "basket-list": {
-                        "width": 94,
-                        "height": 143,
-                        "crop": "center"
-                    },
-                    "order-list": {
-                        "width": 110,
-                        "height": 131,
-                        "crop": "top"
-                    },
-                    "mini-basket-list": {
-                        "width": 94,
-                        "height": 143,
-                        "crop": "center"
-                    },
-                    "autocomplete": {
-                        "width": 40,
-                        "height": 40
-                    },
-                    "combin-product-item": {
-                        "width": 278,
-                        "height": 210,
-                        "crop": "center"
-                    },
-                    "blog-home-item": {
-                        "width": 450,
-                        "height": 340,
-                        "crop": "center"
-                    },
-                    "checkout-success-item": {
-                        "width": 58,
-                        "height": 88,
-                        "crop": "center"
-                    }
-                },
-                page: [],
-            };
-            var URLS = {
-                changeEmail: '/users/email-change/',
-                checkout: '/orders/checkout/',
-                basket: '/baskets/basket/',
-                static: 'https://damat.akinoncdn.com/static_omnishop/damat13/',
-            };
-        </script> -->
+  
     {% endblock %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
 
-</head>
-
-<body class="homepage">
-    <div class="analytics-data" style="display: none !important; visibility: hidden !important;">
-        {
-        "type": "identify",
-        "data": {
-        "id":"None",
-        "user": {
-        "email": "",
-        "signupDate": "",
-        "gender": "",
-        "permission": "no"
+  <body class="homepage">
+    <script>
+      // asagidaki funqsiya browserden cookie-ni goturur
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== "") {
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === name + "=") {
+              cookieValue = decodeURIComponent(
+                cookie.substring(name.length + 1)
+              );
+              break;
+            }
+          }
         }
-        }
-        }
+        return cookieValue;
+      }
+      // id generasiya edir, bu id-ni cooki-ye vereceyik
+      function uuidv4() {
+        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+          /[xy]/g,
+          function (c) {
+            var r = (Math.random() * 16) | 0,
+              v = c == "x" ? r : (r & 0x3) | 0x8;
+            return v.toString(16);
+          }
+        );
+      }
+      // eger browserde cookie yoxdursa null olacaq
+      let device = getCookie("device");
+      // yoxlayiriq eger boshdursa generasiya edirik
+      if (device == null || device == undefined) {
+        device = uuidv4();
+      }
+      // ve assign edirik cookie-ye
+      document.cookie = "device=" + device + ";domain=;path=/";
+    </script>
+    <div
+      class="analytics-data"
+      style="display: none !important; visibility: hidden !important"
+    >
+      { "type": "identify", "data": { "id":"None", "user": { "email": "",
+      "signupDate": "", "gender": "", "permission": "no" } } }
     </div>
-    <div class="analytics-data" style="display: none !important; visibility: hidden !important;">
-        {
-        "type": "pageViewed",
-        "data": "Homepage"
-        }
+    <div
+      class="analytics-data"
+      style="display: none !important; visibility: hidden !important"
+    >
+      { "type": "pageViewed", "data": "Homepage" }
     </div>
-    <div class="analytics-data" style="display: none !important; visibility: hidden !important;">
-        {
-        "type": "gtmStart"
-        }
+    <div
+      class="analytics-data"
+      style="display: none !important; visibility: hidden !important"
+    >
+      { "type": "gtmStart" }
     </div>
     <div class="index-wrapper">
-        <div class="store-popup js-redirect-popup">
-            <a href="#" class="close-icon js-redirect-app-close">x</a>
-            
-            <img src="{% static 'images/logo-x.png' %}" />
-            <div>
-                <span class="store-title">D'S damat</span>
-                <span class="store-desc">D'S damat mobil uygulamasından devam edin</span>
-                <div class="star-icons">
-                    
-                    <img src="{% static 'images/star.png' %}" />
-                    <img src="{% static 'images/star.png' %}" />
-                    <img src="{% static 'images/star.png' %}" />
-                    <img src="{% static 'images/star.png' %}" />
-                    <img src="{% static 'images/star.png' %}" />
-                </div>
-            </div>
-            <a href="#" target="_blank" class="store-button js-redirect-url">İndir</a>
+      <div class="store-popup js-redirect-popup">
+        <a href="#" class="close-icon js-redirect-app-close">x</a>
+
+        <img src="{% static 'images/logo-x.png' %}" />
+        <div>
+          <span class="store-title">D'S damat</span>
+          <span class="store-desc"
+            >D'S damat mobil uygulamasından devam edin</span
+          >
+          <div class="star-icons">
+            <img src="{% static 'images/star.png' %}" />
+            <img src="{% static 'images/star.png' %}" />
+            <img src="{% static 'images/star.png' %}" />
+            <img src="{% static 'images/star.png' %}" />
+            <img src="{% static 'images/star.png' %}" />
+          </div>
         </div>
-        {% include 'includes/header.html' %}
-        <picture class="w-100">
-            <source media="(max-width: 767px)"
-                srcset="https://damat.akinoncdn.com/cms/2020/12/07/9ab0243e-1783-4d8b-8c3a-c3e8d109c2d9.jpg">
-            <img class="w-100"
-                src="https://damat.akinoncdn.com/cms/2020/12/07/d939c99c-53bf-4572-a108-0be0d78dd56d.jpg">
-        </picture>
-        <div id="stories"></div>
-        {% block body %}
-        
-        {% endblock %}
-        <div class="js-search-content search-content">
-            <div class="page-wrapper__content">
-                <div class="js-search-container search-result-area"></div>
-            </div>
+        <a href="#" target="_blank" class="store-button js-redirect-url"
+          >İndir</a
+        >
+      </div>
+      {% include 'includes/header.html' %}
+      <picture class="w-100">
+        <source
+          media="(max-width: 767px)"
+          srcset="
+            https://damat.akinoncdn.com/cms/2020/12/07/9ab0243e-1783-4d8b-8c3a-c3e8d109c2d9.jpg
+          "
+        />
+        <img
+          class="w-100"
+          src="https://damat.akinoncdn.com/cms/2020/12/07/d939c99c-53bf-4572-a108-0be0d78dd56d.jpg"
+        />
+      </picture>
+      <div id="stories"></div>
+      {% block body %} {% endblock %}
+      <div class="js-search-content search-content">
+        <div class="page-wrapper__content">
+          <div class="js-search-container search-result-area"></div>
         </div>
-        {{ form.email }}
-        {% include 'includes/footer.html' %}
-        <div class="overlay js-overlay"></div>
+      </div>
+      {{ form.email }} {% include 'includes/footer.html' %}
+      <div class="overlay js-overlay"></div>
     </div>
 
-    <div class="modal__bg basket-popup-bg js-basket-bg" style="display: none"></div>
+    <div
+      class="modal__bg basket-popup-bg js-basket-bg"
+      style="display: none"
+    ></div>
     <script type="module" src="{% static 'js/app.js' %}"></script>
     <script nomodule src="{% static 'js/app-legacy.js' %}"></script>
-<!--    <script src="main.js"></script>-->
-<!--    <script src="{% static 'js/relatedpush_sdk.js' %}"></script>-->
-    
-    {% block index_js_other %}
+    <!--    <script src="main.js"></script>-->
+    <!--    <script src="{% static 'js/relatedpush_sdk.js' %}"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/product-filter.js' %}"></script>
+    {% block index_js_other %} {% endblock %}
 
-    {% endblock %}
-
-</body>
-
+  </body>
 </html>

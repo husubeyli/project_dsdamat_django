@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+import debug_toolbar
 from django.contrib import admin
 from django.conf.urls.i18n import i18n_patterns
 from django.urls import path, include
@@ -35,11 +37,14 @@ urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('', include('index.urls', namespace='index')),
     path('product/', include('product.urls', namespace='product')),
+    path('order/', include('order.urls', namespace='order')),
     path('account/', include('account.urls', namespace='account')),
     path('contact/', include('contact.urls', namespace='contact')),
     path('api/v1.0/', include('product.api.urls', namespace='product_apis')),
+    path('api/v1.0/', include('order.api.urls', namespace='order_apis')),
     path('api-auth/v1.0/', views.obtain_auth_token),
     path('api-auth/v1.0/', include('index.api.urls', namespace='index_apis')),
+    path('__debug__/', include(debug_toolbar.urls)),
 
 )
 

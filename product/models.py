@@ -48,7 +48,6 @@ class ProductDetail(models.Model):
 
 
 class AllSize(models.Model):
-    title = 'geyim'
     size = models.CharField(_("Size"), max_length=50)
 
     class Meta:
@@ -64,8 +63,7 @@ class Size(models.Model):
     stock = models.IntegerField(_("Stock"))
 
     # relations
-    all_size = models.ForeignKey("product.AllSize", on_delete=models.CASCADE, related_name='sizes', blank=True,
-                                 null=True)
+    all_size = models.ForeignKey("product.AllSize", on_delete=models.CASCADE, related_name='sizes', blank=True, null=True)
     product = models.ForeignKey("product.Product", on_delete=models.CASCADE, related_name='sizes', blank=True,
                                 null=True)
 

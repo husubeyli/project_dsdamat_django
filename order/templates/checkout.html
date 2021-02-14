@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% load custom_tags %}
+{% block body %}
+<div class="basket container pt-4 js-basket">
+<div class="container js-basket-content">
+    <div class="row">
+    <div class="col-12 col-lg-8">
+        <h6 class="js-basket-upsell-message">0.20</h6>
+        <h3 class="basket__title">
+        Sepet (<span class="js-basket-total-quantity">3</span> Ürün)
+        </h3>
+
+        <div class="basket-list js-basket-list-container">
+        <div class="js-basket-item basket-item" hidden="">
+            <div class="row">
+            <div class="col-12 d-flex">
+                <div class="basket-item-product-image p-0 col-sm-2 col-lg-2">
+                <a class="d-block js-basket-item-image-link" href="">
+                    <img
+                    class="basket-item__image js-basket-item-image"
+                    src=""
+                    />
+                </a>
+                </div>
+                <div class="product-info col-8 flex-grow-1 h-auto">
+                <!-- product name -->
+                <div
+                    class="basket-item__product-name col-lg-6 col-md-6 col-sm-10 float-left h-auto"
+                >
+                    <a href="" class="js-basket-item-product-name"> </a>
+                    <p class="basket-item__product-attr">
+                    <span class="js-basket-item-product-pattern"> </span>,
+                    <span class="js-basket-item-product-size"> </span> Beden
+                    </p>
+                    <p
+                    class="basket-item__product-description js-basket-item-product-description"
+                    ></p>
+                </div>
+                <!-- quantity -->
+
+                <div
+                    class="col-lg-2 col-md-2 col-10 d-flex align-items-start p-0 float-left"
+                >
+                    <div
+                    class="basket-item__quantity d-flex flex-row align-items-center"
+                    >
+                    <button class="js-basket-item-quantity-decrease-button">
+                        <i class="icon-minus"></i>
+                    </button>
+                    <input
+                        class="basket-item__quantity__input js-basket-item-quantity-input"
+                        type="text"
+                        value=""
+                    />
+                    <button class="js-basket-item-quantity-increment-button">
+                        <i class="icon-plus"></i>
+                    </button>
+                    </div>
+                </div>
+
+                <!-- price -->
+                <div
+                    class="col-lg-4 col-md-4 col-10 d-flex flex-row p-0 float-left"
+                >
+                    <div class="d-flex flex-column price-container">
+                    <div class="basket-item__price">
+                        <span class="js-basket-item-price"></span>
+                        <span
+                        class="js-basket-item-price-currency basket-item__price-currency"
+                        ></span>
+                    </div>
+                    <div class="basket-item__retail-price">
+                        <span class="js-basket-item-retail-price"></span>
+                        <span
+                        class="js-basket-item-retail-price-currency basket-item__price-currency"
+                        ></span>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div
+                class="col-lg-2 col-md-2 col-sm-1 basket-item__remove p-0 text-right"
+                >
+                <a class="js-basket-item-remove-button"
+                    ><i class="icon-basket"></i
+                ></a>
+                </div>
+            </div>
+            </div>
+            <div class="text-center js-basket-item-err error"></div>
+        </div>
+        <div class="js-basket-item basket-item">
+            <div class="row">
+            <div class="col-12 d-flex">
+                <div class="basket-item-product-image p-0 col-sm-2 col-lg-2">
+                <a
+                    class="d-block js-basket-item-image-link"
+                    href="/ds-damat-slim-fit-lacivert-gomlek-8682060811356/"
+                >
+                    <img
+                    class="basket-item__image js-basket-item-image"
+                    src="https://damat.akinoncdn.com/products/2020/11/04/220756/b34b26ca-350a-48c6-bb9a-f14a6e7e29ef_size94x143_cropCenter.jpg"
+                    />
+                </a>
+                </div>
+                <div class="product-info col-8 flex-grow-1 h-auto">
+                <!-- product name -->
+                <div
+                    class="basket-item__product-name col-lg-6 col-md-6 col-sm-10 float-left h-auto"
+                >
+                    <a
+                    href="/ds-damat-slim-fit-lacivert-gomlek-8682060811356/"
+                    class="js-basket-item-product-name"
+                    >Ds Damat Slim Fit Lacivert Gömlek</a
+                    >
+                    <p class="basket-item__product-attr">
+                    <span class="js-basket-item-product-pattern">NAPOLI</span
+                    >,
+                    <span class="js-basket-item-product-size">XL</span> Beden
+                    </p>
+                    <p
+                    class="basket-item__product-description js-basket-item-product-description"
+                    ></p>
+                </div>
+                <!-- quantity -->
+
+                <div
+                    class="col-lg-2 col-md-2 col-10 d-flex align-items-start p-0 float-left"
+                >
+                    <div
+                    class="basket-item__quantity d-flex flex-row align-items-center"
+                    >
+                    <button
+                        class="js-basket-item-quantity-decrease-button pz-button__action"
+                        data-pk="85770"
+                        data-quantity="2"
+                    >
+                        <i class="icon-minus"></i>
+                    </button>
+                    <input
+                        class="basket-item__quantity__input js-basket-item-quantity-input"
+                        type="text"
+                        value=""
+                    />
+                    <button
+                        class="js-basket-item-quantity-increment-button pz-button__action"
+                        data-pk="85770"
+                        data-quantity="4"
+                    >
+                        <i class="icon-plus"></i>
+                    </button>
+                    </div>
+                </div>
+
+                <!-- price -->
+                <div
+                    class="col-lg-4 col-md-4 col-10 d-flex flex-row p-0 float-left"
+                >
+                    <div class="d-flex flex-column price-container">
+                    <div class="basket-item__price">
+                        <span class="js-basket-item-price">49.90</span>
+                        <span
+                        class="js-basket-item-price-currency basket-item__price-currency"
+                        >TL</span
+                        >
+                    </div>
+                    <div class="basket-item__retail-price">
+                        <span class="js-basket-item-retail-price">199</span>
+                        <span
+                        class="js-basket-item-retail-price-currency basket-item__price-currency"
+                        >TL</span
+                        >
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div
+                class="col-lg-2 col-md-2 col-sm-1 basket-item__remove p-0 text-right"
+                >
+                <a class="js-basket-item-remove-button pz-button__action"
+                    ><i class="icon-basket"></i
+                ></a>
+                </div>
+            </div>
+            </div>
+            <div class="text-center js-basket-item-err error"></div>
+        </div>
+        </div>
+
+        <div class="d-flex flex-row justify-content-between">
+        <div>
+            <a
+            class="basket__continue-shopping continue-shopping-link"
+            href="/"
+            >
+            <i class="icon-chevron_left"></i>
+            <span>Alışverişe Devam Et</span>
+            </a>
+        </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-4">
+        <div class="js-basket-summary">
+        <h3 class="basket-summary__title">Sipariş Özeti</h3>
+        <div class="basket-summary__receipt-container">
+            <div class="basket-summary__receipt-item">
+            <div>Ara Toplam</div>
+            <div>
+                <span>₺</span>
+                <span class="js-basket-summary-total-product-amount"
+                >149.70</span
+                >
+            </div>
+            </div>
+            <div class="js-basket-summary-campaign-discount-wrapper"></div>
+            <div
+            class="js-basket-summary-total-discount basket-summary__receipt-item d-none"
+            >
+            <div>İndirim Toplam</div>
+            <div>
+                <span> - ₺ </span>
+                <span class="js-basket-summary-receipt-item-discount"></span>
+            </div>
+            </div>
+        </div>
+        <div class="basket-summary__total-amount">
+            <div>Toplam (KDV Dahil)</div>
+            <div>
+            <span class="--currency">₺</span>
+            <span class="js-basket-summary-total-amount">149.70</span>
+            </div>
+        </div>
+        </div>
+
+        <div class="basket-voucher py-3 js-basket-voucher">
+        <div>
+            <button
+            class="basket-voucher__button w-100 js-basket-voucher-form-open-button"
+            style="display: none"
+            >
+            <i class="icon-plus_circle"></i>İndirim Kodu Uygula
+            </button>
+        </div>
+        <div
+            class="basket-voucher__form js-basket-voucher-form"
+            style="display: block"
+        >
+            <form class="d-flex">
+            <div class="flex-grow-1">
+                <div class="input-wrapper">
+                <div>İndirim Kodu</div>
+                <input
+                    class="input"
+                    type="text"
+                    name="code"
+                    minlength=""
+                    autocomplete="off"
+                />
+                <div id="jsVoucherFormError" style="display: none"></div>
+                </div>
+            </div>
+            <div class="basket-voucher__button-container">
+                <div class="button-wrapper">
+                <button
+                    class="js-voucher-submit-button basket-voucher__side-button pz-button__action"
+                    type="submit"
+                >
+                    Uygula
+                </button>
+                </div>
+
+                <div class="button-wrapper">
+                <button
+                    class="js-voucher-remove-button basket-voucher__side-button pz-button__action"
+                    type=""
+                    style="display: none"
+                >
+                    Kaldır
+                </button>
+                </div>
+            </div>
+            </form>
+        </div>
+        </div>
+
+        <div class="basket__continue-checkout-container">
+        <a
+            href="/orders/checkout/"
+            class="basket__continue-checkout text-center d-block"
+        >
+            <span>Siparişi Tamamla</span>
+        </a>
+
+        <div class="shipping_info_w">
+            <span class="shipping_info_w-text">Tahmini teslimat tarihi:</span>
+            <span class="shipping_info_w-date">12 Şubat - 13 Şubat</span>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="empty-basket js-empty-basket" hidden="hidden">
+    <div class="empty-basket__title">Alışveriş sepetiniz boş!</div>
+    <div class="empty-basket__content">
+    <div>Sepetiniz şu an için boş.</div>
+    <div>
+        Alışverişe devam etmek için favori ürünlerinizi hemen sepetinize
+        ekleyebilirsiniz.
+    </div>
+    </div>
+    <div class="empty-basket__action">
+    <a href="/">Alışverişe Başla</a>
+    </div>
+</div>
+</div>
+{% endblock %}

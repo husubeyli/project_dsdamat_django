@@ -1,5 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 
 from django.views.generic import (
     ListView,
@@ -18,16 +20,29 @@ from index.tasks import dump_database
 class ProductsListView(ListView):
     model = Product
     template_name = "products.html"
+    
+    # for pagination
 
     def get_queryset(self):
         queryset = Product.objects.filter(is_published=True)
         return queryset
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # products = Product.objects.all()
+        # for parent_product in products:
+        #     pass
+        #     # if parent_product.category in ['GİYİM', '']
+        # context["parent_categroies"] = products
+        # context["parent_sizes"] = products
+        return context
+    
+
 
 class ProductsFilterListView(ListView):
     model = Product
     template_name = "products.html"
-    paginate_b = 2
+
 
     def get_queryset(self):
         menu = get_object_or_404(Menu, slug=self.kwargs['menu'])
@@ -99,3 +114,20 @@ class ProductDetailView(DetailView):
 
 
 
+# Filter Data
+def filter_data(request):
+	colors=request.GET.getlist('color[]')
+	categories=request.GET.getlist('category[]')
+	# brands=request.GET.getlist('brand[]')
+	# sizes=request.GET.getlist('size[]')
+	allProducts=Product.objects.all().order_by('-id').distinct()
+	if len(colors)>0:
+		allProducts=allProducts.filter(productattribute__color__id__in=colors).distinct()
+	if len(categories)>0:
+		allProducts=allProducts.filter(category__id__in=categories).distinct()
+	# if len(brands)>0:
+	# 	allProducts=allProducts.filter(brand__id__in=brands).distinct()
+	# if len(sizes)>0:
+		# allProducts=allProducts.filter(productattribute__size__id__in=sizes).distinct()
+	t=render_to_string('product-list.html',{'data':allProducts})
+	return JsonResponse({'data':t})

@@ -1,11 +1,11 @@
 {% load custom_tags i18n %}
-
+{% load static %}
 <header class="header px-sm-4 px-3 wrapper">
-    <div class="header__lang-box d-none d-sm-flex justify-content-end">
+    <!-- <div class="header__lang-box d-none d-sm-flex justify-content-end">
         <a href="{% url 'index:home' %}">
             TR
         </a>
-    </div>
+    </div> -->
     <div class="d-flex justify-content-between align-items-center">
         <div class="header__wrapper d-sm-flex justify-content-between align-items-end">
             <div class="js-menu-button menu__button d-md-none d-inline-block">
@@ -274,52 +274,84 @@
                             <div class="d-none text-center mt-5 js-empty-box">
                                 Alışveriş Sepetiniz Boş
                             </div>
-                            <div class="container mini-basket__list js-mini-basket-list-container">
-                                <div class="mini-basket-item row js-mini-basket-item py-3" hidden>
-                                    <div class="col-11 d-flex">
-                                        <div>
-                                            <a class="d-block js-mini-basket-item-image-link" href="#">
-                                                <img class="mini-basket-item__image w-100 js-mini-basket-item-image"
-                                                    src="#">
-                                            </a>
-                                        </div>
-                                        <div class="mini-basket-item__product-name col-8 d-flex flex-column">
-                                            <a href="#" class="js-mini-basket-item-product-name">
-                                            </a>
-                                            <p class="mini-basket-item__product-attr">
-                                                <span class="js-mini-basket-item-product-pattern"> </span>,
-                                                <span class="js-mini-basket-item-product-size"> </span> Beden
-                                            </p>
-                                            <span
-                                                class="basket-item__product-description js-basket-item-product-description">
-                                            </span>
-                                            <div class="mini-basket-item__quantity d-flex flex-row align-items-center">
-                                                <button class="js-mini-basket-item-quantity-decrease-button"><i
-                                                        class="icon-minus"></i></button>
-                                                <div class="px-2">
-                                                    <span class="js-mini-basket-item-quantity"></span>
-                                                    Adet
-                                                </div>
-                                                <button class="js-mini-basket-item-quantity-increment-button"><i
-                                                        class="icon-plus"></i></button>
-                                            </div>
-                                            <div class="d-flex flex-row">
-                                                <div class="mini-basket-item__price pr-2">
-                                                    <span class="js-mini-basket-item-price"></span>
-                                                    <span
-                                                        class="mini-basket-item__price-currency js-mini-basket-item-price-currency"></span>
-                                                </div>
-                                                <div class="mini-basket-item__retail-price d-none">
-                                                    <span class="js-mini-basket-item-retail-price"></span>
-                                                    <span
-                                                        class="mini-basket-item__price-currency js-mini-basket-item-retail-price-currency"></span>
-                                                </div>
-                                            </div>
-                                        </div>
+                            <div class="container mini-basket__list js-mini-basket-list-container"><div class="mini-basket-item row js-mini-basket-item py-3" hidden="">
+                                <div class="col-11 d-flex">
+                                  <div>
+                                    <a class="d-block js-mini-basket-item-image-link" href="">
+                                      <img class="mini-basket-item__image w-100 js-mini-basket-item-image" src="">
+                                    </a>
+                                  </div>
+                                  <div class="mini-basket-item__product-name col-8 d-flex flex-column">
+                                    <a href="" class="js-mini-basket-item-product-name"> 
+                                    </a>
+                                    <p class="mini-basket-item__product-attr">
+                                      <span class="js-mini-basket-item-product-pattern">  </span>, 
+                                      <span class="js-mini-basket-item-product-size">  </span> Beden
+                                    </p>
+                                    <span class="basket-item__product-description js-basket-item-product-description">
+                                     
+                                    </span>
+                                    <div class="mini-basket-item__quantity d-flex flex-row align-items-center">
+                                      <button class="js-mini-basket-item-quantity-decrease-button"><i class="icon-minus"></i></button>
+                                      <div class="px-2">
+                                        <span class="js-mini-basket-item-quantity"></span>
+                                        Adet
+                                      </div>
+                                      <button class="js-mini-basket-item-quantity-increment-button"><i class="icon-plus"></i></button>
                                     </div>
-                                    <div class="text-center js-basket-item-error error w-100"></div>
+                            
+                                    <div class="d-flex flex-row">
+                                      <div class="mini-basket-item__price pr-2">
+                                        <span class="js-mini-basket-item-price"></span>
+                                        <span class="mini-basket-item__price-currency js-mini-basket-item-price-currency"></span>
+                                      </div>
+                                      <div class="mini-basket-item__retail-price d-none">
+                                        <span class="js-mini-basket-item-retail-price"></span>
+                                        <span class="mini-basket-item__price-currency js-mini-basket-item-retail-price-currency"></span>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
-                            </div>
+                                <div class="text-center js-basket-item-error error w-100"></div>
+                              </div><div class="mini-basket-item row js-mini-basket-item py-3">
+                                <div class="col-11 d-flex">
+                                  <div>
+                                    <a class="d-block js-mini-basket-item-image-link" href="/product/102904/">
+                                      <img class="mini-basket-item__image w-100 js-mini-basket-item-image" src="https://damat.akinoncdn.com/products/2020/10/22/262512/01b336f0-6a05-4ec3-a29b-ff2917b4f82f_size94x143_cropCenter.jpg">
+                                    </a>
+                                  </div>
+                                  <div class="mini-basket-item__product-name col-8 d-flex flex-column">
+                                    <a href="/product/102904/" class="js-mini-basket-item-product-name">Ds Damat Slim Fit Siyah Fitilli Kazak</a>
+                                    <p class="mini-basket-item__product-attr">
+                                      <span class="js-mini-basket-item-product-pattern">0128</span>, 
+                                      <span class="js-mini-basket-item-product-size">L</span> Beden
+                                    </p>
+                                    <span class="basket-item__product-description js-basket-item-product-description">
+                                     
+                                    </span>
+                                    <div class="mini-basket-item__quantity d-flex flex-row align-items-center">
+                                      <button class="js-mini-basket-item-quantity-decrease-button pz-button__action" data-pk="102904" data-quantity="0"><i class="icon-minus"></i></button>
+                                      <div class="px-2">
+                                        <span class="js-mini-basket-item-quantity">1</span>
+                                        Adet
+                                      </div>
+                                      <button class="js-mini-basket-item-quantity-increment-button pz-button__action" data-pk="102904" data-quantity="2"><i class="icon-plus"></i></button>
+                                    </div>
+                            
+                                    <div class="d-flex flex-row">
+                                      <div class="mini-basket-item__price pr-2">
+                                        <span class="js-mini-basket-item-price">59.90</span>
+                                        <span class="mini-basket-item__price-currency js-mini-basket-item-price-currency">TL</span>
+                                      </div>
+                                      <div class="mini-basket-item__retail-price d-none">
+                                        <span class="js-mini-basket-item-retail-price">199</span>
+                                        <span class="mini-basket-item__price-currency js-mini-basket-item-retail-price-currency">TL</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="text-center js-basket-item-error error w-100"></div>
+                              </div></div>
                             <div class="shipping_info_w">
                                 <span class="shipping_info_w-text">Tahmini teslimat tarihi:</span> <span
                                     class="shipping_info_w-date">10 Aralık - 14 Aralık</span>

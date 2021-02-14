@@ -3,6 +3,8 @@ from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 
+from account.models import Customer
+
 
 
 User = get_user_model()
@@ -33,3 +35,4 @@ class UserAdmin(DjangoUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
+admin.site.register(Customer)

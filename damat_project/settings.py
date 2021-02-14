@@ -53,6 +53,7 @@ CUSTOME_APPS = [
     'order',
     # 'mptt',
     # 'modeltrans',
+    'debug_toolbar',
 ]
 
 THIRD_PARTY_APPS = [
@@ -76,6 +77,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -85,8 +87,11 @@ MIDDLEWARE = [
 # CORS
 CORS_ALLOW_ALL_ORIGINS = True
 
-
-ROOT_URLCONF = 'i18n.urls'
+INTERNAL_IPS = [
+    # ...
+    '127.0.0.1',
+    # ...
+]
 
 # ROSETTA_MESSAGES_SOURCE_LANGUAGE_CODE = 'az'
 

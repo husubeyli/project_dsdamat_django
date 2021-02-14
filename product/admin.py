@@ -34,7 +34,7 @@ class ProductAdmin(TranslationAdmin):
         # }),
         ('Informations', {
             'description': 'This group for informations',
-            'fields': ('title', 'sales_count', 'product_pattern', 'color', 'product_code', 'has_size',)
+            'fields': ('title', 'price', 'sales_count', 'product_pattern', 'color', 'product_code', 'has_size',)
         }),
         ('Discount price', {
             'description': 'This group for informations for discount price',
@@ -42,8 +42,8 @@ class ProductAdmin(TranslationAdmin):
         }),
         ('Moderations', {
             'description': 'This group for moderations',
-            'fields': ('is_published', ),
-            'classes': ('collapse',)
+            'fields': ('is_published', 'category', 'rel_product'),
+            'classes': ('collapse', )
         }),
     )
 

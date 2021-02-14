@@ -26,6 +26,7 @@ def get_product(request, pk):
     return Response(data=serializer.data, status=HTTP_200_OK)
 
 
+
 @api_view(['POST'])
 def create_product(request):
     serializer = ProductSerializer(data=request.data)
@@ -35,7 +36,7 @@ def create_product(request):
     return Response(serializer.data, message,  status=HTTP_201_CREATED)
 
 
-@api_view(['POST'])
+@api_view(['PATCH'])
 def update_product(request, pk):
     product = Product.objects.get(id=pk)
     serializer = ProductSerializer(instance=product, data=request.data, context={'request' : request})
