@@ -185,6 +185,21 @@
       </picture>
       <div id="stories"></div>
       {% block body %} {% endblock %}
+      <style>
+        label > input[type="checkbox"]::before, label > input[type="radio"]::before {
+            content: "";
+        }
+        label > input[type="checkbox"]:checked:after {
+            position: absolute !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            font-family: icomoon !important;
+            display: inline-block !important; 
+            top: -2px !important;
+        }
+    </style>
       <div class="js-search-content search-content">
         <div class="page-wrapper__content">
           <div class="js-search-container search-result-area"></div>

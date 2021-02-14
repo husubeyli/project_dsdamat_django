@@ -124,16 +124,38 @@
             </div>
 
         </div>
-
-
+        {% if category.is_head == False %}
+        {% if category.image %}
+        <div class="list__banner__wrapper d-none d-lg-block  list_banner__image__wrapper">
+            <img class="w-100" src="{{ category.image.url }}">
+            
+            <div class="list__banner__content">
+            
+                <h1 class="fsize-36 font-financier list__banner__title" style=" 
+                
+                
+                ">{{ category.title }}</h1>
+            
+                <div class="py-3 list__categories"> 
+                    {% for related_category  in category.choices_category.all %}
+                    <a class="list__border rounded-pill color-secondary mx-1 p-1 px-3 js-category-choice d-inline-block {% if related_category.title == category.title %} selected {% endif %}"
+                        href="{% url 'product:products_filter' related_category.slug %}" data-name="category_ids" data-value="2"
+                        data-checked="true">
+                        {{ related_category.title|title }}
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>  
+        </div>
+        {% endif %}
+        {% endif %}
         <div class="container-fluid d-sm-flex product__list">
             <div class="row ">
 
-
+                {% if category.image == False %} 
                 <div class="list__banner__wrapper d-none d-lg-block  col-12">
 
-
-                    <div class="list__banner__content">
+                    <div class="list__banner__content d-none ">
 
                         <h1 class="fsize-36 font-financier list__banner__title" style="">{{ category.title }}</h1>
 
@@ -150,7 +172,7 @@
                         </div>
                     </div>
                 </div>
-
+                {% endif %}
 
                 <div class="list__banner__wrapper mb-3 d-lg-none d-none">
 
@@ -175,6 +197,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-12 d-none d-sm-block">
                     <div class="d-flex">
                         <form id="ListFiltersForm" class="border-bottom flex-1">
@@ -189,14 +212,14 @@
                                             {% for related_category  in category.choices_category.all %}
                                             <label class="color-secondary fsize-13 d-flex align-items-center">
                                                 <input type="checkbox" class="filter-item-checkbox list__filters-checkbox js-filter-choice mr-1 " data-filter="category" name=""
-                                                    value="{{related_category.id}}">
+                                                    value="{{related_category.title}}">
                                                 <span class="choice-label">{{ related_category.title  }}</span>
                                             </label>
 
                                             {% endfor %}
 
                                         </div>
-                                        <button class="btn border rounded-0">Uygula</button>
+                                        <button class="filter-btn  btn border rounded-0">Uygula</button>
                                     </div>
                                 </li>
 
@@ -215,7 +238,7 @@
 
 
                                         </div>
-                                        <button class="btn border rounded-0">Uygula</button>
+                                        <button class="filter-btn  btn border rounded-0">Uygula</button>
                                     </div>
                                 </li>
                                 <li class="nav-item dropdown" data-facet-key="integration_beden1">
@@ -236,7 +259,7 @@
 
 
                                         </div>
-                                        <button class="btn border rounded-0">Uygula</button>
+                                        <button class="filter-btn btn border rounded-0">Uygula</button>
                                     </div>
                                 </li>
 

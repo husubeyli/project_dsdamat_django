@@ -86,7 +86,7 @@ class Product(models.Model):
 
     # informatuons
     title = models.CharField(_("Title"), max_length=127)
-    price = models.DecimalField(_("Price"), max_digits=5, decimal_places=2)
+    price = models.DecimalField(_("Price"), max_digits=7, decimal_places=2)
     sales_count = models.IntegerField(_("Sales Count"), blank=True, null=True)
     product_pattern = models.CharField(_("Pattern"), max_length=50, blank=True, null=True)
     color = models.CharField(_("Color"), max_length=50, blank=True, null=True)

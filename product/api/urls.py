@@ -19,6 +19,7 @@ urlpatterns = [
     path("products-create", create_product, name="create_product"),
     path("products-update/<int:pk>", update_product, name="update_product"),
     path("products-delete/<int:pk>", delete_product, name="delete_product"),
+    
 ]
 
     # path('products/', product_list),

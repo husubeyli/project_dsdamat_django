@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED
-
+from rest_framework.generics import ListAPIView
 from product.api.serializers import (
     ProductSerializer,
 
@@ -24,7 +24,6 @@ def get_product(request, pk):
     products = Product.objects.get(id=pk)
     serializer = ProductSerializer(products, many=False, context = {'request' : request})
     return Response(data=serializer.data, status=HTTP_200_OK)
-
 
 
 @api_view(['POST'])
@@ -50,3 +49,16 @@ def delete_product(request,pk):
     product = Product.objects.get(id=pk)
     product.delete()
     return Response('Product succsesfully delete!')
+
+
+# class SearchFilterProductsAPI(ListAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializer
+#     # permission_classes = [IsAdminUser]
+
+#     def get_queryset(self):
+#         super().get_queryset()
+        
+#         return 
+    
+    
