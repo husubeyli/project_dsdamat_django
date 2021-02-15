@@ -48,11 +48,11 @@ $(document).ready(function(){
 									<div class="position-relative product-image-wrapper">
 										<img class="w-100 product-item__img"
 											src="{{ product.product_images.all.0.image.url }}"
-											alt="${item.title} | D'S Damat">
-										{% if ${item.disc_type} == 'faiz' %}
+											alt="{{ product.title }} | D'S Damat">
+										{% if product.disc_type == 'faiz' %}
 										<span
-											class="product-item__discount-badge d-flex align-items-center">${item.disc_value}
-											% ${item.disc_value} {% endif %}
+											class="product-item__discount-badge d-flex align-items-center">{% if product.disc_value %}
+											% {{product.disc_value}} {% endif %}
 										</span>
 										{% endif %}
 	
@@ -64,14 +64,14 @@ $(document).ready(function(){
 									<div
 										class="product-item__content d-flex flex-column justify-content-between text-sm-center">
 										<div class="product-item__name color-primary"
-											href="{% url 'product:product_detail' product.slug %}">${item.title}</div>
+											href="{% url 'product:product_detail' product.slug %}">{{product.title}}</div>
 										<div>
 											<div class="product-item-price-wrapper">
 	
 												<div class="d-flex justify-content-sm-center align-items-center">
 	
 													<div
-														class="{% if ${item.disc_value} %} product-item__price--retail {% else %} product-item__price--normal color-primary {% endif %} font-plain-medium">
+														class="{% if product.disc_value %} product-item__price--retail {% else %} product-item__price--normal color-primary {% endif %} font-plain-medium">
 														{{ product.price }}</div>
 													{% if product.disc_value %}
 													<div

@@ -39,10 +39,11 @@
                         <a class="pz-breadcrumb__link" href="{% url 'product:products_filter' parent_category.slug %}"
                             data-divider="&gt;">{{ parent_category.title | title }}</a>
                         {% endif %}
-
+                        {% if sub_category %}
                         <a class="pz-breadcrumb__link" href="{% url 'product:products_filter' sub_category.slug %}"
                             data-divider="&gt;">{{ sub_category.title  | title }}</a>
                         <b class="pz-breadcrumb__link">{{ product.title  | title }}</b>
+                        {% endif %}
                     </div>
                 </div>
             </div>

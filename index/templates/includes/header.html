@@ -31,7 +31,9 @@
                         <div class="navigation__submenu p-4">
                             <div class="d-flex">
                                 <div class="navigation__link__wrapper">
+                                    
                                     {% for sub_menu in menu.parent_categories.all reversed %}
+                                    
                                     {% if sub_menu.is_new_season %}
                                     <a class="red navigation__submenu__link two-column"
                                         href="{% url 'product:products_filter' sub_menu.slug %}">
