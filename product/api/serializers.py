@@ -34,6 +34,9 @@ from menu.models import Menu
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    product_images = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+    product_details = serializers.StringRelatedField(many=True, read_only=True)
+    
     class Meta:
         model = Product
         fields = (
@@ -41,13 +44,21 @@ class ProductSerializer(serializers.ModelSerializer):
             'title',
             'price',
             'sales_count',
+            'slug',
             'product_pattern',
             'color',
             'product_code',
             'has_size',
             'category',
             'rel_product',
+            'product_images',
+            'product_details',
         )
+
+    def to_representation(self, instance):
+        data = super(ProductSerializer, self).to_representation(instance)
+        # manipulate data here 
+        return data
 
 
 class ProductCreateSerializer(serializers.ModelSerializer):

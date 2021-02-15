@@ -1,4 +1,4 @@
-console.log('salam');
+
 $(document).ready(function(){
 	$(".ajaxLoader").hide();
 	$(".filter-item-checkbox").on('click',function(){
@@ -15,22 +15,86 @@ $(document).ready(function(){
 			});
 		});
         console.log(_filterObj, 'obyekt');
-
-	document.querySelector('.filter-btn').addEventListener('click', ()=> {
+		let category = $('#Category').data('category')
+		console.log(category);
+	document.querySelector('.filter-btn').addEventListener('click', (e)=> {
+		e.preventDefault()
 
 			// Run Ajax
 			$.ajax({
-				url: "http://localhost:8000/api/v1.0/products/",
+				url: `http://localhost:8000/api/v1.0/filter-api-data/${category}/`,
 				data: _filterObj,
 				dataType: 'json',
 				beforeSend:function(){
-					console.log('necesen');
 					$(".ajaxLoader").show();
 				},
 				success:function(res){
 					console.log(res);
-					$("#filteredProducts").html(res.data);
-					$(".ajaxLoader").hide();
+					let content =  $("#ListProductWrapper")
+					console.log(content);
+					let product_content = ''
+					for (let item of res){
+						// console.log(res[i].category[1]);
+							console.log('salam');
+							// $("#ListProductWrapper").html('')
+
+							product_content +=
+							`
+							<div class="col-6 col-sm-3  product-item mb-4">
+
+							<div class="js-product-wrapper" data-sku="8682060800725" data-pk="77818"
+								data-url="${item.slug}">
+								<a href=" ${item.slug} class="d-flex flex-column h-100">
+									<div class="position-relative product-image-wrapper">
+										<img class="w-100 product-item__img"
+											src="{{ product.product_images.all.0.image.url }}"
+											alt="${item.title} | D'S Damat">
+										{% if ${item.disc_type} == 'faiz' %}
+										<span
+											class="product-item__discount-badge d-flex align-items-center">${item.disc_value}
+											% ${item.disc_value} {% endif %}
+										</span>
+										{% endif %}
+	
+	
+										<div data-url="/users/login/?next=/erkek-giyim-modelleri/"
+											class="js-product-item-favourite-guest product-item-favourite-elem"></div>
+	
+									</div>
+									<div
+										class="product-item__content d-flex flex-column justify-content-between text-sm-center">
+										<div class="product-item__name color-primary"
+											href="{% url 'product:product_detail' product.slug %}">${item.title}</div>
+										<div>
+											<div class="product-item-price-wrapper">
+	
+												<div class="d-flex justify-content-sm-center align-items-center">
+	
+													<div
+														class="{% if ${item.disc_value} %} product-item__price--retail {% else %} product-item__price--normal color-primary {% endif %} font-plain-medium">
+														{{ product.price }}</div>
+													{% if product.disc_value %}
+													<div
+														class="product-item__price--normal color-primary font-plain-medium">
+														{{ product.get_discount_price }}</div>
+													{% endif %}
+												</div>
+	
+											</div>
+											<div class="product-item__basket-offers">
+	
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+							`
+							$(".ajaxLoader").hide();
+					}
+					content.html(product_content)
+					console.log(product_content);
+					
 				},
 				error: function(res){
 					console.log(res, 'error');

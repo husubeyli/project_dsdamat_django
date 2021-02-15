@@ -19,7 +19,6 @@ from product.views import (
     ProductsFilterListView,
     ProductsListView,
     ProductDetailView,
-    filter_data,
 )
 
 
@@ -29,6 +28,5 @@ urlpatterns = [
     path('<slug:slug>/', ProductDetailView.as_view(), name='product_detail'),
     path("filter/<str:menu>/", ProductsFilterListView.as_view(), name="products_filter"),
     path('', ProductsListView.as_view(), name="products_list"),
-    path("ajax/filter-data/", filter_data, name="filter_data"),
 ]
 
