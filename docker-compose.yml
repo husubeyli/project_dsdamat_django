@@ -1,25 +1,61 @@
 version: '3.1'
 
 services: 
+
+    nginx-proxy:
+        image: jwilder/nginx-proxy
+        restart: "always"
+        ports:
+            - "80:80"
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+            - ./nginx/vhost/:/etc/nginx/vhost.d:ro
+            - ./nginx/conf.d/client_max_body_size.conf:/etc/nginx/conf.d/client_max_body_size.conf:ro
+            - ./static/:/code/static
+            - ./media/:/code/media
+
     postgres:
         image: postgres:9.6.6
         volumes:
             - ./pgdb:/var/lib/postgresql/
         ports:
             - "5435:5432"
-        environment:
-            POSTGRES_DB: 'damats_db'
-            POSTGRES_USER: 'admin_damat'
-            POSTGRES_PASSWORD: 'elvin123'
+        env_file: ./.env
 
-    adminer:
-        image: adminer
-        restart: always
+    web:
+        build: .
         ports:
-        - 8082:8080
+            - "8000:8000"
+        volumes:
+            - .:/code
+            - ./static/:/code/static
+            - ./media/:/code/media
+        depends_on:
+            - "postgres"
+        env_file: ./.env
 
     redis:
         image: redis
         ports:
             - 6379:6379
         restart: always
+
+    celery:
+        build:
+            context: .
+            dockerfile: celery.dockerfile
+        volumes:
+            - .:/code
+        command: celery -A damat_project worker --beat --scheduler django --loglevel=info
+        links:
+            - redis
+            - postgres
+        depends_on:
+            - "redis"
+            - "postgres"
+        env_file: ./.env
+
+networks:
+    default:
+        external:
+            name: nginx-proxy

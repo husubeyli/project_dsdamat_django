@@ -8,7 +8,8 @@ from product.api.views import (
     create_product,
     update_product,
     delete_product,
-    SearchFilterProductsAPI
+    SearchFilterProductsAPI,
+    ProductImageAPI
 )
 
 
@@ -20,7 +21,9 @@ urlpatterns = [
     path("products-create", create_product, name="create_product"),
     path("products-update/<int:pk>", update_product, name="update_product"),
     path("products-delete/<int:pk>", delete_product, name="delete_product"),
-    path("filter-api-data/<slug:slug>/", SearchFilterProductsAPI.as_view(), name="search_api_filter")
+    path("filter-api-data/<slug:slug>/", SearchFilterProductsAPI.as_view(), name="search_api_filter"),
+    path("images/", ProductImageAPI.as_view(), name="product_images"),
+
     
 ]
 

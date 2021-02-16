@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from product.models import (
-    Product,
+    Product, 
+    ProductImage
 )
 from menu.models import Menu
 
@@ -47,6 +48,8 @@ class ProductSerializer(serializers.ModelSerializer):
             'slug',
             'product_pattern',
             'color',
+            'disc_type',
+            'disc_value',
             'product_code',
             'has_size',
             'category',
@@ -79,5 +82,13 @@ class ProductCreateSerializer(serializers.ModelSerializer):
 
 
 
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
 
 
+        fields = (
+            'id',
+            'image',
+            'product',
+        )

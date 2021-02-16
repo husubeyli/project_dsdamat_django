@@ -248,7 +248,7 @@
                             <div class="d-flex justify-content-center product__shared-icons">
                                 <i class="product__shared-icon icon-facebook" data-sharer="facebook"
                                     data-hashtag="DsDamat"
-                                    data-url="https://www.dsdamat.com/twn-slim-fit-siyah-smokin-yelekli-takim-elbise-8682060712219/"></i>
+                                    data-url="http://{{ request.META.HTTP_HOST }}{{ LANGUAGE_CODE }}{% url 'product:product_detail' product.slug %}"></i>
                                 <i class="product__shared-icon icon-twitter" data-sharer="twitter"
                                     data-title="Twn Slim Fit Siyah Smokin Yelekli Takım Elbise"
                                     data-hashtags="DsDamat"
@@ -311,16 +311,20 @@
             <div class="container">
                 <h3 class="text-center mb-3">Görünümünüzü Tamamlayın</h3>
                 <div class="js-reco-slider">
-                    <div class="product__widget__item col-6 col-lg-3 text-center">
-                        <a href="/siyah-8682060783011/">
-                            <img class="product__widget__item__img"
-                                src="https://damat.akinoncdn.com/products/2020/10/21/198086/d1a73da2-392f-4170-b5b8-f5c76e2a7313_size690x757_cropTop.jpg"
-                                alt="product widget image">
-                            <p class="product__widget__item__name">Siyah</p>
-                            <span class="product__widget__item__price d-block">119 TL</span>
+                    
+                    {% for product in product_list %}
+                    <div class="product__widget__item col-6 col-lg-3 text-center lslide active" style="width: 270px; margin-right: 10px;">
+                        <a href="{% url 'product:product_detail' product.slug %}">
+                            <img class="product__widget__item__img" src="{{ product.product_images.all.0.image.url }}" alt="{{ product.product_images.all.0}}" style="height: 200px; object-fit: cover;">
+                            <p class="product__widget__item__name">{{ product.title }}</p>
+                            
+                            <span class="product__widget__item__price d-block">{% if product.disc_value %}{{ product.get_discount_price }}{% else %} {{product.price}} {% endif %}</span>
                         </a>
                     </div>
-                    <div class="product__widget__item col-6 col-lg-3 text-center">
+                    {% endfor %}
+
+
+                    <!-- <div class="product__widget__item col-6 col-lg-3 text-center">
                         <a href="/siyah-8682060781871/">
                             <img class="product__widget__item__img"
                                 src="https://damat.akinoncdn.com/products/2020/10/21/198071/1c570e87-91c1-4e1f-b150-977f2b3cb4f4_size690x757_cropTop.jpg"
@@ -445,7 +449,7 @@
                                 349 TL</div>
                             <span class="product__widget__item__price d-block">149 TL</span>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

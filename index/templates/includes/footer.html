@@ -126,7 +126,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="iletisim/index.html" rel="nofollow">
+                                <a href="{% url 'contact:contact' %}" rel="nofollow">
                                     {% trans 'İletişim' %}
                                 </a>
                             </li>
@@ -195,9 +195,7 @@
                                 method: "POST",
                                 body: JSON.stringify(postData)
                             });
-                            console.log(response.status)
                             data = await response.json()
-                            console.log(response.status)
                             if (response.status == 400){
                                 errorMessage = data.email
                             }

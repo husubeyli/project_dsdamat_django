@@ -6,6 +6,7 @@ from index.views import (
 )
 
 
+
 app_name = 'index'
 
 

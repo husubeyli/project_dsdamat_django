@@ -24,10 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'jfkvf2s**(gyc3-*g4as8m_z7a5no$071yldii+i=yy3_$x7c+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = True # False if os.environ.get('DEBUG') else True
+PROD = True # not DEBUG
+ALLOWED_HOSTS = ['*']
 # Application definition
 
 APPS = [
@@ -126,17 +125,51 @@ AUTH_USER_MODEL = 'account.User'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'damats_db',
-        'USER': 'admin_damat',
-        'PORT': 5435,
-        'PASSWORD': 'elvin123',
-        'HOST': '127.0.0.1',
-    }
-}
+# DATABASES = {
+#     'default': {
 
+#     }
+# }
+
+if PROD:
+    print(PROD, 'salam')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ.get('POSTGRES_DB'),
+            'USER': os.environ.get('POSTGRES_USER'),
+            'PORT': os.environ.get('POSTGRES_PORT'),
+            'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+            'HOST': os.environ.get('POSTGRES_HOST'),
+        }
+    }
+else:
+    print('necesen')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'damats_db',
+            'USER': 'admin_damat',
+            'PORT': 5435,
+            'PASSWORD': 'elvin123',
+            'HOST': '127.0.0.1',
+        }
+    }
+
+if PROD:
+    CELERY_BROKER_URL = 'redis://redis:6379'
+    CELERY_RESULT_BACKEND = 'redis://redis:6379'
+    CELERY_ACCEPT_CONTENT = ['application/json']
+    CELERY_TASK_SERIALIZER = 'json'
+    CELERY_RESULT_SERIALIZER = 'json'
+    CELERY_TIMEZONE = 'Asia/Baku'
+else:
+    CELERY_BROKER_URL = 'redis://localhost:6379'
+    CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+    CELERY_ACCEPT_CONTENT = ['application/json']
+    CELERY_TASK_SERIALIZER = 'json'
+    CELERY_RESULT_SERIALIZER = 'json'
+    CELERY_TIMEZONE = 'Asia/Baku'
 
 # SCOIAL AUTH CONFIGRATION
 
@@ -234,7 +267,12 @@ LOCALE_PATHS = (
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "/static/")
+if PROD:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+else:
+    STATICFILES_DIRS = [
+        BASE_DIR / "static",
+    ]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -290,14 +328,6 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index:home')  # logout olandan sora redirect
 LOGOUT_URL = reverse_lazy('account:logout')
 
 
-
-# Celery Settings
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = TIME_ZONE
 
 
 # Email Settings

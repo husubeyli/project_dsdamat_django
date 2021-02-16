@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/Users/husubayli/Desktop/Documents/Repos/tech_academy/project/venv/bin/python3"
+    "python.pythonPath": "/Users/husubayli/Desktop/Documents/Repos/tech_academy/project/venv/bin/python3",
+    "git.ignoreLimitWarning": true
 }

@@ -51,6 +51,14 @@ class ProductsFilterListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        menu = get_object_or_404(Menu, slug=self.kwargs['menu'])
+        sizes_list = []
+        products = Product.objects.filter(category=menu).filter(is_published=True)
+        for product in products:
+            for size in product.sizes.all():
+                if size.all_size.size not in sizes_list:
+                    sizes_list.append(size.all_size.size)
+        context["sizes_list"] = sizes_list
         context["category"] = get_object_or_404(Menu, slug=self.kwargs['menu'])
         return context
 
@@ -65,7 +73,8 @@ class ProductDetailView(DetailView):
         product = Product.objects.get(slug=self.object.slug)
         size = self.request.GET.get('size')
         rel_products = Product.objects.filter(rel_product=product)
-
+        all_product = Product.objects.filter(is_published=True)
+        context['product_list'] = all_product
         related_prods_list = []
         related_prod_dict = {}
 
@@ -91,7 +100,6 @@ class ProductDetailView(DetailView):
                 context['parent_category'] = parent
             else:
                 context['sub_category'] = parent
-
         return context
 
 

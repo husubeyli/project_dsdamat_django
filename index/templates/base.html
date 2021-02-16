@@ -128,6 +128,7 @@
       }
       // ve assign edirik cookie-ye
       document.cookie = "device=" + device + ";domain=;path=/";
+
     </script>
     <div
       class="analytics-data"
@@ -220,6 +221,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'js/product-filter.js' %}"></script>
     {% block index_js_other %} {% endblock %}
-
+    <!-- <script>
+      let banner = document.querySelector('#btnMinimizeVisiNotifier')
+      banner.style.display = "none"
+      console.log(banner)
+    </script> -->
   </body>
 </html>

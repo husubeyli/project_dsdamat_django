@@ -219,7 +219,7 @@
                                             {% endfor %}
 
                                         </div>
-                                        <button class="filter-btn  btn border rounded-0">Uygula</button>
+                                        <button class="filter-btn  btn border rounded-0"  >Uygula</button>
                                     </div>
                                 </li>
 
@@ -229,14 +229,13 @@
                                         type="button">Beden</button>
                                     <div class="dropdown-menu list__filters-menu list__filters-menu--bigger">
                                         <div class="list__filters-choice-wrapper">
-
+                                            {% for size in sizes_list %}
                                             <label class="color-secondary fsize-13 d-flex align-items-center">
-                                                <input type="checkbox" class="filter-item-checkbox list__filters-checkbox js-filter-choice mr-1" name="attributes_integration_beden1" value="XS"
+                                                <input type="checkbox" class="filter-item-checkbox list__filters-checkbox js-filter-choice mr-1" data-filter='size' name="attributes_integration_beden1" value="{{size}}"
                                                     >
-                                                <span class="choice-label">XS</span>
+                                                <span class="choice-label">{{size}}</span>
                                             </label>
-
-
+                                            {% endfor %}
                                         </div>
                                         <button class="filter-btn  btn border rounded-0">Uygula</button>
                                     </div>
@@ -256,17 +255,15 @@
                                                 </label>
                                                 {% endifchanged %}
                                             {% endfor %}
-
-
                                         </div>
-                                        <button class="filter-btn btn border rounded-0">Uygula</button>
+                                        <button class="filter-btn btn border rounded-0" >Uygula</button>
                                     </div>
                                 </li>
 
                             </div>
                         </form>
                         <div class="nav list__filters list__sorter--wrapper border-bottom" data-type="sorters">
-                            <div class="fsize-14 nav-link px-0 color-secondary">2794 Ürün</div>
+                            <div class="fsize-14 nav-link px-0 color-secondary" id='colorCount'>2794 Ürün</div>
                             <div class="nav-item dropdown">
                                 <a href="#" class="list__filters--arrow color-primary fsize-14 nav-link" role="button"
                                     data-toggle="dropdown" data-display="static">
