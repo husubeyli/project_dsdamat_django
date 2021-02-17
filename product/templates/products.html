@@ -107,6 +107,7 @@
 {% endblock %}
 
 {% block body %}
+<input id="YOUR_ENV_VARIABLE" value="{{ api_url }}" type="hidden" />
 
 <div class="js-base-content wrapper">
     <div id="ListPage">
@@ -200,6 +201,8 @@
 
                 <div class="col-12 d-none d-sm-block">
                     <div class="d-flex">
+
+                        
                         <form id="ListFiltersForm" class="border-bottom flex-1">
                             <div class="nav list__filters list__filters" data-type="selectboxes">
 

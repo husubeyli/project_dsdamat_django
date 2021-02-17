@@ -24,7 +24,7 @@ def create_contact(sender,  instance, **kwargs):
     print(users_data)
     subject = "Updates"
     your_email = 'husubeyli@gmail.com'
-    send_mail(subject, users_data, settings.EMAIL_HOST_USER, ['husubeyli@gmail.com'])
+    # send_mail(subject, users_data, settings.EMAIL_HOST_USER, ['husubeyli@gmail.com'])
 
 
 

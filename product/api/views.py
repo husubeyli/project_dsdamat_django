@@ -74,6 +74,8 @@ class SearchFilterProductsAPI(ListAPIView):
         if sizes:
             products = products.filter(sizes__all_size__size__in = sizes).distinct()  
         print(categories, products,sizes )
+
+
         return products
 
 

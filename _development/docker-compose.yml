@@ -1,0 +1,19 @@
+version: '3.1'
+
+services: 
+
+    postgres:
+        image: postgres:9.6.6
+        volumes:
+            - ./pgdb:/var/lib/postgresql/
+        ports:
+            - "5435:5432"
+        env_file: ../.env
+
+
+    redis:
+        image: redis
+        ports:
+            - 6379:6379
+        restart: always
+

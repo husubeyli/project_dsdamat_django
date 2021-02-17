@@ -24,9 +24,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'jfkvf2s**(gyc3-*g4as8m_z7a5no$071yldii+i=yy3_$x7c+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # False if os.environ.get('DEBUG') else True
-PROD = True # not DEBUG
+DEBUG = False if os.environ.get('DEBUG') else True
+PROD =  not DEBUG
 ALLOWED_HOSTS = ['*']
+
+if PROD:
+    DEV_HOST='http://localhost/'
+else:
+    DEV_HOST='http://localhost:8000/'
+
+
 # Application definition
 
 APPS = [
@@ -132,7 +139,7 @@ AUTH_USER_MODEL = 'account.User'
 # }
 
 if PROD:
-    print(PROD, 'salam')
+    print(PROD, 'Porduction Mode')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -144,7 +151,7 @@ if PROD:
         }
     }
 else:
-    print('necesen')
+    print('Development Mode')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -335,9 +342,9 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'tech.academy.docker@gmail.com'
-EMAIL_HOST_PASSWORD = 'suqmnhaxezvemyhn'
+EMAIL_HOST_USER = 'husubayli@gmail.com'
+EMAIL_HOST_PASSWORD = 'xdjnasiuddxikfax'
 
-SITE_ADDRESS = 'http://localhost:8000'
+# SITE_ADDRESS = 'http://localhost:8000'
 
 

@@ -1,4 +1,9 @@
-var domain = 'http://localhost/'
+// var domain = 'http://localhost/'
+let hiddenInput = document.getElementById("YOUR_ENV_VARIABLE");
+let yourEnvVariableValue = hiddenInput.value;
+var domain = yourEnvVariableValue
+console.log(yourEnvVariableValue);
+console.log('salam');
 $(document).ready(function(){
 	$(".ajaxLoader").hide();
 

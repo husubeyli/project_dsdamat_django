@@ -1,6 +1,6 @@
 # from django import template
 # from index.forms import SubscriberForm
-# from
+
 
 # register = template.Library()
 

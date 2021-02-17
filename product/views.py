@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
@@ -29,12 +30,7 @@ class ProductsListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # products = Product.objects.all()
-        # for parent_product in products:
-        #     pass
-        #     # if parent_product.category in ['GİYİM', '']
-        # context["parent_categroies"] = products
-        # context["parent_sizes"] = products
+
         return context
     
 
@@ -60,6 +56,8 @@ class ProductsFilterListView(ListView):
                     sizes_list.append(size.all_size.size)
         context["sizes_list"] = sizes_list
         context["category"] = get_object_or_404(Menu, slug=self.kwargs['menu'])
+        context['api_url'] = settings.DEV_HOST
+        print(context['api_url'])
         return context
 
 
